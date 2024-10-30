@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Alumni
 from .forms import AlumniUpdateForm
 from django.contrib.auth.decorators import login_required
-
+import os
+from django.conf import settings
 from django.contrib import messages
 
 @login_required
@@ -16,6 +17,8 @@ def alumni_profile(request):
 
     return render(request, 'alumni_details/alumni-profile.html', {'alumni': alumni})
 
+
+
 @login_required
 def update_alumni_profile(request):
     alumni = get_object_or_404(Alumni, user=request.user)
@@ -24,22 +27,27 @@ def update_alumni_profile(request):
         messages.error(request, "You are not authorized to update this profile.")
         return redirect('home')
 
+    old_image = alumni.profile_picture.path if alumni.profile_picture else None  # Store the old image path
+
     if request.method == 'POST':
         form = AlumniUpdateForm(request.POST, request.FILES, instance=alumni)
+
         if form.is_valid():
+            # If a new profile picture is uploaded
+            if request.FILES.get('profile_picture'):
+                # Remove the old profile picture after saving the new one
+                if old_image and os.path.exists(old_image):
+                    os.remove(old_image)
+
+            # Save the new form data (including the new profile picture if uploaded)
             form.save()
+
             messages.success(request, "Your profile has been updated successfully!")
             return redirect('alumni_profile')
     else:
         form = AlumniUpdateForm(instance=alumni)
-    
+
     return render(request, 'alumni_details/update-alumni-profile.html', {'form': form, 'alumni': alumni})
-
-
-
-
-
-
 
 
 
