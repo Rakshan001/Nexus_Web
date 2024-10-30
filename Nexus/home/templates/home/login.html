@@ -1,0 +1,47 @@
+{% load static %}  <!-- Load static files -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Use Django's static tag for loading CSS -->
+    <link rel="stylesheet" href="{% static 'alumni_details/login.css' %}">
+    <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'alumni_details/assets/NexusFavicon.png' %}">
+</head>
+<body>
+    <nav>
+        <h2>CEC NEXUS ALUMNI CONNECT PORTAL</h2>
+    </nav>
+    <div class="container">
+        <div class="left-panel">
+            <!-- Ensure image is in static folder -->
+            <img src="{% static 'alumni_details/assets/Nexus_logo-removebg-preview.png' %}" alt="Company Logo">
+        </div>
+        <div class="right-panel">
+            <form method="post">
+              {% csrf_token %}
+                <h2>Login to your account</h2>
+                <input type="text" id="username" name="username" placeholder="Alumni email" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <div class="remember">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
+                <button type="submit">Login</button>
+                <p><a href="">Forgot Password?</a></p>
+            </form>
+            {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

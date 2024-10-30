@@ -1,0 +1,194 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Profile</title>
+  <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            width: 100%;
+            height: 100vh;
+            background: url('https://img.freepik.com/premium-vector/network-connection-structure-concept-hi-tech-future-communication-web-concept-big-data-visualization-vector-illustration_634443-459.jpg');
+    background-repeat:repeat-y;
+    /* background-size: cover;
+    background-position: left; */
+    background-attachment: fixed;
+        }
+        /* General container styling */
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.container .text-center{
+    margin: 10px;
+}
+.prof-img-name{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(238, 238, 238);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.476);
+    border-radius: 30px;
+}
+/* Profile image as a circle */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left;
+    display: block;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.prof-img-name .prof-name-achiv h2,p{
+    color: #0056b3;
+    margin: 4px;
+}
+
+.prof-img-name h2{
+    font-size: 40px;
+}
+
+/* Card body styling */
+.card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 15px;
+    padding: 20px;
+}
+
+.card-body .card-text {
+    font-size: 16px;
+    color: #333;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-body strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* LinkedIn link styling */
+.card-body a {
+    color: #007bff;
+    text-decoration: none;
+    word-wrap: break-word;
+    text-align: right;
+}
+
+.card-body a:hover {
+    text-decoration: underline;
+}
+
+/* Edit Profile Button */
+.card-body .button {
+    grid-column: span 2;
+    padding: 10px 20px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    gap: 10px;
+}
+
+.card-body .button:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+
+
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .card-text {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 16px;
+    }
+    .container{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Alumni Profile</h2>
+        <div class="profile-card mx-auto">
+            <!-- Check if alumni has a profile picture -->
+             <div class="prof-img-name">
+                 {% if alumni.profile_picture %}
+                     <img src="{{ alumni.profile_picture.url }}" class="profile-img" alt="{{ alumni.first_name }}'s Profile Picture">
+                 {% else %}
+                     <img src="{% static 'alumni_details/assets/default.png' %}" class="profile-img" alt="Default Profile Picture">
+                 {% endif %}
+                 <div class="prof-name-achiv">
+                     <h2 class="card-title">{{ alumni.first_name }} {{ alumni.last_name }}</h2>
+                     <p class="card-text"><strong></strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
+                 </div>
+             </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Phone:</strong> {{ alumni.phone_number }}</p>
+                <p class="card-text"><strong>Graduation Year:</strong> {{ alumni.graduation_year }}</p>
+                <p class="card-text"><strong>Location:</strong> {{ alumni.location }}</p>
+                <p class="card-text"><strong>Batch:</strong> {{ alumni.batch }}</p>
+                <p class="card-text"><strong>USN:</strong> {{ alumni.usn }}</p>
+                <p class="card-text"><strong>LinkedIn:</strong> <a href="{{ alumni.linkedin_url }}">{{ alumni.linkedin_url }}</a></p>
+                <p class="card-text"><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
+                <p class="card-text"><strong>Bio:</strong> {{ alumni.bio }}</p>
+                <p class="card-text"><strong>Achievements:</strong> {{ alumni.achievements }}</p>
+                <p class="card-text"><strong>Date of Birth:</strong> {{ alumni.dob }}</p>
+                <a href="{% url 'update_alumni_profile' %}" class="button">Edit Profile <i class="fa-solid fa-pen"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

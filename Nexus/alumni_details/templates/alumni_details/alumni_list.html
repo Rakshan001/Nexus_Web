@@ -1,0 +1,95 @@
+<!-- *********************** -->
+{% extends 'alumni_details/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni List</title>
+    <link rel="stylesheet" href="{% static 'alumni_details/css/alumnilist.css' %}">
+    <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="alumni-container">
+        <h2>Alumni Details</h2>
+        <!-- Filter Form -->
+        <div class="search-filter">
+            <form method="get" action="{% if graduation_year %}{% url 'alumni_by_year' graduation_year %}{% else %}{% url 'alumni_by_year' 0 %}{% endif %}" class="filter">
+                <label for="graduation_year">Graduation Year:</label>
+                <select id="graduation_year" name="graduation_year">
+                    <option value="">Select a year</option>
+                    {% for year in graduation_years %}
+                        <option value="{{ year }}" {% if year == current_year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Apply</button>
+            </form>
+
+            <!-- Search Form -->
+            <form method="GET" action="{% url 'alumni_search' %}" class="search">
+                <label for="alumni">Search Alumni:</label>
+                <input type="text" name="alumni" id="alumni" placeholder="Search alumni by name">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#alumni").autocomplete({
+                    source: '{% url "autocomplete" %}',
+                    minLength: 2,
+                    select: function(event, ui) {
+                        $('#alumni').val(ui.item.value);
+                    }
+                });
+            });
+        </script>
+
+        <!-- Current Year Alumni -->
+        <div class="graduation-year">
+            <h3>{{ current_year }}</h3>
+            <div class="alumni-profiles">
+                {% for alumni in alumni_current_year %}
+                    <div class="alumni-profile">
+                        <img src="{{ alumni.profile_picture.url }}" alt="Profile Picture" width="100" height="100">
+                        <p class="name">{{ alumni.first_name }} {{ alumni.last_name }}</p>
+                        <p class="position">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
+                        <div class="connec-btn">
+                            <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
+                            <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{% url 'alumni_by_year' current_year %}" class="see-more"><i class="fa-solid fa-arrow-down"></i>See more</a>
+        </div>
+
+        <!-- Previous Years Alumni -->
+        {% for year, alumni_list in alumni_previous_years.items %}
+            <div class="graduation-year">
+                <h3>{{ year }}</h3>
+                <div class="alumni-profiles">
+                    {% for alumni in alumni_list %}
+                        <div class="alumni-profile">
+                            <img src="{{ alumni.profile_picture.url }}" alt="Profile Picture" width="100" height="100">
+                            <p class="name">{{ alumni.first_name }} {{ alumni.last_name }}</p>
+                            <p class="position">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
+                            <div class="connec-btn">
+                                <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
+                                <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'alumni_by_year' year %}" class="see-more"><i class="fa-solid fa-arrow-down"></i>See more</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+{% endblock %}

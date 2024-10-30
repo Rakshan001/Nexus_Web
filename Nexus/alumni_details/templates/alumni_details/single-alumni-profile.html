@@ -1,0 +1,30 @@
+
+{% extends 'alumni_details/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center">Alumni Profile</h2>
+    <div class="card mx-auto" style="max-width: 600px;">
+        <!-- Check if alumni has a profile picture -->
+        {% if alumni.profile_picture %}
+          <img src="{{ alumni.profile_picture.url }}" class="card-img-top" alt="{{ alumni.first_name }}'s Profile Picture" style="width: 250px; border-radius: 50%;">
+        {% else %}
+          <img src="{% static 'alumni_details/assets/default.png' %}" class="card-img-top" alt="Default Profile Picture">
+        {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ alumni.first_name }} {{ alumni.last_name }}</h5>
+        <p class="card-text"><strong>Phone:</strong> {{ alumni.phone_number }}</p>
+        <p class="card-text"><strong>Graduation Year:</strong> {{ alumni.graduation_year }}</p>
+        <p class="card-text"><strong>Location:</strong> {{ alumni.location }}</p>
+        <p class="card-text"><strong>Batch:</strong> {{ alumni.batch }}</p>
+        <p class="card-text"><strong>USN:</strong> {{ alumni.usn }}</p>
+        <p class="card-text"><strong>LinkedIn:</strong> <a href="{{ alumni.linkedin_url }}">{{ alumni.linkedin_url }}</a></p>
+        <p class="card-text"><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
+        <p class="card-text"><strong>Bio:</strong> {{ alumni.bio }}</p>
+        <p class="card-text"><strong>Achievements:</strong> {{ alumni.achievements }}</p>
+        <p class="card-text"><strong>Date of Birth:</strong> {{ alumni.dob }}</p>
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}

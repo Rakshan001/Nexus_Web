@@ -1,0 +1,8 @@
+dj-user-login-history
+django-admin-logs
+django-image-uploader-widget
+python-decouple
+django-jazzmin
+django-defender
+pip install django-embed-video
+pip install django-widget-tweaks
