@@ -173,3 +173,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 ''' Admin pannel '''
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Alumni Connect",
+    "site_header": "Welcome To Alumni Portal",
+    "site_brand": "Nexus",
+    "site_icon": "images/favicon.png",
+    # Add your own branding here
+    "site_logo": "alumni_details/assets/Nexus_logo-removebg-preview.png",
+    "welcome_sign": "Welcome to the your_site_name",
+    # Copyright on the footer
+    "copyright": "Nexus-alumni-portal @ 2024",
+    "user_avatar": "alumni_details/assets/Nexus_logo-removebg-preview.png",
+}
