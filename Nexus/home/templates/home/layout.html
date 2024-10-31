@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'home/footer.css' %}">
 
     <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
     <!-- Navbar Section -->
@@ -25,12 +26,12 @@
             </div>
             <div class="nav-ele" id="navEle">
                 <ul>
-                    <li>Home</li>
+                    <li><a href="{% url 'home'%}">Home</a></li>
                     <li class="dropdown">
                         Members <i class="fa fa-angle-down"></i>
                         <ul class="dropdown-content">
-                            <li>CEC Alumni's</li>
-                            <li>Past Student Council Members</li>
+                            <li><a href="{% url 'alumni_list'%}">CEC Alumni's</a></li>
+                            <li> <a href="{% url 'council_members' %}">Past Student Council Members</a></li>
                         </ul>
                     </li>
                     <li>Announcements & Events</li>
@@ -39,7 +40,7 @@
                         <ul class="dropdown-content">
                             <li>Campus Visit</li>
                             <li>Podcast</li>
-                            <li>Query</li>
+                            <li> <a href="{% url 'submit_form' %}">Query</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -52,8 +53,9 @@
                     <li class="dropdown">
                         Alumni Coordinators <i class="fa fa-angle-down"></i>
                         <ul class="dropdown-content">
-                            <li>Faculty Coordinators</li>
-                            <li>Student Coordinators</li>
+                            <li> <a href="{% url 'faculty-coordinator-list'%}">Faculty Coordinators</a></li>
+                            <li> <a href="{% url 'student-coordinator-list'%}">Faculty Coordinators</a></li>
+
                         </ul>
                     </li>
                     <li class="login-btn-mobile">
@@ -244,7 +246,7 @@
                     </ul>
                 </div>
                 <div class="column foot-logo">
-                    <img src="../assets/Nexus_logo-removebg-preview.png" alt="Nexus Logo">
+                    <img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Nexus Logo">
                 </div>
             </div>
             <div class="footer-icons">

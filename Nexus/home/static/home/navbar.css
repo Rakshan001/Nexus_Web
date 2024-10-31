@@ -28,6 +28,11 @@ header {
     
   }
   
+  li a{
+    color: white;
+    text-decoration: none;
+
+  }
   .left {
     display: flex;
     align-items: center;
