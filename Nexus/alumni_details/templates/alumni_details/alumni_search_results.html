@@ -1,7 +1,12 @@
-{% extends 'alumni_details/base.html' %}
+{% extends 'home/layout.html' %}
 {% load static %}
 
+
+
+{% block title %}Nexus{% endblock %}
+
 {% block content %}
+
 <style>
     *{
     margin: 0;
@@ -266,7 +271,6 @@ $(function () {
         </div>
         <div class="profile-details">
             <h3>{{ alumni.first_name }} {{ alumni.last_name }}</h3>
-            <p><strong>Phone:</strong> {{ alumni.phone_number }}</p>
             <p><strong>Graduation Year:</strong> {{ alumni.graduation_year }}</p>
             <p><strong>Location:</strong> {{ alumni.location }}</p>
             <p><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name}}</p>

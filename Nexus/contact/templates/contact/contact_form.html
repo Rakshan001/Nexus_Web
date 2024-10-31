@@ -1,3 +1,12 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +15,7 @@
     <title>Submit Contact Form</title>
 </head>
 <body>
+    <div class="center_div">
     <div class="form-container">
         <h1>Contact Us</h1>
         <form method="post" action="">
@@ -37,6 +47,7 @@
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
+</div>
 </body>
 <style>
     /* General styling */
@@ -48,12 +59,13 @@
 }
 
 /* Form container styling */
-body {
+
+.center_div{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f4f7f6;
+    /* height: 100vh; */
+
 }
 
 .form-container {
@@ -64,6 +76,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: center;
+   
 }
 
 h1 {
@@ -130,3 +143,4 @@ h1 {
 
 </style>
 </html>
+{% endblock %}

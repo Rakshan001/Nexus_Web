@@ -1,82 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Submitted Successfully</title>
-</head>
-<body>
-    <div class="success-container">
-        <div class="success-icon">✓</div>
-        <h1>Thank You!</h1>
-        <p>Your form has been submitted successfully.</p>
-        <a href="{% url 'submit_form' %}" class="back-button">Submit Another Form</a>
-    </div>
-</body>
+{% extends 'home/layout.html' %}
+
+{% block title %}Success{% endblock %}
+
+{% block content %}
+
+
+<div class="success-container">
+    <div class="success-icon">✓</div>
+    <h1>Thank You!</h1>
+    <p>Your form has been submitted successfully.</p>
+    <a href="{% url 'submit_form' %}" class="back-button">Submit Another Form</a>
+</div>
+
 <style>
     /* General styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
 
-/* Container styling */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f9ff;
-}
 
-.success-container {
-    text-align: center;
-    background: #ffffff;
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    color: #333333;
-}
+    /* Container styling */
 
-.success-icon {
-    font-size: 50px;
-    color: #4caf50;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
+    .success-container {
+        text-align: center;
+        background: #ffffff;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        color: #333333;
+    }
 
-h1 {
-    font-size: 26px;
-    color: #333333;
-    margin-bottom: 10px;
-}
+    .success-icon {
+        font-size: 50px;
+        color: #4caf50;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
 
-p {
-    font-size: 18px;
-    color: #666666;
-    margin-bottom: 30px;
-}
+    h1 {
+        font-size: 26px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
 
-/* Back button styling */
-.back-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #00b4d8;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-}
+    p {
+        font-size: 18px;
+        color: #666666;
+        margin-bottom: 30px;
+    }
 
-.back-button:hover {
-    background-color: #0096c7;
-}
+    /* Back button styling */
+    .back-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #00b4d8;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+    }
 
+    .back-button:hover {
+        background-color: #0096c7;
+    }
 </style>
-</html>
+
+
+{% endblock %}
