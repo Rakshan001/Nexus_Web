@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.container .header {
+    position: relative; /* Ensure relative positioning for overlay and logo */
+    width: 100%;
+    display: grid;
+}
+
+.header header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -99;
+}
+
+.container .header header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(4, 47, 112, 0.824);
+    z-index: 1;
+}
+
+/* Center the logo within the header */
+.header .logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 300px; /* Adjust size as needed */
+}
+
+/* Style the login form container */
+/* Login container styling */
+.login-container {
+    z-index: 99;
+    position: absolute;
+    top: 190px;
+    left: 50px; right: 50px;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.305);
+    text-align: center;
+}
+
+/* Form input styling */
+.login-container form label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.login-container form input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.login-container form input:focus {
+    border-color: #004080; /* Focus color */
+}
+
+/* Button styling */
+.login-container form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.login-container form button:hover {
+    background-color: #0059b3;
+}
+
+/* Forgot password link styling */
+.forgot-password {
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: #004080;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+    color: #0059b3;
+}
+
+.remember-me{
+    display: flex;justify-content: left; align-items: center;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px; /* Adds some space between the checkbox and label */
+}
+
+.remember-me label {
+    font-size: 15px;
+}
+
+
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        height: 100%;
+    }
+    .container .header {
+        position: relative; /* Ensure relative positioning for overlay and logo */
+        width: 100%;
+        height: 250px;
+        display: grid;
+    }
+    
+    .login-container {
+        z-index: 99;
+        position: absolute;
+        top: 190px;
+        left: 50px; right: 50px;
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 30px 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.305);
+        text-align: center;
+    }
+}
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        height: 100%;
+    }
+    .container .header {
+        position: relative; /* Ensure relative positioning for overlay and logo */
+        width: 100%;
+        height: 250px;
+        display: grid;
+    }
+    .login-container {
+        z-index: 99;
+        position: absolute;
+        top: 190px;
+        left: 30px; right: 50px;
+        min-width: 350px;
+        /* margin: 40px auto; */
+        padding: 30px 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.305);
+        text-align: center;
+    }
+}
+@media (max-width: 1049px){
+    .container .header {
+        position: relative; /* Ensure relative positioning for overlay and logo */
+        width: 100%;
+        height: 300px;
+        display: grid;
+    }
+    .login-container {
+        z-index: 99;
+        position: absolute;
+        top: 220px;
+        left: 30px; right: 50px;
+        min-width: 350px;
+        /* margin: 40px auto; */
+        padding: 30px 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.305);
+        text-align: center;
+    }
+}

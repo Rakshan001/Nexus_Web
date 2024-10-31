@@ -5,23 +5,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <!-- Use Django's static tag for loading CSS -->
-    <link rel="stylesheet" href="{% static 'alumni_details/login.css' %}">
+    <title>Login</title>
+    
+    <link rel="stylesheet" href="{% static 'home/login.css' %}">
     <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'alumni_details/assets/NexusFavicon.png' %}">
+    <!-- add favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'home/assets/NexusFavicon.png' %}">
 </head>
 <body>
-    <nav>
-        <h2>CEC NEXUS ALUMNI CONNECT PORTAL</h2>
-    </nav>
+    
     <div class="container">
-        <div class="left-panel">
-            <!-- Ensure image is in static folder -->
-            <img src="{% static 'alumni_details/assets/Nexus_logo-removebg-preview.png' %}" alt="Company Logo">
+        <div class="header">
+            <header>
+                <img src="{% static 'home/assets/connect.jpg' %}" alt="connect">
+            </header>
+            <img src="{% static 'home/assets/Nexus_logo-removebg-preview.png' %}" alt="nexus logo" class="logo">
         </div>
-        <div class="right-panel">
+        <div class="login-container">
+            <h3>Login to your Account</h3>
             <form method="post">
               {% csrf_token %}
                 <h2>Login to your account</h2>
@@ -32,16 +33,20 @@
                     <label for="remember">Remember Me</label>
                 </div>
                 <button type="submit">Login</button>
-                <p><a href="">Forgot Password?</a></p>
             </form>
+            <div class="forgot-password">
+                <a href="../ForgotPassword/forgotpassword.html">Forgot Password?</a>
+            </div>
             {% if messages %}
-              <ul class="messages">
-                {% for message in messages %}
-                  <li>{{ message }}</li>
-                {% endfor %}
-              </ul>
-            {% endif %}
+            <ul class="messages">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+      </div>
         </div>
     </div>
+
 </body>
 </html>

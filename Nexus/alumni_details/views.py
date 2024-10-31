@@ -6,8 +6,12 @@ from django.contrib.auth.decorators import login_required
 import os
 from django.conf import settings
 from django.contrib import messages
+from utils.decorators import login_required_with_message  # Import the decorator
 
-@login_required
+
+
+
+@login_required_with_message
 def alumni_profile(request):
     alumni = get_object_or_404(Alumni, user=request.user)
     
@@ -20,7 +24,7 @@ def alumni_profile(request):
 
 
 
-@login_required
+@login_required_with_message
 def update_alumni_profile(request):
     alumni = get_object_or_404(Alumni, user=request.user)
 
@@ -61,7 +65,7 @@ def update_alumni_profile(request):
 from django.shortcuts import render, get_object_or_404
 from .models import Alumni
 import datetime
-@login_required
+@login_required_with_message
 def alumni_list(request):
     current_year = datetime.datetime.now().year
     graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct().order_by('-graduation_year')
@@ -94,7 +98,7 @@ def alumni_list(request):
 from django.shortcuts import render, redirect
 from .models import Alumni
 
-@login_required
+@login_required_with_message
 def alumni_by_year(request, graduation_year):
     # Fetch all distinct branches for the filter dropdown
     branches = Alumni.objects.values_list('branch', flat=True).distinct()
@@ -136,6 +140,7 @@ from django.db.models import Q
 from .models import Alumni
 
 # Helper function to perform the alumni search logic
+@login_required_with_message
 def search_alumni_query(term):
     return Alumni.objects.filter(
         Q(first_name__icontains=term) |
@@ -151,6 +156,7 @@ from .models import Alumni
 
 
 #This is used for suggest the keywords  || or enhances the user experience by offering suggestions.
+@login_required_with_message
 def autocomplete(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
@@ -173,6 +179,7 @@ def autocomplete(request):
 
 
 #this performs the full search and renders the results page.
+@login_required_with_message
 def alumni_search(request):
     query = request.GET.get('alumni')
     alumni_list = None
@@ -279,7 +286,7 @@ def alumni_search(request):
 
 from django.shortcuts import render
 from .models import CouncilMember
-
+@login_required_with_message
 def council_members_view(request):
     # Fetch all council members and order by year (most recent first)
     council_members = CouncilMember.objects.select_related('alumni').order_by('-year')
