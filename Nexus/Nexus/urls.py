@@ -25,7 +25,8 @@ urlpatterns = [
     path('alumni/',include("alumni_details.urls")),
     path('achievements/', include('achievements.urls')),
     path('podcast/',include("podcast.urls")),
-    path('coordinators/',include("coordinators.urls"))
+    path('coordinators/',include("coordinators.urls")),
+    path('events/',include("events_cec.urls")),
 
 ]
 

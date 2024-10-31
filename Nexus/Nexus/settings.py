@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'podcast',
     
     'coordinators',
+    'events_cec',
 
     
     

@@ -19,6 +19,7 @@ def alumni_profile(request):
 
 
 
+
 @login_required
 def update_alumni_profile(request):
     alumni = get_object_or_404(Alumni, user=request.user)
@@ -27,20 +28,20 @@ def update_alumni_profile(request):
         messages.error(request, "You are not authorized to update this profile.")
         return redirect('home')
 
-    old_image = alumni.profile_picture.path if alumni.profile_picture else None  # Store the old image path
+    # Get the path of the old image before updating
+    old_image_path = alumni.profile_picture.path if alumni.profile_picture else None
 
     if request.method == 'POST':
         form = AlumniUpdateForm(request.POST, request.FILES, instance=alumni)
 
         if form.is_valid():
-            # If a new profile picture is uploaded
-            if request.FILES.get('profile_picture'):
-                # Remove the old profile picture after saving the new one
-                if old_image and os.path.exists(old_image):
-                    os.remove(old_image)
-
-            # Save the new form data (including the new profile picture if uploaded)
+            # Save the form first
             form.save()
+
+            # If a new profile picture is uploaded, remove the old one from the file system
+            if request.FILES.get('profile_picture') and old_image_path:
+                if os.path.exists(old_image_path) and old_image_path != 'photos/default.png':  # Avoid removing the default image
+                    os.remove(old_image_path)
 
             messages.success(request, "Your profile has been updated successfully!")
             return redirect('alumni_profile')

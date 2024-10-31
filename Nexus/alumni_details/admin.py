@@ -30,4 +30,4 @@ class CouncilMemberAdmin(admin.ModelAdmin):
 # Registering models with admin site
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Alumni, AlumniAdmin)
-admin.site.register(CouncilMember, CouncilMemberAdmin)  # Corrected model name
+admin.site.register(CouncilMember, CouncilMemberAdmin)  

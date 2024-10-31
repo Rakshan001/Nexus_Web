@@ -1,7 +1,16 @@
-from django.db import models
-from django.contrib.auth.models import User
+
 
 # Alumni model
+from django.db import models
+from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
+import os
+
+def validate_image_size(image):
+    max_size = 1 * 1024 * 1024  # 5 MB limit
+    if image.size > max_size:
+        raise ValidationError('Image file too large ( > 2MB )')
+
 class Alumni(models.Model):
     alumni_id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="alumni_profile")
@@ -10,7 +19,8 @@ class Alumni(models.Model):
     phone_number = models.CharField(max_length=15, blank=True, null=True)  # Allows optional phone number
     graduation_year = models.IntegerField(db_index=True)  # Added index for graduation year
     location = models.CharField(max_length=255, blank=True, null=True)  # Optional location
-    profile_picture = models.ImageField(upload_to='photos/', blank=True, null=True, default='photos/default.png')
+    profile_picture = models.ImageField(upload_to='photos/', blank=True, null=True, 
+                                        default='photos/default.png', validators=[validate_image_size])  # Add validator here
     batch = models.CharField(max_length=10)
     usn = models.CharField(max_length=20, unique=True)
     linkedin_url = models.URLField(max_length=255, blank=True, null=True)  # Optional LinkedIn URL
@@ -23,11 +33,10 @@ class Alumni(models.Model):
     is_alumni = models.BooleanField(default=True)
     personal_email = models.EmailField(blank=True, null=True, unique=True)  # Add personal email field
 
-    # personal_email = models.EmailField(blank=True, null=True,unique=True)
-
-
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+   
+
 
     class Meta:
         indexes = [

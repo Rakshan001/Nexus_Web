@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+</head>
+<body>
+
+    <h1>Upcoming Events</h1>
+
+    <ul>
+        {% for event in events %}
+            <li>
+                <h3><a href="{% url 'event_detail' event.event_id %}">{{ event.event_title }}</a></h3>
+                <p>{{ event.description|truncatewords:20 }}</p>
+                <p>Date: {{ event.date }}</p>
+                <p>Location: {{ event.location }}</p>
+                
+                {% if event.poster %}
+                    <img src="{{ event.poster.url }}" alt="{{ event.event_title }}" style="width: 150px; height: auto;">
+                {% endif %}
+            </li>
+        {% empty %}
+            <p>No events available at the moment.</p>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
