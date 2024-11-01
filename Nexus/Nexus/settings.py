@@ -80,6 +80,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #autologout
+                'django_auto_logout.middleware.auto_logout',
+
      
     
     
@@ -99,6 +103,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # auto logout
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -175,6 +182,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+'''auto logout library'''
+AUTO_LOGOUT = {'IDLE_TIME': 600,     
+               'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+    'MESSAGE': 'The session has expired. Please login again to continue.',}  # logout after 10 minutes of downtime
+
 
 
 ''' Admin pannel '''
@@ -192,3 +204,13 @@ JAZZMIN_SETTINGS = {
     "copyright": "Nexus-alumni-portal @ 2024",
     "user_avatar": "alumni_details/assets/Nexus_logo-removebg-preview.png",
 }
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # e.g., smtp.gmail.com
+EMAIL_PORT = 587  # For SMTP
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'anonymous10unknown10@gmail.com'
+EMAIL_HOST_PASSWORD = 'kdxx fkix stuj nrue'  #hide it later
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

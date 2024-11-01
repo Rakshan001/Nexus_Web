@@ -13,7 +13,11 @@
     <link rel="icon" type="image/x-icon" href="{% static 'home/assets/NexusFavicon.png' %}">
 </head>
 <body>
-
+    {% for message in messages %}
+    <div class="message {{ message.tags }}">
+        {{ message }}
+    </div>
+{% endfor %}
     
     <div class="container">
         <div class="header">
