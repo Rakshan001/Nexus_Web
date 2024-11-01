@@ -81,13 +81,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    #autologout
-                'django_auto_logout.middleware.auto_logout',
-
-     
-    
-    
-   
 ]
 
 ROOT_URLCONF = 'Nexus.urls'
@@ -104,8 +97,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                # auto logout
-                'django_auto_logout.context_processors.auto_logout_client',
+               
             ],
         },
     },
@@ -182,10 +174,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-'''auto logout library'''
-AUTO_LOGOUT = {'IDLE_TIME': 600,     
-               'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
-    'MESSAGE': 'The session has expired. Please login again to continue.',}  # logout after 10 minutes of downtime
 
 
 

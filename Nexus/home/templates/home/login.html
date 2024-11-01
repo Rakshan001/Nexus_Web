@@ -38,10 +38,11 @@
                     <label for="remember">Remember Me</label>
                 </div>
                 <button type="submit">Login</button>
+                <div class="forgot-password">
+                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                </div>
             </form>
-            <div class="forgot-password">
-                <a href="../ForgotPassword/forgotpassword.html">Forgot Password?</a>
-            </div>
+            
             {% if messages %}
             <ul class="messages">
               {% for message in messages %}
