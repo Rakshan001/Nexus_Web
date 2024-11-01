@@ -13,11 +13,7 @@
     <link rel="icon" type="image/x-icon" href="{% static 'home/assets/NexusFavicon.png' %}">
 </head>
 <body>
-    {% for message in messages %}
-    <div class="message {{ message.tags }}">
-        {{ message }}
-    </div>
-{% endfor %}
+    
     
     <div class="container">
         <div class="header">
@@ -41,15 +37,20 @@
                 <div class="forgot-password">
                     <a href="{% url 'password_reset' %}">Forgot Password?</a>
                 </div>
+                {% for message in messages %}
+    <div style="color: rgb(215, 71, 71);" class="message {{ message.tags }}">
+        {{ message }}
+    </div>
+{% endfor %}
             </form>
             
-            {% if messages %}
+            <!-- {% if messages %}
             <ul class="messages">
               {% for message in messages %}
                 <li>{{ message }}</li>
               {% endfor %}
             </ul>
-          {% endif %}
+          {% endif %} -->
       </div>
         </div>
     </div>

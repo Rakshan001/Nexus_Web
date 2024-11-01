@@ -81,6 +81,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    # Adding the auto logout session
+    'django_auto_logout.middleware.auto_logout',
+
 ]
 
 ROOT_URLCONF = 'Nexus.urls'
@@ -96,6 +99,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # adding the auto logout
+                'django_auto_logout.context_processors.auto_logout_client',
 
                
             ],
@@ -173,8 +179,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+# auto logout
+'''adding the lougout'''
+# settings.py
 
-
+AUTO_LOGOUT = {
+    'IDLE_TIME': 600,  # Time in seconds before logging out due to inactivity (10 minutes)
+    # 'SESSION_TIME': 3600,  # Time in seconds before the session expires (1 hour)
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,  # Whether to redirect to login page immediately after logout
+    'MESSAGE': 'The session has expired. Please login again to continue.',  # Message to show after logout
+}
 
 
 ''' Admin pannel '''
