@@ -1,0 +1,116 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+
+
+{% block title %}Event Details {% endblock %}
+{% block extra_head %}
+<script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'home/assets/NexusFavicon.png'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="{% static 'events_cec/event-details.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<body>
+    <!-- add navbar and footer  -->
+    <div class="container">
+        <div class="header">
+            <h1>{{ event.event_title }}</h1>
+        </div>
+        <div class="content">
+            <div class="event-details">
+                <div class="details">
+                    <div class="poster">
+                        {% if event.poster %}
+        <img src="{{ event.poster.url }}" alt="Event Poster" style="width: 300px; height: auto;">
+    {% endif %}
+                    </div>
+                    <div class="social-icons">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2>Title:</h2>
+                    <p>Academic Preparation for Industry Requirement</p>
+                    <h2>Description:</h2>
+                    <p>{{ event.description }}</p>
+                    <h2><i class="fa-solid fa-location-dot"></i> Location:</h2>
+                    <p>Location: {{ event.location }}</p>
+                    <h2><i class="fa-solid fa-calendar"></i> Date & Time:</h2>
+                    <p>Date: {{ event.date }}</p>
+                </div>
+            </div>
+            <div class="event-images">
+                <h2>Event Galleries</h2>
+                <div class="swiper-container s1">
+                    <div class="swiper-wrapper">
+                        {% if images %}
+                            {% for image in images %}
+                                <div class="swiper-slide">
+                                    <img src="{{ image.image.url }}" alt="Event Image" style="width: 300px; height: auto;">
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>No images available for this event.</p>
+                        {% endif %}
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+    <script>
+        var swiper = new Swiper('.s1', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

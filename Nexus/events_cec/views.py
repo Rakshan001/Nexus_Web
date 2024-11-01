@@ -10,4 +10,4 @@ def event_list(request):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, event_id=event_id)
     images = EventImage.objects.filter(event=event)  # Fetch associated images
-    return render(request, 'events_cec/event_details.html', {'event': event, 'images': images})
+    return render(request, 'events_cec/event-details.html', {'event': event, 'images': images})

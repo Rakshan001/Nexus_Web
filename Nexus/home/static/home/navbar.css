@@ -315,14 +315,14 @@ header {
   top: 0;
   left: -100%; /* Slide in from off-screen */
   width: 250px;
-  height: 100vh;
+  height: 100%;
   background-color: #004080;
   color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   transition: left 0.3s ease;
-  /* z-index: -1; */
+  z-index: 1;
   padding: 20px;
 }
 

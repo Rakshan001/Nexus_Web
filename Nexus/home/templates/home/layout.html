@@ -8,6 +8,7 @@
     <title>{% block title %}Default Title{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'home/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'home/footer.css' %}">
+    
 
     <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
     {% block extra_head %}{% endblock %}
@@ -32,9 +33,11 @@
                         <ul class="dropdown-content">
                             <li><a href="{% url 'alumni_list'%}">CEC Alumni's</a></li>
                             <li> <a href="{% url 'council_members' %}">Past Student Council Members</a></li>
+                            <li> <a href="{% url 'achievements_list' %}">Alumni Achievements</a></li>
+
                         </ul>
                     </li>
-                    <li>Announcements & Events</li>
+                    <li><a href="{% url 'event_list' %}">Announcements & Events</a> </li>
                     <li class="dropdown">
                         Alumni Assist <i class="fa fa-angle-down"></i>
                         <ul class="dropdown-content">
@@ -89,12 +92,14 @@
                                     <button>Edit Profile</button>
                                 </a>
                             {% elif user.student_profile %}
+                            <div style="display: block;"> 
                                 <h3>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h3>
-                                <p>Email: {{ user.email }}</p>
+                                <p>Email: {{ user.username }}</p>
                             {% endif %}
                             <button>
                                 <a href="{% url 'user_logout' %}" class="logout-link">Sign Out</a>
                             </button>
+                            </div>
                         {% else %}
                         <div style="display: block; "><p>Please <a href="{% url 'user_login' %}">login</a> to access more features.</p>
                             
@@ -121,21 +126,23 @@
 
         <div class="mobSidebar" id="mobSidebar">
             <ul>
-                <li>Home</li>
+                <li><a href="{% url 'home'%}">Home</a></li>
                 <li class="dropdown">
                     Members <i class="fa fa-angle-down"></i>
                     <ul class="dropdown-content">
-                        <li>CEC Alumni's</li>
-                        <li>Past Student Council Members</li>
+                        <li><a href="{% url 'alumni_list'%}">CEC Alumni's</a></li>
+                            <li> <a href="{% url 'council_members' %}">Past Student Council Members</a></li>
+                            <li> <a href="{% url 'achievements_list' %}">Alumni Achievements</a></li>
                     </ul>
                 </li>
-                <li>Announcements & Events</li>
+                <li><a href="{% url 'event_list' %}">Announcements & Events</a> </li>
+
                 <li class="dropdown">
                     Alumni Assist <i class="fa fa-angle-down"></i>
                     <ul class="dropdown-content">
                         <li>Campus Visit</li>
                         <li>Podcast</li>
-                        <li>Query</li>
+                        <li> <a href="{% url 'submit_form' %}">Query</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -148,8 +155,8 @@
                 <li class="dropdown">
                     Alumni Coordinators <i class="fa fa-angle-down"></i>
                     <ul class="dropdown-content">
-                        <li>Faculty Coordinators</li>
-                        <li>Student Coordinators</li>
+                        <li> <a href="{% url 'faculty-coordinator-list'%}">Faculty Coordinators</a></li>
+                            <li> <a href="{% url 'student-coordinator-list'%}">Faculty Coordinators</a></li>
                     </ul>
                 </li>
                 <li class="login-btn">
@@ -173,12 +180,15 @@
                                     <button>Edit Profile</button>
                                 </a>
                             {% elif user.student_profile %}
+                            <div style="display: block;"> 
                                 <h3>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h3>
-                                <p>Email: {{ user.email }}</p>
+                                <p>Email: {{ user.username }}</p>
                             {% endif %}
-                            <button>
+                            
+                            <button >
                                 <a href="{% url 'user_logout' %}" class="logout-link">Sign Out</a>
                             </button>
+                        </div>
                         {% else %}
                         <div style="display: block; "><p>Please <a href="{% url 'user_login' %}">login</a> to access more features.</p>
                             

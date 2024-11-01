@@ -1,0 +1,148 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+
+
+{% block title %}Nexus{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Events</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/events.css' %}">
+    <link rel="icon" type="image/x-icon" href="../assets/NexusFavicon.png">
+    <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+    <header>
+        
+        <div class="welcome-text">
+            <h1>Welcome to the Past Events Gallery</h1>
+            <!-- <p>Creation by CEC NEXUS</p> -->
+        </div>
+        
+    </header>
+
+    <!-- display top 9 events image here -->
+    <section class="gallery">
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 1" class="gallery-img" ><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 2"><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 3"><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 4"><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 5"><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 6"><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 7"><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 8"><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Image 9"><p class="hover-text">Click on image for more info</p></div>
+        <!-- <div class="gallery-item" data-description="Session on EntrprenurShip Skills"><img src="https://th.bing.com/th/id/R.1d3168a7d0e1943f24b5ab056cc0b772?rik=WKX7l1FD2NUE%2bQ&riu=http%3a%2f%2fimages.unsplash.com%2fphoto-1573160059602-81357cdd480f%3fcrop%3dentropy%26cs%3dtinysrgb%26fit%3dmax%26fm%3djpg%26ixid%3dMnwxMjA3fDB8MXxzZWFyY2h8MXx8bG9uZ3x8MHx8fHwxNjI5Mjc2ODUx%26ixlib%3drb-1.2.1%26q%3d80%26w%3d1080&ehk=Fipd%2b%2fjVRQ7QnXCHBVj7n%2fiJxFVBhy9A6R9gcVPWsd0%3d&risl=&pid=ImgRaw&r=0" alt="Image 9"></div> -->
+        <!-- <div class="gallery-item" data-description="Session on EntrprenurShip Skills"><img src="../assets/IMG_5234.JPG" alt="Image 9"></div> -->
+        <!-- <div class="gallery-item" data-description="Session on EntrprenurShip Skills"><img src="../assets/IMG_5312.JPG" alt="Image 7"></div> -->
+    </section>
+
+     <!-- Modal for larger image view -->
+     <!-- Modal structure (hidden initially) -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img src="" alt="Image" id="modal-img">
+        <div class="modal-description">
+            <h2 id="modal-title">Title</h2>
+            <p id="modal-date"><i class="fa-solid fa-calendar-days"></i> Date</p>
+        </div>
+    </div>
+</div>
+
+    <div class="container-xxl">
+        <div class="gradient-overlay"></div>
+        <div class="see-more">
+          <button class="see-more-btn">See More Images</button>
+        </div>
+         <!-- Hidden images section older events should be dynamically rendered here -->
+    <div class="hidden-images">
+        <!-- Your hidden images go here -->
+        <div class="gallery-item" data-description="Session on EntrprenurShip Skills" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="../assets/IMG_5234.JPG" alt="Image 9"><p class="hover-text">Click on image for more info</p></div>
+        <div class="gallery-item" data-description="Session on EntrprenurShip Skills" data-tilt data-tilt-scale="1.1" data-tilt-max="10"><img src="../assets/IMG_5304.JPG" alt="Image 6"><p class="hover-text">Click on image for more info</p></div>
+        
+        <!-- Add more images as needed -->
+    </div>
+    </div>
+      
+
+    <script>
+        // Get modal elements
+// Grab the modal elements
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
+const modalTitle = document.getElementById('modal-title');
+const modalDate = document.getElementById('modal-date');
+const closeModal = document.querySelector('.close');
+
+// Event listener for each gallery item
+document.querySelectorAll('.gallery-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').getAttribute('src');
+        const title = 'Session on Entrepreneurship Skills'; // You can dynamically set this value for each item
+        const date = '2020-02-20'; // You can dynamically set this value for each item
+
+        // Set the modal image and description
+        modalImg.src = imgSrc;
+        modalTitle.innerText = `Title: ${title}`;
+        modalDate.innerText = `Date: ${date}`;
+
+        // Show the modal
+        modal.style.display = 'block';
+    });
+});
+
+// Close modal when the close button is clicked
+closeModal.addEventListener('click', function() {
+    modal.style.display = 'none';
+});
+
+// Close modal when clicking outside the modal content
+window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+    </script>
+
+
+    <script>
+        // JavaScript to handle "See More Images" button functionality
+document.querySelector('.see-more-btn').addEventListener('click', function () {
+    const hiddenImages = document.querySelector('.hidden-images');
+    const gradientOverlay = document.querySelector('.gradient-overlay');
+
+    // Show hidden images and remove gradient overlay
+    hiddenImages.style.display = 'grid';
+    gradientOverlay.style.display = 'none';
+
+    // Optionally, remove the button after showing images
+    this.style.display = 'none';
+});
+
+    </script>
+
+    <script>
+  VanillaTilt.init(document.querySelectorAll(".gallery-item[data-tilt]"), {
+    max: 10,
+    speed: 600,
+    scale: 1.0,
+});
+
+
+    </script>
+
+</body>
+</html>
+{% endblock %}

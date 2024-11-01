@@ -1,74 +1,179 @@
-{% extends 'achievements/base.html' %}
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}Alumni Achievements{% endblock %}
+{% block extra_head %}
+<style>
+  .custom-container {
+    width: 100%;
+    padding: 20px;
+    background-color: #f8f9fa;
+    margin: 0 auto;
+  }
+
+  .achievements-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #343a40;
+    font-weight: 600;
+  }
+
+  .achievements-table-wrapper {
+    overflow-x: auto;  /* Ensure the table is scrollable on smaller devices */
+  }
+
+  .achievements-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+
+  .achievements-table th, 
+  .achievements-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border: 1px solid #dee2e6;
+    font-size: 1rem;
+  }
+
+  .achievements-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+
+  .achievements-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .achievements-table td a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .achievements-table td a:hover {
+    background-color: #0056b3;
+  }
+
+  .load-more-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .load-more-btn:hover {
+    background-color: #218838;
+  }
+
+  /* Responsive styling */
+  @media screen and (max-width: 768px) {
+    .achievements-table th, 
+    .achievements-table td {
+      font-size: 0.9rem;
+      padding: 10px 12px;
+    }
+
+    .achievements-heading {
+      font-size: 2rem;
+    }
+
+    .load-more-btn {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .achievements-table-wrapper {
+      padding: 0;
+    }
+
+    .achievements-heading {
+      font-size: 1.8rem;
+    }
+
+    .achievements-table th,
+    .achievements-table td {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+{% endblock %}
 
 {% block content %}
-  <div class="container mt-5">
-    <h2 class="text-center">Achievements List</h2>
-    <table class="table table-bordered mt-4" id="achievements-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Alumnus Name</th>
-          <th>Description</th>
-          <th>Date Achieved</th>
-          <th>Category</th>
-          <th>Action</th>  <!-- New column for "View Profile" -->
-        </tr>
-      </thead>
-      <tbody>
-        {% for achievement in achievements %}
-        <tr>
-          <td>{{ achievement.achievement_id }}</td>
-          <td>{{ achievement.title }}</td>
-          <td>
-            {{ achievement.alumni.first_name }} {{ achievement.alumni.last_name }}  <!-- Alumni Name -->
-            <br>
-            <a href="{% url 'alumni_profile' achievement.alumni.alumni_id %}" class="btn btn-info btn-sm mt-2">View Profile</a> <!-- View Profile Button -->
-          </td>
-          <td>{{ achievement.description }}</td>
-          <td>{{ achievement.date_achieved }}</td>
-          <td>{{ achievement.category }}</td>
-          <td>
-            <a href="{% url 'alumni_profile' achievement.alumni.alumni_id %}" class="btn btn-primary">View Profile</a>  <!-- Additional View Profile Button -->
-          </td>
-        </tr>
-        {% empty %}
-        <tr>
-          <td colspan="7" class="text-center">No achievements found.</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="custom-container">
+    <h2 class="achievements-heading">Achievements List</h2>
+    <div class="achievements-table-wrapper">
+      <table class="achievements-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Alumnus Name</th>
+            <th>Description</th>
+            <th>Date Achieved</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for achievement in achievements %}
+          <tr>
+            <td>{{ achievement.achievement_id }}</td>
+            <td>{{ achievement.title }}</td>
+            <td>{{ achievement.alumni.first_name }} {{ achievement.alumni.last_name }}</td>
+            <td>{{ achievement.description }}</td>
+            <td>{{ achievement.date_achieved }}</td>
+            <td>{{ achievement.category }}</td>
+            <td>
+              <a href="{% url 'alumni_profile' achievement.alumni.alumni_id %}">View Profile</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center">No achievements found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
     {% if achievements.has_next %}
-      <div class="text-center mt-4">
-        <button id="load-more" class="btn btn-primary">See More</button>
-      </div>
+    <div class="text-center mt-4">
+      <button id="load-more" class="load-more-btn">See More</button>
+    </div>
     {% endif %}
   </div>
 
   <script>
-    let page = 2;  // Start from page 2 since we already loaded the first page
-
+    let page = 2;
     document.getElementById('load-more').addEventListener('click', function() {
       fetch(`?page=${page}`)
         .then(response => response.text())
         .then(html => {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
-
-          const newAchievements = doc.querySelectorAll('#achievements-table tbody tr');
-          const tbody = document.querySelector('#achievements-table tbody');
-
+          const newAchievements = doc.querySelectorAll('.achievements-table tbody tr');
+          const tbody = document.querySelector('.achievements-table tbody');
           newAchievements.forEach(row => {
             tbody.appendChild(row);
           });
-
-          page++;  // Increment page for next load
-
-          // Check if there's no next page
+          page++;
           if (!doc.querySelector('.pagination .next')) {
-            this.style.display = 'none';  // Hide the button if there are no more achievements
+            this.style.display = 'none';
           }
         })
         .catch(error => console.error('Error loading more achievements:', error));

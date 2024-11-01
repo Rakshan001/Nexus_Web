@@ -1,35 +1,111 @@
 {% extends 'home/layout.html' %}
 {% load static %}
 
-
-
-{% block title %}Profile{% endblock %}
+{% block title %}Profile - {{ alumni.first_name }} {{ alumni.last_name }}{% endblock %}
 
 {% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Light background */
+    }
+    .profile-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    h2 {
+        text-align: center;
+        color: rgb(9, 40, 108);
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+    .profile-img {
+        width: 150px;
+        border-radius: 50%;
+        border: 3px solid #005582; /* Profile picture border color */
+        display: block;
+        margin: 0 auto 20px; /* Centering the image */
+    }
+    .profile-detail {
+        margin-bottom: 15px;
+    }
+    .profile-detail strong {
+        color: rgb(9, 40, 108);
+    }
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    .connect-btn {
+        display: flex;
+        align-items: center;
+        background-color: #007bff; /* LinkedIn Blue */
+        border: none;
+        border-radius: 5px;
+        padding: 10px 12px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        color: white;
+    }
+    .connect-btn:hover {
+        background-color: #003282;
+    }
+</style>
 
-  <div class="container mt-5">
-    <h2 class="text-center">Alumni Profile</h2>
-    <div class="card mx-auto" style="max-width: 600px;">
-        <!-- Check if alumni has a profile picture -->
-        {% if alumni.profile_picture %}
-          <img src="{{ alumni.profile_picture.url }}" class="card-img-top" alt="{{ alumni.first_name }}'s Profile Picture" style="width: 250px; border-radius: 50%;">
-        {% else %}
-          <img src="{% static 'alumni_details/assets/default.png' %}" class="card-img-top" alt="Default Profile Picture">
-        {% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ alumni.first_name }} {{ alumni.last_name }}</h5>
-        <p class="card-text"><strong>Phone:</strong> {{ alumni.phone_number }}</p>
-        <p class="card-text"><strong>Graduation Year:</strong> {{ alumni.graduation_year }}</p>
-        <p class="card-text"><strong>Location:</strong> {{ alumni.location }}</p>
-        <p class="card-text"><strong>Batch:</strong> {{ alumni.batch }}</p>
-        <p class="card-text"><strong>USN:</strong> {{ alumni.usn }}</p>
-        <p class="card-text"><strong>LinkedIn:</strong> <a href="{{ alumni.linkedin_url }}">{{ alumni.linkedin_url }}</a></p>
-        <p class="card-text"><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
-        <p class="card-text"><strong>Bio:</strong> {{ alumni.bio }}</p>
-        <p class="card-text"><strong>Achievements:</strong> {{ alumni.achievements }}</p>
-        <p class="card-text"><strong>Date of Birth:</strong> {{ alumni.dob }}</p>
-        
-      </div>
+<div class="profile-container">
+    <h2>Alumni Profile</h2>
+    <!-- Check if alumni has a profile picture -->
+    {% if alumni.profile_picture %}
+        <img src="{{ alumni.profile_picture.url }}" class="profile-img" alt="{{ alumni.first_name }}'s Profile Picture">
+    {% else %}
+        <img src="{% static 'alumni_details/assets/default.png' %}" class="profile-img" alt="Default Profile Picture">
+    {% endif %}
+    <div class="profile-detail">
+        <strong>Name:</strong> {{ alumni.first_name }} {{ alumni.last_name }}
     </div>
-  </div>
+   
+    <div class="profile-detail">
+        <strong>Graduation Year:</strong> {{ alumni.graduation_year }}
+    </div>
+    <div class="profile-detail">
+        <strong>Location:</strong> {{ alumni.location }}
+    </div>
+    <div class="profile-detail">
+        <strong>Batch:</strong> {{ alumni.batch }}
+    </div>
+    <div class="profile-detail">
+        <strong>USN:</strong> {{ alumni.usn }}
+    </div>
+    <div class="profile-detail">
+        <strong>LinkedIn:</strong> <a href="{{ alumni.linkedin_url }}" target="_blank">{{ alumni.linkedin_url }}</a>
+    </div>
+    <div class="profile-detail">
+        <strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}
+    </div>
+    <div class="profile-detail">
+        <strong>Bio:</strong> {{ alumni.bio }}
+    </div>
+    <div class="profile-detail">
+        <strong>Achievements:</strong> {{ alumni.achievements }}
+    </div>
+    <div class="profile-detail">
+        <strong>Date of Birth:</strong> {{ alumni.dob }}
+    </div>
+
+    <div class="social-links">
+        <a class="connect-btn" href="{{ alumni.linkedin_url }}" target="_blank">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
+        <a class="connect-btn" href="mailto:{{ alumni.personal_email }}">
+            <i class="fa-solid fa-envelope"></i> Email
+        </a>
+    </div>
+</div>
 {% endblock %}
