@@ -1,0 +1,220 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}Event Details{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'events_cec/announcement.css' %}">
+<link rel="icon" type="image/x-icon" href="../assets/NexusFavicon.png">
+<script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+<div class="heading">
+    <!-- <h1>EVENTS</h1> -->
+</div>
+
+<div class="container">
+    {% if all_events %}
+        {% for event in all_events %}
+        <div class="event-cards">
+            <div class="card">
+                <div class="poster">
+                    {% if event.poster %}
+                    <img src="{{ event.poster.url }}" alt="{{ event.event_title }}" style="width: 150px; height: auto;">
+                    {% endif %}
+                </div>
+                <div class="detail">
+                    <strong>{{ event.event_title }}</strong>
+                    <p><i class="fa-regular fa-calendar-days"></i> {{ event.date }} {{ event.time }}</p>
+                    <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
+                    <a href="{% url 'event_detail' event.event_id %}">
+                        <button type="button">View</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No events available.</p>
+    {% endif %}
+
+    {% if events.has_next %}
+    <button id="load-more" data-next-page="{{ events.next_page_number }}">Load More</button>
+    {% endif %}
+</div>
+
+<h1>All Events</h1>
+
+<div class="filters">
+    <form method="GET" action="{% url 'event_list' %}" id="event-filter-form">
+        <div class="search">
+            <input type="text" name="search" id="event_search" placeholder="Search" required>
+            <button type="submit">Search</button>
+            <i class="fa-solid fa-filter sort"></i>
+        </div>
+        <div class="categories">
+            <p>EVENT CATEGORIES</p>
+            <div class="category-list">
+                <p class="category-item active" data-event-type="">All Events</p>
+                <p class="category-item" data-event-type="upcoming">Upcoming Events</p>
+                <p class="category-item" data-event-type="ongoing">Ongoing Events</p>
+                <p class="category-item" data-event-type="past">Past Events</p>
+            </div>
+        </div>
+    </form>
+</div>
+
+    <!-- Popup Modal -->
+<div id="imgModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="model-content">
+        <img class="modal-content" id="modalImg">
+    </div>
+</div>
+    
+    <div class="eventbtn">
+        <button>View Event Gallery <i class="fa-solid fa-video"></i></button>
+    </div>
+
+
+
+  
+    
+
+    <!-- JavaScript -->
+
+    <!-- This card is for the filter option  -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryItems = document.querySelectorAll('.category-item');
+            const searchInput = document.querySelector('input[name="search"]');
+            const form = document.getElementById('event-filter-form');
+    
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    categoryItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to the clicked item
+                    this.classList.add('active');
+    
+                    // Get the event type from the data attribute
+                    const eventType = this.getAttribute('data-event-type');
+    
+                    // Update the hidden input for event type in the form
+                    if (form.querySelector('input[name="event_type"]')) {
+                        form.querySelector('input[name="event_type"]').value = eventType;
+                    } else {
+                        const inputType = document.createElement('input');
+                        inputType.type = 'hidden';
+                        inputType.name = 'event_type';
+                        inputType.value = eventType;
+                        form.appendChild(inputType);
+                    }
+    
+                    // Submit the form to filter events
+                    form.submit();
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+<!-- this is for load more funciton  -->
+
+
+
+
+
+
+
+
+
+
+    
+    <script>
+        // Get all card elements
+        var cards = document.querySelectorAll(".card");
+
+        // Get the modal and modal image elements
+        var modal = document.getElementById("imgModal");
+        var modalImg = document.getElementById("modalImg");
+
+        // Loop through each card and attach an event listener to it
+        cards.forEach(function(card) {
+            card.onclick = function() {
+        // Find the image inside the clicked card (if exists)
+        var img = card.querySelector(".event-poster img");
+        if (img) {
+            // Display the modal and set the modal image source to the clicked image
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+    };
+        });
+
+        // Close the modal when clicking on the close button
+        var closeBtn = document.getElementsByClassName("close")[0];
+        closeBtn.onclick = function() {
+            modal.style.display = "none"; // Close the modal
+        };
+
+
+// Close the modal when clicking on the close button
+var closeBtn = document.getElementsByClassName("close")[0];
+closeBtn.onclick = function() {
+    modal.style.display = "none"; // Close the modal
+}
+    
+
+    </script>
+    <script>
+        // Select all category items
+const categoryItems = document.querySelectorAll('.category-item');
+
+// Add click event listener to each category item
+categoryItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // Remove the 'active' class from all category items
+        categoryItems.forEach(el => el.classList.remove('active'));
+        
+        // Add the 'active' class to the clicked item
+        this.classList.add('active');
+    });
+});
+    </script>
+
+    <script>
+        // Toggle the dropdown for mobile and tablet
+document.querySelector('.fa-filter').addEventListener('click', function() {
+    document.querySelector('.categories').classList.toggle('show');
+});
+
+// Close the dropdown if clicking outside of it
+document.addEventListener('click', function(event) {
+    const categoryList = document.querySelector('.categories');
+    const filterBtn = document.querySelector('.fa-filter');
+    if (!filterBtn.contains(event.target) && !categoryList.contains(event.target)) {
+        categoryList.classList.remove('show');
+    }
+});
+
+// Toggle 'active' class for selected category
+document.querySelectorAll('.categories').forEach(item => {
+    item.addEventListener('click', function() {
+        document.querySelectorAll('.categories').forEach(el => el.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+    </script>
+</body>
+
+
+{% endblock %}

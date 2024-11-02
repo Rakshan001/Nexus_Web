@@ -49,10 +49,10 @@ class EventImage(models.Model):
 #     def __str__(self):
 #         return f"Image for {self.event.event_title}"
 
-
 from django.db import models
 from django.core.exceptions import ValidationError
 import os
+from datetime import datetime
 
 def validate_image_size(image):
     max_size = 2 * 1024 * 1024  # 2 MB limit
@@ -64,6 +64,7 @@ class Event(models.Model):
     event_title = models.CharField(max_length=200)
     description = models.TextField()
     date = models.DateField()
+    time = models.TimeField(null=True, blank=True)  # New time field
     location = models.CharField(max_length=200)
     poster = models.ImageField(upload_to='event_posters/', blank=True, null=True)
 

@@ -3,12 +3,23 @@
 
 
 
-{% block title %}Nexus{% endblock %}
+{% block title %}NEXUS CEC ALUMNI PORTAL{% endblock %}
+
+{% block extra_head %}
+<script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'home/home.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="icon" type="image/x-icon" href="../assets/NexusFavicon.png">
+
+{% endblock %}
+
 
 {% block content %}
 
 
 
+
+<body>
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader">
@@ -18,23 +29,28 @@
         </div>
     </div>
     
-    
+
         <!-- Main Content -->
         <div class="main-content" id="main-content">
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="https://www.canaraengineering.in/assets/images/banner1.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-flex align-items-center justify-content-center">
+                            <div class="caption-overlay">
+                                <h2>Reconnect, and unlock endless possibilities</h2>
+                            </div>
+                        </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{% static 'home/assets/image 2CEC.png'%}" class="d-block w-100" alt="...">
+                        <img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://images.shiksha.com/mediadata/images/1715752606phpM2A9Yu.jpeg" class="d-block w-100" alt="...">
+                        <img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" class="d-block w-100" alt="...">
                     </div>
-                    <div class="carousel-item">
+                    <!-- <div class="carousel-item">
                         <img src="https://imscec.canaraengineering.in/canara/upload/techevent/AUDIO%20VISUAL%20SESSION%20ABOUT%20AWARENESS%20ON%20SNAKES1_1613990353IMG-20210220-WA0015.jpg" class="d-block w-100" alt="...">
-                    </div>
+                    </div> -->
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -48,60 +64,170 @@
         </div>
         <!-- deans message -->
         <div class="deans-text">
-            <h2>Dean's Message</h2>
+            <h2>Alumna Mattar's Message</h2>
             <div class="mssg">
-            <img src="{% static 'home/assets/doublequote.png' %}" alt="" />
+            <img src="../assets/doublequote.png" alt="" />
             <p>
-              "I want to express my deepest gratitude to each and every one of you
+              I want to express my deepest gratitude to each and every one of you
               for your hard work and dedication." "Today, I want to talk about the
               importance of kindness and compassion in our community ." "I am
               thrilled to announce that our school has been recognized for its
               outstanding achievements in the field of public health." "I believe
               that every individual has the power to make a positive impact in the
               world." "As we move forward, I encourage you to stay committed to our
-              mission of improving the health and well-being of all people."
+              mission of improving the health and well-being of all people.
             </p>
             </div>
-            <h3>--Deans Name</h3>
-          </div>
-          <div class="leaders-mssg">
-            <h2>Leadership Message</h2>
-            <div class="cards">
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'home/assets/person-4.png' %}" class="card-img-top" alt="...">
-                    
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h3>EFG SIR</h3>
+        </div>
+
+        <div class="nexus-do">
+            <h2>What Nexus Offer ?</h2>
+            <div class="left-side">
+                <div class="left-circle">
+                    <span><i class="fa-solid fa-people-line"></i></span>
+                </div>
+                <div class="content">
+                    <h3>Become Batch Ambassador</h3>
+                    <p>Help us to reach out to your classmates by becoming Batch Ambassador</p>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+
+                </div>
+                <div class="right-side">
+                    <div class="right-circle">
+                        <span><i class="fa-solid fa-laptop"></i></span>
+                    </div>
+                    <div class="content">
+                        <h3>Share Career Opportunity</h3>
+                        <p>Is your organization hiring new talent? Share the career
+                            opportunity with huge talent pool within Institute</p>
                     </div>
                 </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'home/assets/person-4.png'%}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <Card.Title>Dr. ABCD EFR</Card.Title>
-                        <Card.Text>
-                          Chairman CEC Institution
-                        </Card.Text>
+            </div>
+            <div class="left-side">
+                <div class="left-circle">
+                    <span><i class="fa-solid fa-square-share-nodes"></i></span>
+                </div>
+                <div class="content">
+                    <h3>Spread the Word</h3>
+                    <p>Share this platform on your facebook timeline so that all your
+                        friends are able to join.</p>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="right-side">
+                    <div class="right-circle">
+                        <span><i class="fa-solid fa-wrench"></i></span>
+                    </div>
+                    <div class="content">
+                        <h3>Story: My First Job</h3>
+                        <p>Share your First Job Experience story with us that we
+                            can publish for all alumni and faculty to see</p>
                     </div>
                 </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'home/assets/person-4.png'%}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+            </div>
+            <div class="left-side">
+                <div class="left-circle">
+                    <span><i class="fa-solid fa-file-pen"></i></span>
                 </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'home/assets/person-4.png'%}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+                <div class="content">
+                    <h3>Write a Testinomial</h3>
+                    <p>Write a testimonial if you wish to share experiences at
+                        institute and want to make it known to the world</p>
                 </div>
             </div>
         </div>
+
+        <div class="top-events-display">
+            <h2>Top New Events</h2>
+            <div class="all-cards">
+                <div class="card-wrapper">
+                    <div class="card-shadow"></div> <!-- Blue shadow behind the card -->
+                    <div class="card">
+                        <div class="poster">
+                            <img src="../assets/Academic Preparation.png" alt="Event Poster">
+                        </div>
+                        <div class="card-content">
+                            <h3>Academic Preparation</h3>
+                            <p>Academic Preparation is a program designed to help students</p>
+                            <p><i class="fa-solid fa-location-dot"></i> Location: </p>
+                            <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
+                        </div>
+                        <div class="view-btn">
+                            <button type="button">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-wrapper">
+                    <div class="card-shadow"></div> <!-- Blue shadow behind the card -->
+                    <div class="card">
+                        <div class="poster">
+                            <img src="../assets/Academic Preparation.png" alt="Event Poster">
+                        </div>
+                        <div class="card-content">
+                            <h3>Academic Preparation</h3>
+                            <p>Academic Preparation is a program designed to help students</p>
+                            <p><i class="fa-solid fa-location-dot"></i> Location: </p>
+                            <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
+                        </div>
+                        <div class="view-btn">
+                            <button type="button">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-wrapper">
+                    <div class="card-shadow"></div> <!-- Blue shadow behind the card -->
+                    <div class="card">
+                        <div class="poster">
+                            <img src="../assets/Academic Preparation.png" alt="Event Poster">
+                        </div>
+                        <div class="card-content">
+                            <h3>Academic Preparation</h3>
+                            <p>Academic Preparation is a program designed to help students</p>
+                            <p><i class="fa-solid fa-location-dot"></i> Location: </p>
+                            <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
+                        </div>
+                        <div class="view-btn">
+                            <button type="button">View</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicate the card-wrapper for additional cards -->
+            </div>
+        </div>
     </div>
+    <div class="chatbot">
+        <i class="fa-solid fa-headset"></i>
+    </div>
+    <!-- footer -->
+   
 
+    <script>
+        // Toggle the sidebar visibility
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            sidebar.classList.toggle('open');
+             // Shift the main content when sidebar is open
+        }
 
-    
-    {% endblock %}
+        // Dark mode toggle
+        const darkmodeToggle = document.getElementById('darkmode-toggle');
+        const appContainer = document.querySelector('.app-container');
+
+        darkmodeToggle.addEventListener('change', function () {
+            if (this.checked) {
+                appContainer.classList.add('darkmode');
+            } else {
+                appContainer.classList.remove('darkmode');
+            }
+        });
+        
+    </script>
     <script>
            // JavaScript to handle preloader
            window.addEventListener("load", function () {
@@ -111,12 +237,14 @@
         document.body.classList.add('show-content');
     }, 2000); // Delay of 2 seconds to see the preloader in action
 });
+
+function togglemenu() {
+            const navEle = document.getElementById("navEle");
+            navEle.classList.toggle("show");
+        }
     </script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-
-</body>
-
-</html>
+{% endblock %}

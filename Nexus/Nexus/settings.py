@@ -147,7 +147,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'  # Set the time zone to Indian Standard Time (IST)
 
 USE_I18N = True
 
@@ -209,10 +210,13 @@ JAZZMIN_SETTINGS = {
 
 # settings.py
 
+email=config('EMAIL')
+email_pass=config('EMAIL_PASS')
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # e.g., smtp.gmail.com
 EMAIL_PORT = 587  # For SMTP
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'anonymous10unknown10@gmail.com'
-EMAIL_HOST_PASSWORD = 'kdxx fkix stuj nrue'  #hide it later
+EMAIL_HOST_USER = email
+EMAIL_HOST_PASSWORD = email_pass  #hide it later
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
