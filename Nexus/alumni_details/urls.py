@@ -15,9 +15,6 @@ urlpatterns = [
 
 
 
-
-
-
     # **********************
     path('autocomplete/', views.autocomplete, name='autocomplete'),
     path('alumni-search/', views.alumni_search, name='alumni_search'),

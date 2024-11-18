@@ -49,6 +49,10 @@ class Alumni(models.Model):
         ]
         # ordering = ['-graduation_year', 'first_name']  # Orders alumni by graduation year descending, then first name
 
+
+
+
+
 ''' Student details'''
 # Student model
 class Student(models.Model):

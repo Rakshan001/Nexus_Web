@@ -208,12 +208,10 @@ button:hover {
 }
 
 </style>
-
-<h1>Alumni Graduates - {{ graduation_year}}</h1>
+<h1>Alumni Graduates - {{ graduation_year }}</h1>
 
 <!-- Filter Form -->
 <div class="search-filter">
-
     <form method="get" action="" class="filter">
         <label for="branch">Select Branch:</label>
         <select id="branch" name="branch">
@@ -249,8 +247,6 @@ button:hover {
 </script>
 
 <!-- Alumni Profiles -->
-
-
 <div class="alumni-profiles">
     {% for alumni in alumni %}
         <div class="alumni-profile">
@@ -258,14 +254,38 @@ button:hover {
             <p class="name">{{ alumni.first_name }} {{ alumni.last_name }}</p>
             <p class="job">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
-                <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LiinkedIn</a></button>
-                <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
+                <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
+                <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="#">Email</a></button>
             </div>
         </div>
     {% empty %}
         <p>No alumni found for this graduation year and branch.</p>
     {% endfor %}
 </div>
+
+<div class="pagination" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+    <!-- First and Previous Links -->
+    {% if alumni.has_previous %}
+        <a href="?page=1&branch={{ selected_branch }}">First</a>
+        <a href="?page={{ alumni.previous_page_number }}&branch={{ selected_branch }}">Previous</a>
+    {% endif %}
+
+    <!-- Page Number Links -->
+    {% for page_num in alumni.paginator.page_range %}
+        {% if page_num == alumni.number %}
+            <strong style="padding: 5px; background-color: #ddd;">{{ page_num }}</strong>
+        {% else %}
+            <a href="?page={{ page_num }}&branch={{ selected_branch }}">{{ page_num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Next and Last Links -->
+    {% if alumni.has_next %}
+        <a href="?page={{ alumni.next_page_number }}&branch={{ selected_branch }}">Next</a>
+        <a href="?page={{ alumni.paginator.num_pages }}&branch={{ selected_branch }}">Last</a>
+    {% endif %}
+</div>
+
 
 <a href="{% url 'alumni_list' %}" class="back-to-alumni"><i class="fa-solid fa-arrow-left"></i>Back to Alumni List</a>
 {% endblock %}

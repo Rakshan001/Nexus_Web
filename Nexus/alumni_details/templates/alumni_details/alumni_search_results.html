@@ -262,9 +262,9 @@ $(function () {
 
 <h1>Alumni Search Results</h1>
 
-{% if alumni_list %}
+{% if page_obj.object_list %}
 <div class="alumni-results">
-    {% for alumni in alumni_list %}
+    {% for alumni in page_obj.object_list %}
     <div class="alumni-profile-card">
         <div class="profile-image">
             <img src="{{ alumni.profile_picture.url }}" alt="Profile Picture of {{ alumni.first_name }}" width="100" height="100">
@@ -273,7 +273,7 @@ $(function () {
             <h3>{{ alumni.first_name }} {{ alumni.last_name }}</h3>
             <p><strong>Graduation Year:</strong> {{ alumni.graduation_year }}</p>
             <p><strong>Location:</strong> {{ alumni.location }}</p>
-            <p><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name}}</p>
+            <p><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
                 <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
                 <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
@@ -282,9 +282,32 @@ $(function () {
     </div>
     {% endfor %}
 </div>
+
+<!-- Pagination Controls -->
+<div class="pagination" style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
+    {% if page_obj.has_previous %}
+        <a href="?alumni={{ request.GET.alumni }}&page=1">First</a>
+        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    {% for page_num in page_obj.paginator.page_range %}
+        {% if page_num == page_obj.number %}
+            <strong style="padding: 5px; background-color: #ddd;">{{ page_num }}</strong>
+        {% else %}
+            <a href="?alumni={{ request.GET.alumni }}&page={{ page_num }}">{{ page_num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+</div>
+
 {% else %}
     <p class="no-alumni">No alumni found.</p>
 {% endif %}
+
 {% endblock %}
 
 

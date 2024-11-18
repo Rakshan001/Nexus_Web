@@ -3,6 +3,6 @@
 from django.shortcuts import render
 from .models import Video
 
-def video_list(request):
+def podcast(request):
     videos = Video.objects.all()
     return render(request, 'podcast/video.html', {'videos': videos})

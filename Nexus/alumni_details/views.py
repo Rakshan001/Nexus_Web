@@ -62,22 +62,54 @@ def update_alumni_profile(request):
 
 
 
-from django.shortcuts import render, get_object_or_404
+# from django.shortcuts import render, get_object_or_404
+# from .models import Alumni
+# import datetime
+# @login_required_with_message
+# def alumni_list(request):
+#     current_year = datetime.datetime.now().year
+#     graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct().order_by('-graduation_year')
+
+#     # Get alumni for the current year sorted alphabetically
+#     alumni_current_year = Alumni.objects.filter(graduation_year=current_year).order_by('first_name')[:5]
+
+#     # Get alumni for previous years sorted alphabetically
+#     alumni_previous_years = {}
+#     for year in graduation_years:
+#         if year < current_year:
+#             alumni_previous_years[year] = Alumni.objects.filter(graduation_year=year).order_by('first_name')[:5]
+
+
+#     return render(request, 'alumni_details/alumni_list.html', {
+#         'current_year': current_year,
+#         'alumni_current_year': alumni_current_year,
+#         'alumni_previous_years': alumni_previous_years,
+#         'graduation_years': graduation_years,
+#     })
+
+'''Below code with max year'''
+from django.shortcuts import render
 from .models import Alumni
+from django.db.models import Max
+from django.contrib.auth.decorators import login_required
 import datetime
-@login_required_with_message
+
+@login_required
 def alumni_list(request):
-    current_year = datetime.datetime.now().year
+    # Get the highest graduation year from the database
+    current_year = Alumni.objects.aggregate(Max('graduation_year'))['graduation_year__max']
+
+    # Fetch all distinct graduation years
     graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct().order_by('-graduation_year')
 
-    # Get alumni for the current year
-    alumni_current_year = Alumni.objects.filter(graduation_year=current_year)[:5]
+    # Get alumni for the current year sorted alphabetically
+    alumni_current_year = Alumni.objects.filter(graduation_year=current_year).order_by('first_name')[:5]
 
-    # Get alumni for previous years
+    # Get alumni for previous years sorted alphabetically
     alumni_previous_years = {}
     for year in graduation_years:
         if year < current_year:
-            alumni_previous_years[year] = Alumni.objects.filter(graduation_year=year)[:5]
+            alumni_previous_years[year] = Alumni.objects.filter(graduation_year=year).order_by('first_name')[:5]
 
     return render(request, 'alumni_details/alumni_list.html', {
         'current_year': current_year,
@@ -86,15 +118,54 @@ def alumni_list(request):
         'graduation_years': graduation_years,
     })
 
+'''Above code with max year'''
 
 
 
 
+'''Below code with paginator'''
+# from django.core.paginator import Paginator
+# from django.shortcuts import render, redirect
+# from .models import Alumni
 
+# @login_required_with_message
+# def alumni_by_year(request, graduation_year):
+#     # Fetch all distinct branches for the filter dropdown
+#     branches = Alumni.objects.values_list('branch', flat=True).distinct()
 
+#     # Get the selected branch from the GET parameters (if any)
+#     selected_branch = request.GET.get('branch', '')
 
+#     # If a filter is applied, adjust the alumni queryset
+#     # alumni = Alumni.objects.filter(graduation_year=graduation_year)
+#     alumni = Alumni.objects.filter(graduation_year=graduation_year).order_by('first_name')  # Alphabetical order
 
+#     if selected_branch:
+#         alumni = alumni.filter(branch=selected_branch)
 
+#     # Pagination logic
+#     page = request.GET.get('page', 1)  # Default to page 1
+#     paginator = Paginator(alumni, 5)  # Show 5 alumni profiles per page
+#     try:
+#         alumni_page = paginator.page(page)
+#     except:
+#         alumni_page = paginator.page(1)  # In case of an invalid page number
+
+#     # Fetch all distinct graduation years for the filter dropdown
+#     graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct()
+
+#     return render(request, 'alumni_details/alumni_by_year.html', {
+#         'alumni': alumni_page,  # Send the paginated alumni profiles
+#         'current_year': graduation_year,
+#         'graduation_year': graduation_year,
+#         'graduation_years': graduation_years,
+#         'branches': branches,  # For the branch filter dropdown
+#         'selected_branch': selected_branch,  # To keep track of the selected branch
+#         'paginator': paginator,  # Pass the paginator object for future navigation
+#     })
+
+'''```````````````````````'''
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .models import Alumni
 
@@ -112,23 +183,74 @@ def alumni_by_year(request, graduation_year):
         return redirect('alumni_by_year', graduation_year=graduation_year)
 
     # If graduation_year is provided in the URL, fetch alumni for that year
-    alumni = Alumni.objects.filter(graduation_year=graduation_year)
+    alumni = Alumni.objects.filter(graduation_year=graduation_year).order_by('first_name')  # Alphabetical order
 
     # If a branch is selected, filter the alumni based on the selected branch
     if selected_branch:
         alumni = alumni.filter(branch=selected_branch)
 
+    # Pagination logic
+    page = request.GET.get('page', 1)  # Default to page 1
+    paginator = Paginator(alumni, 5)  # Show 5 alumni profiles per page
+    try:
+        alumni_page = paginator.page(page)
+    except:
+        alumni_page = paginator.page(1)  # In case of an invalid page number
+
     # Fetch all distinct graduation years for the filter dropdown
     graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct()
 
     return render(request, 'alumni_details/alumni_by_year.html', {
-        'alumni': alumni,
+        'alumni': alumni_page,  # Send the paginated alumni profiles
         'current_year': graduation_year,
         'graduation_year': graduation_year,
         'graduation_years': graduation_years,
         'branches': branches,  # For the branch filter dropdown
         'selected_branch': selected_branch,  # To keep track of the selected branch
+        'paginator': paginator,  # Pass the paginator object for future navigation
     })
+
+
+
+''' above code with pagination'''
+
+
+
+
+# from django.shortcuts import render, redirect
+# from .models import Alumni
+
+# @login_required_with_message
+# def alumni_by_year(request, graduation_year):
+#     # Fetch all distinct branches for the filter dropdown
+#     branches = Alumni.objects.values_list('branch', flat=True).distinct()
+
+#     # Get the selected branch from the GET parameters (if any)
+#     selected_branch = request.GET.get('branch', '')
+
+#     # Check if the filter form was submitted for graduation year
+#     if 'graduation_year' in request.GET and request.GET['graduation_year']:
+#         graduation_year = int(request.GET.get('graduation_year'))
+#         return redirect('alumni_by_year', graduation_year=graduation_year)
+
+#     # If graduation_year is provided in the URL, fetch alumni for that year
+#     alumni = Alumni.objects.filter(graduation_year=graduation_year)
+
+#     # If a branch is selected, filter the alumni based on the selected branch
+#     if selected_branch:
+#         alumni = alumni.filter(branch=selected_branch)
+
+#     # Fetch all distinct graduation years for the filter dropdown
+#     graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct()
+
+#     return render(request, 'alumni_details/alumni_by_year.html', {
+#         'alumni': alumni,
+#         'current_year': graduation_year,
+#         'graduation_year': graduation_year,
+#         'graduation_years': graduation_years,
+#         'branches': branches,  # For the branch filter dropdown
+#         'selected_branch': selected_branch,  # To keep track of the selected branch
+#     })
 
 
 
@@ -179,10 +301,15 @@ def autocomplete(request):
 
 
 #this performs the full search and renders the results page.
+'''Below code '''
+from django.core.paginator import Paginator
+from django.shortcuts import render
+
 @login_required_with_message
 def alumni_search(request):
     query = request.GET.get('alumni')
-    alumni_list = None
+    alumni_list = Alumni.objects.none()
+
     if query:
         query_parts = query.split()
         name_search = Alumni.objects.none()
@@ -191,7 +318,7 @@ def alumni_search(request):
 
         if len(query_parts) > 1:
             name_search = Alumni.objects.filter(
-                first_name__icontains=query_parts[0], 
+                first_name__icontains=query_parts[0],
                 last_name__icontains=query_parts[-1]
             )
         else:
@@ -201,17 +328,54 @@ def alumni_search(request):
                 last_name__icontains=query
             )
 
-        position_search = Alumni.objects.filter(
-            current_position__icontains=query
-        )
-
-        company_search = Alumni.objects.filter(
-            company_name__icontains=query  # Added company_name in full search
-        )
+        position_search = Alumni.objects.filter(current_position__icontains=query)
+        company_search = Alumni.objects.filter(company_name__icontains=query)
 
         alumni_list = name_search | position_search | company_search
+
+    # Paginate the results
+    paginator = Paginator(alumni_list.distinct(), 5)  # 5 results per page
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'alumni_details/alumni_search_results.html', {'page_obj': page_obj})
+
+
+
+'''above code'''
+# @login_required_with_message
+# def alumni_search(request):
+#     query = request.GET.get('alumni')
+#     alumni_list = None
+#     if query:
+#         query_parts = query.split()
+#         name_search = Alumni.objects.none()
+#         position_search = Alumni.objects.none()
+#         company_search = Alumni.objects.none()
+
+#         if len(query_parts) > 1:
+#             name_search = Alumni.objects.filter(
+#                 first_name__icontains=query_parts[0], 
+#                 last_name__icontains=query_parts[-1]
+#             )
+#         else:
+#             name_search = Alumni.objects.filter(
+#                 first_name__icontains=query
+#             ) | Alumni.objects.filter(
+#                 last_name__icontains=query
+#             )
+
+#         position_search = Alumni.objects.filter(
+#             current_position__icontains=query
+#         )
+
+#         company_search = Alumni.objects.filter(
+#             company_name__icontains=query  # Added company_name in full search
+#         )
+
+#         alumni_list = name_search | position_search | company_search
     
-    return render(request, 'alumni_details/alumni_search_results.html', {'alumni_list': alumni_list})
+#     return render(request, 'alumni_details/alumni_search_results.html', {'alumni_list': alumni_list})
 
 
 
@@ -312,3 +476,7 @@ def council_members_view(request):
         members.sort(key=lambda x: role_order.get(x.role, 5))  # Use 5 as default for any undefined roles
     
     return render(request, 'alumni_details/council_member_list.html', {'grouped_council_members': grouped_council_members})
+
+
+
+

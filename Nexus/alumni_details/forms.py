@@ -18,3 +18,6 @@ class AlumniUpdateForm(forms.ModelForm):
         # Remove the Bootstrap class addition, as it's not needed now
         # for field in self.fields.values():
         #     field.widget.attrs.update({'class': 'form-control'})
+
+
+
