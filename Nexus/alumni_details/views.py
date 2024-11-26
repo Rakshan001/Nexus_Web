@@ -55,6 +55,28 @@ def update_alumni_profile(request):
     return render(request, 'alumni_details/update-alumni-profile.html', {'form': form, 'alumni': alumni})
 
 
+'''Deleting profile picture'''
+@login_required
+def delete_profile_picture(request):
+    alumni = get_object_or_404(Alumni, user=request.user)
+
+    if not alumni.is_alumni:
+        messages.error(request, "You are not authorized to perform this action.")
+        return redirect('home')
+
+    # Check if the alumni has a profile picture to delete
+    if alumni.profile_picture and alumni.profile_picture != 'photos/default.png':  # Avoid deleting the default image
+        # Remove the file from the filesystem
+        if os.path.exists(alumni.profile_picture.path):
+            os.remove(alumni.profile_picture.path)
+        # Clear the profile_picture field
+        alumni.profile_picture = None
+        alumni.save()
+        messages.success(request, "Profile picture has been deleted successfully!")
+    else:
+        messages.error(request, "No profile picture to delete.")
+
+    return redirect('update_alumni_profile')
 
 
 
@@ -94,7 +116,7 @@ from django.db.models import Max
 from django.contrib.auth.decorators import login_required
 import datetime
 
-@login_required
+@login_required_with_message
 def alumni_list(request):
     # Get the highest graduation year from the database
     current_year = Alumni.objects.aggregate(Max('graduation_year'))['graduation_year__max']
@@ -463,7 +485,7 @@ def council_members_view(request):
             grouped_council_members[year] = []
         grouped_council_members[year].append(member)
     
-    # Define the desired role order
+    # Defined the desired role order
     role_order = {
         'President': 1,
         'Vice President': 2,

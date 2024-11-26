@@ -19,8 +19,7 @@ class Alumni(models.Model):
     phone_number = models.CharField(max_length=15, blank=True, null=True)  # Allows optional phone number
     graduation_year = models.IntegerField(db_index=True)  # Added index for graduation year
     location = models.CharField(max_length=255, blank=True, null=True)  # Optional location
-    profile_picture = models.ImageField(upload_to='photos/', blank=True, null=True, 
-                                        default='photos/default.png', validators=[validate_image_size])  # Add validator here
+    profile_picture = models.ImageField(upload_to='photos/', blank=True, null=True, default='photos/default.png', validators=[validate_image_size])  # Add validator here
     batch = models.CharField(max_length=10)
     usn = models.CharField(max_length=20, unique=True)
     linkedin_url = models.URLField(max_length=255, blank=True, null=True)  # Optional LinkedIn URL
@@ -48,6 +47,8 @@ class Alumni(models.Model):
             models.Index(fields=['company_name']),  # Index for faster filtering by company name
         ]
         # ordering = ['-graduation_year', 'first_name']  # Orders alumni by graduation year descending, then first name
+
+
 
 
 

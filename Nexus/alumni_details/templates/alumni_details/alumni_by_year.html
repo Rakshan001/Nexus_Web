@@ -250,7 +250,7 @@ button:hover {
 <div class="alumni-profiles">
     {% for alumni in alumni %}
         <div class="alumni-profile">
-            <img src="{{ alumni.profile_picture.url }}" alt="Profile Picture">
+            <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}" width="100" height="100">
             <p class="name">{{ alumni.first_name }} {{ alumni.last_name }}</p>
             <p class="job">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
