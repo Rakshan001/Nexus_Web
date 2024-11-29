@@ -194,6 +194,22 @@
                 <p class="card-text"><strong>Bio:</strong> {{ alumni.bio }}</p>
                 <p class="card-text"><strong>Achievements:</strong> {{ alumni.achievements }}</p>
                 <p class="card-text"><strong>Date of Birth:</strong> {{ alumni.dob }}</p>
+                <h2>Uploaded Memories</h2>
+                <div style="display: flex; align-items: center;">
+                    {% if memories %}
+                        <ul>
+                            {% for memory in memories %}
+                                <li >
+                                    <img src="{{ memory.image.url }}" alt="Memory" style="width: 150px; height: 150px; margin: 10px;">
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No memories uploaded yet.</p>
+                    {% endif %}
+                </div>
+                
+
                 <a href="{% url 'update_alumni_profile' %}" class="button">Edit Profile <i class="fa-solid fa-pen"></i></a>
             </div>
         </div>

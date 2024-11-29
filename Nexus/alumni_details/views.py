@@ -11,15 +11,22 @@ from utils.decorators import login_required_with_message  # Import the decorator
 
 
 
+
 @login_required_with_message
 def alumni_profile(request):
+    # Fetch the alumni object
     alumni = get_object_or_404(Alumni, user=request.user)
     
+    # Check if the user is an alumni
     if not alumni.is_alumni:
         messages.error(request, "You are not authorized to view this page.")
         return redirect('home')
+    
+    # Fetch all memories for the alumni
+    memories = alumni.memories.all()
 
-    return render(request, 'alumni_details/alumni-profile.html', {'alumni': alumni})
+    # Render the alumni profile page with alumni and memories
+    return render(request, 'alumni_details/alumni-profile.html', {'alumni': alumni, 'memories': memories})
 
 
 
@@ -51,8 +58,9 @@ def update_alumni_profile(request):
             return redirect('alumni_profile')
     else:
         form = AlumniUpdateForm(instance=alumni)
+        memories = alumni.memories.all()
 
-    return render(request, 'alumni_details/update-alumni-profile.html', {'form': form, 'alumni': alumni})
+    return render(request, 'alumni_details/update-alumni-profile.html', {'form': form, 'alumni': alumni ,'memories': memories})
 
 
 '''Deleting profile picture'''
@@ -77,6 +85,54 @@ def delete_profile_picture(request):
         messages.error(request, "No profile picture to delete.")
 
     return redirect('update_alumni_profile')
+
+
+''''==========================='''
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from .models import Alumni, AlumniMemory
+import os
+from django.conf import settings
+
+@login_required
+def manage_memories(request):
+    alumni = get_object_or_404(Alumni, user=request.user)
+
+    if not alumni.is_alumni:
+        return JsonResponse({'error': 'You are not authorized to manage memories.'}, status=403)
+
+    if request.method == 'POST':
+        if alumni.memories.count() >= 5:
+            return JsonResponse({'error': 'You can upload up to 5 images only.'}, status=400)
+
+        image = request.FILES.get('image')
+        if not image:
+            return JsonResponse({'error': 'No image uploaded.'}, status=400)
+
+        # Save the image as a new memory
+        memory = AlumniMemory.objects.create(alumni=alumni, image=image)
+        return JsonResponse({
+            'message': 'Image uploaded successfully.',
+            'image_url': memory.image.url,
+            'memory_id': memory.id
+        }, status=201)
+
+    elif request.method == 'DELETE':
+        memory_id = request.GET.get('memory_id')
+        memory = get_object_or_404(AlumniMemory, id=memory_id, alumni=alumni)
+
+        # Delete the file and database entry
+        if os.path.exists(memory.image.path):
+            os.remove(memory.image.path)
+        memory.delete()
+
+        return JsonResponse({'message': 'Image deleted successfully.'}, status=200)
+
+    # Render the template with existing memories
+    memories = alumni.memories.all()
+    return render(request, 'alumni_details/alumni-profile/alumni-memory.html', {'alumni': alumni, 'memories': memories})
+
 
 
 

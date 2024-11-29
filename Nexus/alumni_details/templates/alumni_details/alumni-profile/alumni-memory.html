@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Memories</title>
+    <script>
+        async function uploadImage() {
+            const imageInput = document.getElementById('image-upload');
+            const image = imageInput.files[0];
+
+            if (!image) {
+                alert('Please select an image to upload.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', image);
+
+            const response = await fetch("{% url 'manage_memories' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+                const newImage = `<li id="memory-${data.memory_id}">
+                                    <img src="${data.image_url}" alt="Memory" style="width: 100px; height: 100px;">
+                                    <button onclick="deleteImage(${data.memory_id})">Delete</button>
+                                  </li>`;
+                document.getElementById('memory-list').innerHTML += newImage;
+                checkUploadLimit();
+            } else {
+                const error = await response.json();
+                alert(error.error);
+            }
+        }
+
+        async function deleteImage(memoryId) {
+            const response = await fetch(`{% url 'manage_memories' %}?memory_id=${memoryId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+            });
+
+            if (response.ok) {
+                alert('Image deleted successfully.');
+                document.getElementById(`memory-${memoryId}`).remove();
+                checkUploadLimit();
+            } else {
+                const error = await response.json();
+                alert(error.error);
+            }
+        }
+
+        function checkUploadLimit() {
+            const memoryCount = document.getElementById('memory-list').children.length;
+            const uploadSection = document.getElementById('upload-section');
+            uploadSection.style.display = memoryCount >= 5 ? 'none' : 'block';
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        document.addEventListener('DOMContentLoaded', checkUploadLimit);
+    </script>
+</head>
+<body>
+    <h1>Manage Memories</h1>
+
+    <div id="upload-section">
+        <label for="image-upload">Upload Image:</label>
+        <input type="file" id="image-upload" accept="image/*">
+        <button onclick="uploadImage()">Upload</button>
+    </div>
+
+    <h2>Uploaded Memories:</h2>
+    <ul id="memory-list">
+        {% for memory in memories %}
+            <li id="memory-{{ memory.id }}">
+                <img src="{{ memory.image.url }}" alt="Memory" style="width: 100px; height: 100px;">
+                <button onclick="deleteImage({{ memory.id }})">Delete</button>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -12,7 +12,9 @@ urlpatterns = [
       path('alumni-details/', views.alumni_list, name='alumni_list'),  # Main alumni list view
     path('alumni/<int:graduation_year>/', views.alumni_by_year, name='alumni_by_year'),
 
-
+#====================
+    path('manage_memories/', views.manage_memories, name='manage_memories'),
+    # path('delete-memory/<int:memory_id>/', views.delete_memory, name='delete_memory'),
 
 
 

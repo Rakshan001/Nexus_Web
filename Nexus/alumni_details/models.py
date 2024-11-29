@@ -49,6 +49,26 @@ class Alumni(models.Model):
         # ordering = ['-graduation_year', 'first_name']  # Orders alumni by graduation year descending, then first name
 
 
+''''==================='''
+from django.db import models
+from django.core.exceptions import ValidationError
+
+class AlumniMemory(models.Model):
+    alumni = models.ForeignKey(Alumni, on_delete=models.CASCADE, related_name='memories')
+    image = models.ImageField(upload_to='memories/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def clean(self):
+        # Restrict to 5 images per alumni
+        if self.alumni.memories.count() >= 5:
+            raise ValidationError('You can only upload up to 5 images.')
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Memory for {self.alumni.first_name} {self.alumni.last_name} uploaded at {self.uploaded_at}"
 
 
 
