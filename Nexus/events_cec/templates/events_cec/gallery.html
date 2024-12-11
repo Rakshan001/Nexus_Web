@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery-item {
+            width: 200px;
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+    <script>
+        async function loadMore() {
+            const loadMoreButton = document.getElementById('load-more');
+            const galleryContainer = document.getElementById('gallery-container');
+            let loadedCount = parseInt(loadMoreButton.dataset.loadedCount, 10);
+            const totalCount = parseInt(loadMoreButton.dataset.totalCount, 10);
+            
+            if (loadedCount >= totalCount) return;
+
+            // Fetch additional images
+            const response = await fetch(`?limit=${loadedCount + 10}`);
+            const html = await response.text();
+
+            // Extract new gallery items
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const newItems = tempDiv.querySelectorAll('.gallery-item');
+
+            // Append new items to the gallery
+            newItems.forEach(item => galleryContainer.appendChild(item));
+
+            // Update loaded count
+            loadedCount += newItems.length;
+            loadMoreButton.dataset.loadedCount = loadedCount;
+
+            // Hide button if all images are loaded
+            if (loadedCount >= totalCount) {
+                loadMoreButton.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Gallery</h1>
+    <div id="gallery-container" class="gallery">
+        {% for image in images %}
+        <div class="gallery-item">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}">
+            <h4>{{ image.title }}</h4>
+            <p>{{ image.date_uploaded|date:"Y-m-d" }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% if loaded_count < total_count %}
+    <button id="load-more" data-loaded-count="{{ loaded_count }}" data-total-count="{{ total_count }}" onclick="loadMore()">Load More</button>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,404 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    width: 100%;
+    height: 100vh;
+}
+header {
+    padding: 30px;
+    background: url('../assets/LetsConnect.png');
+    background-size: cover; /* Makes the image cover the entire header */
+    background-position: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 200px;
+    position: relative;
+    z-index: 1; /* Ensures content is on top of the dim overlay */
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+    z-index: -1; /* Keeps the overlay behind the header content */
+}
+header .profile{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+header img{
+    
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+   
+    border: 5px solid orange;
+}
+
+.name-role{
+    /* min-width: 600px; */
+    max-width: 600px;
+    padding: 20px;
+    color: white;
+}
+.name-role strong{
+    font-size: 40px;
+}
+
+.swiper-container {
+    width: 100%;
+    overflow: hidden;
+}
+.swiper-wrapper .swiper-slide {
+    height: 300px;
+    /* background-color: #f3f3f3; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.swiper-wrapper .swiper-slide img {
+    width: 100%; /* Adjust width for desktop */
+    height: 100%;
+    max-width: 500px; /* Sets a maximum width */
+    object-fit: cover; /* Maintains aspect ratio */
+    border-radius: 10px; /* Adds rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.286);
+}
+/* Responsiveness */
+@media (max-width: 768px) {
+    .swiper-wrapper .swiper-slide img {
+        width: 80%; /* Adjusts width for tablets */
+        max-width: 400px;
+    }
+    header{
+        height: 400px;
+    }
+    header::before{
+        background-color: rgba(0, 0, 0, 0.762); /* Black overlay with 50% opacity */
+    }
+}
+@media (max-width: 480px) {
+    .swiper-wrapper .swiper-slide img {
+        width: 80%; /* Adjusts width for mobile */
+        max-width: 400px;
+    }
+    
+}
+.s1 {
+    margin-top: 10px;
+    height: 50vh;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 100px;
+}
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.event-images h2{
+    text-align: center;
+    background-color: #151515;color: white;
+    padding: 20px;
+}
+
+.connect{
+    margin-right: 2rem;
+    width: 100%;
+    max-width: 500px;
+    display: grid;
+    justify-content: flex-end;
+    color: white;
+}
+
+.connect h2{
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+}
+.connect .social-icons{
+    display: flex;justify-content: space-evenly;align-items: center;
+    font-size: 20px;
+    gap: 10px;
+}
+.social-icons button{
+    cursor: pointer;
+    padding: 10px;
+    background-color: white;border: none; outline: none;
+    border-radius: 5px;
+}
+.social-icons button:hover{
+    
+    background-color: rgb(237, 237, 237);
+}
+
+/* profile */
+.profile-container {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    gap: 20px;
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edu-details {
+    padding: 20px;
+    background-color: #11171e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.edu-details p{
+    margin: 4px;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.share-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.share-profile h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    font-size: 1.5em;
+}
+
+.social-icons i {
+    color: #555;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.social-icons i:hover {
+    color: #0073b1; /* LinkedIn color for hover effect */
+}
+
+.social-icons i.fa-facebook:hover {
+    color: #3b5998; /* Facebook color */
+}
+
+.social-icons i.fa-twitter:hover {
+    color: #1DA1F2; /* Twitter color */
+}
+
+.social-icons i.fa-linkedin:hover {
+    color: #0073b1; /* LinkedIn color */
+}
+
+.social-icons i.fa-instagram:hover {
+    color: #E4405F; /* Instagram color */
+}
+
+.social-icons i.fa-link {
+    color: #000;
+}
+
+.qr-code {
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.qr-code img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+.right-side {
+    flex: 2;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.card:last-child {
+    border-bottom: none;
+}
+
+.card i {
+    color: #0f1a2e;
+    font-size: 1.5em;
+}
+
+.card strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.card p {
+    margin: 0;
+    color: #555;
+}
+
+
+
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.profile-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+
+.profile-table td:first-child {
+    font-weight: bold;
+    color: #1a237e; /* Dark blue color for labels */
+    width: 40%;
+}
+
+.profile-table a {
+    color: #3b5998; /* Link color */
+    text-decoration: none;
+}
+
+.profile-table a:hover {
+    text-decoration: underline;
+}
+
+
+
+ /* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #012f5d;
+  }
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+    .profile-table, .profile-table tr, .profile-table td {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .profile-table tr {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e0e0e0;
+        text-align:left;
+        
+    }
+
+    .profile-table td {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        
+    }
+
+    .profile-table td:first-child {
+        width: auto;
+        font-weight: bold;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .profile-container{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 985px) {
+    header {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        align-items: center;
+
+        padding: 20px;
+        height: auto;
+    }
+    header .profile{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .connect {
+        width: 100%;
+        max-width: none; /* Remove the width restriction for better alignment */
+        margin-right: 0;
+        margin-top: 1rem; /* Adds some space on top when stacked */
+        display: flex;
+        justify-content: center; /* Center the connect div */
+    }
+    .connect h2{
+        width: 400px;
+    }
+}
