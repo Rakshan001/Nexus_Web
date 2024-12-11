@@ -38,3 +38,29 @@ def event_detail(request, event_id):
     event = get_object_or_404(Event, event_id=event_id)
     images = EventImage.objects.filter(event=event)
     return render(request, 'events_cec/event-details.html', {'event': event, 'images': images})
+
+
+
+
+from .models import Gallery
+
+def gallery_view(request):
+    # Number of images to display initially
+    initial_count = 2
+    
+    # Get all images, ordered by date_uploaded (most recent first)
+    gallery_images = Gallery.objects.all()
+
+    # Get the number of images to load (from query params, if provided)
+    limit = request.GET.get('limit', initial_count)
+    limit = int(limit)
+
+    # Slice the queryset for the current view
+    images_to_display = gallery_images[:limit]
+
+    context = {
+        'images': images_to_display,
+        'total_count': gallery_images.count(),
+        'loaded_count': len(images_to_display),
+    }
+    return render(request, 'events_cec/gallery.html', context)

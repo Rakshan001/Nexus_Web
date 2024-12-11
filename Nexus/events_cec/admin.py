@@ -27,7 +27,7 @@ class EventAdmin(admin.ModelAdmin):
 from django.contrib import admin
 from django.db import models
 from image_uploader_widget.widgets import ImageUploaderWidget
-from .models import Event, EventImage
+from .models import Event, EventImage, Gallery
 
 class EventImageInline(admin.TabularInline):
     model = EventImage
@@ -46,4 +46,16 @@ class EventAdmin(admin.ModelAdmin):
     inlines = [EventImageInline]
     formfield_overrides = {
         models.ImageField: {'widget': ImageUploaderWidget},  # Use the custom widget for the event poster
+    }
+
+
+
+@admin.register(Gallery)
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_uploaded')  # Fields to display in the admin list view
+    search_fields = ('title',)  # Search functionality by title
+    list_filter = ('date_uploaded',)  # Filter by date uploaded
+    ordering = ('-date_uploaded',)  # Order by most recent uploads
+    formfield_overrides = {
+        models.ImageField: {'widget': ImageUploaderWidget},  # Use the custom widget for image uploads
     }

@@ -7,4 +7,8 @@ urlpatterns = [
     
     # URL pattern for the event detail page
     path('event/<int:event_id>/', views.event_detail, name='event_detail'),
+
+    #Gallery
+    path('gallery/', views.gallery_view, name='gallery'),
+
 ]

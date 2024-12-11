@@ -267,21 +267,25 @@ $(function () {
     {% for alumni in page_obj.object_list %}
     <div class="alumni-profile-card">
         <div class="profile-image">
-          {% load static %}
+            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
+
 
           <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}" width="100" height="100">
 
         </div>
-        <div class="profile-details">
-            <h3>{{ alumni.first_name }} {{ alumni.last_name }}</h3>
-            <p><strong>Graduation Year:</strong> {{ alumni.graduation_year }}</p>
-            <p><strong>Location:</strong> {{ alumni.location }}</p>
-            <p><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
+        <div class="profile-details" >
+            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
+            <h3 style="color: black;">{{ alumni.first_name }} {{ alumni.last_name }}</h3>
+            <p style="color: black;"><strong>Graduation Year:</strong> {{ alumni.graduation_year }}</p>
+            <p style="color: black;"><strong>Location:</strong> {{ alumni.location }}</p>
+            <p style="color: black;"><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
                 <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
                 <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
             </div>
+        </a>
         </div>
+    </a>
     </div>
     {% endfor %}
 </div>

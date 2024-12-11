@@ -334,6 +334,21 @@ def alumni_by_year(request, graduation_year):
 
 # '''
 
+
+
+
+'''' Alumni-Profile'''
+from django.shortcuts import render, get_object_or_404
+from .models import Alumni  # Adjust import based on your app structure
+
+def public_alumni_profile(request, alumni_id):
+    alumni = get_object_or_404(Alumni, pk=alumni_id)
+    return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', {'alumni': alumni})
+
+
+
+
+
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q

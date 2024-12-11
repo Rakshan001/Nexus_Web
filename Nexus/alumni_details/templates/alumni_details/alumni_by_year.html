@@ -206,6 +206,9 @@ button:hover {
         max-width: 300px;
     }
 }
+.pagination a{
+    color: black;
+}
 
 </style>
 <h1>Alumni Graduates - {{ graduation_year }}</h1>
@@ -250,20 +253,22 @@ button:hover {
 <div class="alumni-profiles">
     {% for alumni in alumni %}
         <div class="alumni-profile">
+            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
             <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}" width="100" height="100">
-            <p class="name">{{ alumni.first_name }} {{ alumni.last_name }}</p>
+            <p class="name" >{{ alumni.first_name }} {{ alumni.last_name }}</p>
             <p class="job">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
                 <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
                 <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="#">Email</a></button>
             </div>
+        </a>
         </div>
     {% empty %}
         <p>No alumni found for this graduation year and branch.</p>
     {% endfor %}
 </div>
 
-<div class="pagination" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+<div class="pagination" style="display: flex; align-items: center; justify-content: center; gap: 10px; ">
     <!-- First and Previous Links -->
     {% if alumni.has_previous %}
         <a href="?page=1&branch={{ selected_branch }}">First</a>

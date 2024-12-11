@@ -70,6 +70,13 @@ class Event(models.Model):
 
     def __str__(self):
         return self.event_title
+    
+
+    def delete(self, *args, **kwargs):
+        # Delete image file from filesystem
+        if self.poster and os.path.isfile(self.poster.path):
+            os.remove(self.poster.path)
+        super().delete(*args, **kwargs)
 
 
 class EventImage(models.Model):
@@ -93,4 +100,32 @@ class EventImage(models.Model):
 
         super().save(*args, **kwargs)
 
+
+    def delete(self, *args, **kwargs):
+        # Delete image file from filesystem
+        if self.image and os.path.isfile(self.image.path):
+            os.remove(self.image.path)
+        super().delete(*args, **kwargs)
+
     
+
+
+
+
+class Gallery(models.Model):
+    image = models.ImageField(upload_to='gallery/')
+    title = models.CharField(max_length=255)
+    date= models.DateTimeField(blank=True,null=True)
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date_uploaded']  # Order by most recent uploads first
+
+    def __str__(self):
+        return self.title
+
+    def delete(self, *args, **kwargs):
+        # Delete image file from filesystem
+        if self.image and os.path.isfile(self.image.path):
+            os.remove(self.image.path)
+        super().delete(*args, **kwargs)

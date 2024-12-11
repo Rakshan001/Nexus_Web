@@ -7,7 +7,6 @@
     
     <title>{% block title %}Default Title{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'home/navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'home/footer.css' %}">
     
 
     <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
@@ -45,6 +44,8 @@
                         <ul class="dropdown-content">
                             <li>Campus Visit</li>
                             <li> <a href="{% url 'podcast' %}">Podcast</a></li>
+                        <li><a href="{% url 'gallery' %}"> Gallery</a></li>
+
                             <li> <a href="{% url 'submit_form' %}">Query</a></li>
                         </ul>
                     </li>
@@ -115,14 +116,14 @@
                 <!-- <button>Profile</button>
                 <button><a href="/login" class="logout-link">Sign Out</a></button> -->
             </div>
-            <div class="social-mediaicons">
+            <!-- <div class="social-mediaicons">
                 <h3>Contact Information</h3>
                 <div class="social-icons">
                     <i class="fa-brands fa-facebook"></i>
                     <i class="fa-brands fa-youtube"></i>
                     <i class="fa-brands fa-instagram"></i>
                     <i class="fa-brands fa-linkedin-in"></i>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -144,6 +145,7 @@
                     <ul class="dropdown-content">
                         <li>Campus Visit</li>
                         <li>Podcast</li>
+                        <li><a href="{% url 'gallery' %}"> Gallery</a></li>
                         <li> <a href="{% url 'submit_form' %}">Query</a></li>
                     </ul>
                 </li>

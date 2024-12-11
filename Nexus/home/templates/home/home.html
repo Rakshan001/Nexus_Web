@@ -6,79 +6,103 @@
 {% block title %}NEXUS CEC ALUMNI PORTAL{% endblock %}
 
 {% block extra_head %}
-<script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+
 <link rel="stylesheet" href="{% static 'home/home.css' %}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="icon" type="image/x-icon" href="../assets/NexusFavicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="icon" type="image/x-icon" href="../assets/NexusFavicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 {% endblock %}
 
 
-{% block content %}
+
 
 
 
 
 <body>
+    
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader">
-            <img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" alt="Logo" class="logo" />
+            <img src="../assets/Nexus_logo-removebg-preview-1.png" alt="Logo" class="logo" />
             <!-- You can add a loading animation if you want -->
             <div class="spinner"></div>
         </div>
     </div>
-    
+    {% block content %}
+
 
         <!-- Main Content -->
         <div class="main-content" id="main-content">
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://www.canaraengineering.in/assets/images/banner1.jpg" class="d-block w-100" alt="...">
+                        <img src="../assets/CEC Drone-1.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
                             <div class="caption-overlay">
                                 <h2>Reconnect, and unlock endless possibilities</h2>
+                                <a href="#explore" class="explore-button">Explore More ></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../assets/nexus inaug-1 1.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-flex align-items-center justify-content-center">
+                            <div class="caption-overlay">
+                                <h2>Inaugration of CEC Nexus Club</h2>
+                                <a href="#explore" class="explore-button">Explore More ></a>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{% static 'home/assets/Nexus_logo-removebg-preview.png'%}" class="d-block w-100" alt="...">
+                        <img src="../assets/Nexus features.png" class="d-block w-100" alt="...">
                     </div>
                     <!-- <div class="carousel-item">
-                        <img src="https://imscec.canaraengineering.in/canara/upload/techevent/AUDIO%20VISUAL%20SESSION%20ABOUT%20AWARENESS%20ON%20SNAKES1_1613990353IMG-20210220-WA0015.jpg" class="d-block w-100" alt="...">
+                        <img src="https://th.bing.com/th/id/OIP.0khkUv49_VOLCsbWT80EQQAAAA?rs=1&pid=ImgDetMain" class="d-block w-100" alt="...">
                     </div> -->
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
-                </button>
+                </button> -->
             </div>
         </div>
-        <!-- deans message -->
-        <div class="deans-text">
-            <h2>Alumna Mattar's Message</h2>
-            <div class="mssg">
-            <img src="../assets/doublequote.png" alt="" />
-            <p>
-              I want to express my deepest gratitude to each and every one of you
-              for your hard work and dedication." "Today, I want to talk about the
-              importance of kindness and compassion in our community ." "I am
-              thrilled to announce that our school has been recognized for its
-              outstanding achievements in the field of public health." "I believe
-              that every individual has the power to make a positive impact in the
-              world." "As we move forward, I encourage you to stay committed to our
-              mission of improving the health and well-being of all people.
-            </p>
+        <!-- Alumni head message -->
+        <div class="alumni-h-message">
+
+            <div class="deans-text">
+                <h2>About Nexus</h2>
+                <div class="mssg">
+                <img src="../assets/doublequote.png" alt="" />
+                <p>
+                  I want to express my deepest gratitude to each and every one of you
+                  for your hard work and dedication." "Today, I want to talk about the
+                  importance of kindness and compassion in our community ." "I am
+                  thrilled to announce that our school has been recognized for its
+                  outstanding achievements in the field of public health." "I believe
+                  that every individual has the power to make a positive impact in the
+                  world." "As we move forward, I encourage you to stay committed to our
+                  mission of improving the health and well-being of all people.
+                </p>
+                <!-- <img src="../assets/Nexus logo.jpg" alt="" class="pic"> -->
             </div>
-            <h3>EFG SIR</h3>
+            <h3>Mrs Deepthi Prabhu</h3>
+            </div>
+            <div class="speaker-img">
+                <img src="../assets/Nexus logo.jpg" alt="">
+            </div>
         </div>
 
         <div class="nexus-do">
@@ -141,110 +165,205 @@
                 </div>
             </div>
         </div>
-
+    
         <div class="top-events-display">
-            <h2>Top New Events</h2>
-            <div class="all-cards">
-                <div class="card-wrapper">
-                    <div class="card-shadow"></div> <!-- Blue shadow behind the card -->
-                    <div class="card">
-                        <div class="poster">
-                            <img src="../assets/Academic Preparation.png" alt="Event Poster">
-                        </div>
-                        <div class="card-content">
-                            <h3>Academic Preparation</h3>
-                            <p>Academic Preparation is a program designed to help students</p>
-                            <p><i class="fa-solid fa-location-dot"></i> Location: </p>
-                            <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
-                        </div>
-                        <div class="view-btn">
-                            <button type="button">View</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="card-shadow"></div> <!-- Blue shadow behind the card -->
-                    <div class="card">
-                        <div class="poster">
-                            <img src="../assets/Academic Preparation.png" alt="Event Poster">
-                        </div>
-                        <div class="card-content">
-                            <h3>Academic Preparation</h3>
-                            <p>Academic Preparation is a program designed to help students</p>
-                            <p><i class="fa-solid fa-location-dot"></i> Location: </p>
-                            <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
-                        </div>
-                        <div class="view-btn">
-                            <button type="button">View</button>
+            <div class="section-header">
+                <span class="line"></span>
+                <div class="label">Upcoming Events</div>
+                <span class="line"></span>
+            </div>
+            <div class="swiper-container s1">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2>Talk by Alumni</h2>
+                                <p>Academic Preparation is a program designed to help students</p>
+                                <p><i class="fa-solid fa-location-dot"></i> Location: </p>
+                                <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
+                                
+                                <button class="button">View</button>
+                                
+                            </div>
+                            <div class="card-image">
+                                <img src="../assets/Academic Preparation.png" alt="">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="card-shadow"></div> <!-- Blue shadow behind the card -->
-                    <div class="card">
-                        <div class="poster">
-                            <img src="../assets/Academic Preparation.png" alt="Event Poster">
-                        </div>
-                        <div class="card-content">
-                            <h3>Academic Preparation</h3>
-                            <p>Academic Preparation is a program designed to help students</p>
-                            <p><i class="fa-solid fa-location-dot"></i> Location: </p>
-                            <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
-                        </div>
-                        <div class="view-btn">
-                            <button type="button">View</button>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2>Talk by Alumni</h2>
+                                <p>Academic Preparation is a program designed to help students</p>
+                                <p><i class="fa-solid fa-location-dot"></i> Location: </p>
+                                <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
+                                
+                                <button class="button">View</button>
+                                
+                            </div>
+                            <div class="card-image">
+                                <img src="../assets/Academic Preparation.png" alt="">
+                            </div>
                         </div>
                     </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2>Talk by Alumni</h2>
+                                <p>Academic Preparation is a program designed to help students</p>
+                                <p><i class="fa-solid fa-location-dot"></i> Location: </p>
+                                <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
+                                
+                                <button class="button">View</button>
+                                
+                            </div>
+                            <div class="card-image">
+                                <img src="../assets/Academic Preparation.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
-                <!-- Duplicate the card-wrapper for additional cards -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
+
+        <div class="follow-nexus">
+            <!-- <h2>To keep Connected, Follow Nexus</h2> -->
+            <div class="social-logos">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-youtube"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+        </div>
+
+        <div class="nexus-features">
+            <h2>Nexus Features</h2>
+            <div class="cards">
+                <div class="card">
+                    <i class="fa-solid fa-podcast"></i>
+                    <p>Podcast</p>
+                    <button type="button" class="view-more">View</button>
+                </div>
+                <div class="card">
+                    <img src="../assets/graduation-cap.svg" alt="" class="svg">
+                    <p>Alumni Interaction</p>
+                    <button type="button" class="view-more">View</button>
+                </div>
+                <div class="card">
+                    <i class="fa-brands fa-instagram"></i>
+                    <p>Social Media</p>
+                    <button type="button" class="view-more">View</button>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-link"></i>
+                    <p>Engagement</p>
+                    <button type="button" class="view-more">View</button>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <p>NewsLetter</p>
+                    <button type="button" class="view-more">View</button>
+
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-search"></i>
+                    <p>Search-Team</p>
+                    <button type="button" class="view-more">View</button>
+
+                </div>
+            </div>
+        </div>
+      
+        <div class="alumni-startups">
+            <div class="section-header">
+                <span class="line"></span>
+                <div class="label">Nexus Alumni Startups</div>
+                <span class="line"></span>
+            </div>
+            <div class="row">
+                <div class="startup-card">
+                    <img src="../assets/person-4.png" alt="" class="">
+                    <div class="startup-card-details">
+                        <strong>Dr. Ranganath Shenoy</strong>
+                        <p>Secratory</p>
+                    </div>
+                </div>
+                <div class="startup-card">
+                    <img src="../assets/person-4.png" alt="" class="">
+                    <strong>Mrs. Deepthi Prabhu</strong>
+                    <p>Head Alumni connection</p>
+                </div>
+                <div class="startup-card">
+                    <img src="../assets/person-4.png" alt="" class="">
+                    <div class="startup-card-details">
+                        <div class="startup-card-details">
+                            <strong>Mr. Prasad Pai</strong>
+                            <p>CEC Alumni</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="startup-card">
+                    <img src="../assets/AdithyaPai.jpg" alt="" class="">
+                    <div class="startup-card-details">
+                        <strong>Mr. Adithya Pai</strong>
+
+                        <p>CEC Alumni</p>
+                    </div>
+                </div>
+                <div class="startup-card">
+                    <img src="../assets/VenkateshKamath.jpg" alt="" class="">
+                    <div class="startup-card-details">
+
+                        <strong>Mr. Venkatesh Kamath</strong>
+                        <p>CEC Alumni</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="startup-card">
+                <img src="../assets/Anoop1.jpg" alt="" class="">
+                <strong>Mr. Anoop Sadananda Prabhu</strong>
+                <p>CEC Alumni</p>
+            </div>
+              <div class="startup-card">
+                <img src="../assets/Rahul.jpg" alt="" class="">
+                <strong>Mr. M Rahul Bhat</strong>
+                <p>CEC Alumni</p>
+            </div>
+              <div class="startup-card">
+                <img src="../assets/Artboard 1@2xnew Anshu.png" alt="" class="">
+                <strong>Mr. Anshu Shetty</strong>
+                <p>CEC Alumni</p>
+            </div>
+              <div class="startup-card">
+                <img src="../assets/person-4.png" alt="" class="">
+                <strong>Mr. Rakshan Shetty</strong>
+                <p>CEC Alumni</p>
+            </div>
+            </div>
+        </div>
+        
+        
     </div>
     <div class="chatbot">
         <i class="fa-solid fa-headset"></i>
     </div>
-    <!-- footer -->
-   
 
-    <script>
-        // Toggle the sidebar visibility
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('main-content');
-            sidebar.classList.toggle('open');
-             // Shift the main content when sidebar is open
-        }
-
-        // Dark mode toggle
-        const darkmodeToggle = document.getElementById('darkmode-toggle');
-        const appContainer = document.querySelector('.app-container');
-
-        darkmodeToggle.addEventListener('change', function () {
-            if (this.checked) {
-                appContainer.classList.add('darkmode');
-            } else {
-                appContainer.classList.remove('darkmode');
-            }
-        });
-        
-    </script>
-    <script>
-           // JavaScript to handle preloader
-           window.addEventListener("load", function () {
-    setTimeout(function() {
-        const preloader = document.getElementById('preloader');
-        preloader.style.display = 'none';
-        document.body.classList.add('show-content');
-    }, 2000); // Delay of 2 seconds to see the preloader in action
-});
-
-function togglemenu() {
-            const navEle = document.getElementById("navEle");
-            navEle.classList.toggle("show");
-        }
-    </script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <!-- Toast Message -->
+<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <img src="../assets/Nexus logo.jpg" class="rounded me-2 toast-logo" alt="...">
+        <strong class="me-auto">Event Reminder!</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        Hello, Students! Please join the event.
+    </div>
+</div>
 {% endblock %}
