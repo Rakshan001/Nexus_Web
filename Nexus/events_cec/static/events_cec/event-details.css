@@ -1,16 +1,38 @@
-
-.container {
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.event-details-container {
     width: 100%;
     margin: 0 auto;
     
 }
 .header {
-    background-color: #151515;
+    position: relative;
+    background: url('../assets/CEC\ Events.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     color: white;
     padding: 40px;
     text-align: center;
-    
+    z-index: 1;
+    overflow: hidden;
 }
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.843), rgba(0, 0, 0, 0.718)); /* Adjust opacity as needed */
+    z-index: -1;
+}
+
 .header h1 {
     margin: 0 auto;
     width: 100%;
@@ -78,7 +100,14 @@
     flex-direction: column;
     align-items: center;
 }
-.social-icons{
+.event-info{
+    gap: 20px;
+}
+.event-details-container .event-info P{
+    color: #4a4a4a;
+    line-height: 24px;
+}
+.event-details-container .social-icons{
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -90,7 +119,7 @@
     padding: 20px;
 }
 
-  /* scrollbar */
+   /* scrollbar */
   /* width */
   ::-webkit-scrollbar {
     width: 10px;
@@ -101,17 +130,17 @@
     background: #ffffff;
   }
   
+  
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #2f81d4;
+    background: #e69b10;
     border-radius: 20px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #012f5d;
+    background: #0a1219;
   }
-
 
 .swiper-container {
     width: 100%;

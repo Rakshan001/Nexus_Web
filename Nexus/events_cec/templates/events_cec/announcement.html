@@ -6,21 +6,25 @@
 <link rel="stylesheet" href="{% static 'events_cec/announcement.css' %}">
 <link rel="icon" type="image/x-icon" href="../assets/NexusFavicon.png">
 <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+<!-- add favicon -->
+<link rel="icon" type="image/x-icon" href="{% static 'home/assets/NexusFavicon.png' %}">
 {% endblock %}
 
 {% block content %}
+
 <div class="heading">
-    <!-- <h1>EVENTS</h1> -->
+    <Strong>EVENTS</Strong>
+        <p>Engage with the community of Canara alumni wherever you are on campus, online, and in your region through programs and events.</p>
 </div>
 
-<div class="container">
+<div class="event-container">
+    <div class="event-cards">
     {% if all_events %}
         {% for event in all_events %}
-        <div class="event-cards">
             <div class="card">
                 <div class="poster">
                     {% if event.poster %}
-                    <img src="{{ event.poster.url }}" alt="{{ event.event_title }}" style="width: 150px; height: auto;">
+                    <img src="{{ event.poster.url }}" alt="{{ event.event_title }}">
                     {% endif %}
                 </div>
                 <div class="detail">
@@ -32,37 +36,40 @@
                     </a>
                 </div>
             </div>
+            {% endfor %}
+            {% else %}
+            <p>No events available.</p>
+            {% endif %}
         </div>
-        {% endfor %}
-    {% else %}
-        <p>No events available.</p>
-    {% endif %}
 
     {% if events.has_next %}
     <button id="load-more" data-next-page="{{ events.next_page_number }}">Load More</button>
     {% endif %}
-</div>
 
-<h1>All Events</h1>
 
-<div class="filters">
-    <form method="GET" action="{% url 'event_list' %}" id="event-filter-form">
-        <div class="search">
-            <input type="text" name="search" id="event_search" placeholder="Search" required>
-            <button type="submit">Search</button>
-            <i class="fa-solid fa-filter sort"></i>
-        </div>
-        <div class="categories">
-            <p>EVENT CATEGORIES</p>
-            <div class="category-list">
-                <p class="category-item active" data-event-type="">All Events</p>
-                <p class="category-item" data-event-type="upcoming">Upcoming Events</p>
-                <p class="category-item" data-event-type="ongoing">Ongoing Events</p>
-                <p class="category-item" data-event-type="past">Past Events</p>
+    <div class="filters">
+        <form method="GET" action="{% url 'event_list' %}" id="event-filter-form">
+            <div class="search">
+                <input type="text" name="search" id="event_search" placeholder="Search" required>
+                <button type="submit">Search</button>
+                <i class="fa-solid fa-filter sort"></i>
             </div>
-        </div>
-    </form>
+            <div class="categories">
+                <p>EVENT CATEGORIES</p>
+                <div class="category-list">
+                    <p class="category-item active" data-event-type="">All Events</p>
+                    <p class="category-item" data-event-type="upcoming">Upcoming Events</p>
+                    <p class="category-item" data-event-type="ongoing">Ongoing Events</p>
+                    <p class="category-item" data-event-type="past">Past Events</p>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+
+
+
+
 
     <!-- Popup Modal -->
 <div id="imgModal" class="modal">

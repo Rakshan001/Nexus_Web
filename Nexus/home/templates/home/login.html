@@ -18,7 +18,7 @@
     <div class="container">
         <div class="header">
             <header>
-                <img src="{% static 'home/assets/connect.jpg' %}" alt="connect">
+                <img src="{% static 'home/assets/CEC Login.png' %}" alt="connect">
             </header>
             <img src="{% static 'home/assets/Nexus_logo-removebg-preview.png' %}" alt="nexus logo" class="logo">
         </div>
@@ -26,10 +26,12 @@
             <h3>Login to your Account</h3>
             <form method="post">
               {% csrf_token %}
-                <h2>Login to your account</h2>
-                <input type="text" id="username" name="username" placeholder="Alumni email" required>
+                <!-- <h2>Login to your account</h2> -->
+                <label for="email">Email:</label>
+                <input type="text" id="username" name="username" placeholder="Email ID" required>
+                <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Password" required>
-                <div class="remember">
+                <div class="remember-me">
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Remember Me</label>
                 </div>
