@@ -54,6 +54,7 @@ def user_login(request):
 # Logout View
 @login_required
 def user_logout(request):
+    list(messages.get_messages(request))
     logout(request)
     messages.success(request, "You have been logged out successfully.")
     return redirect('home')  # Redirect to home page after logout
@@ -61,6 +62,7 @@ def user_logout(request):
 # Alumni Profile View (Login and Alumni Check Required)
 @login_required
 def alumni_profile(request):
+    list(messages.get_messages(request))
     try:
         alumni = Alumni.objects.get(user=request.user, is_alumni=True)  # Check if the user is an alumni
     except Alumni.DoesNotExist:
