@@ -84,35 +84,55 @@
                             {% if user.alumni_profile %}
                             <img src="{% if user.alumni_profile.profile_picture %}{{ user.alumni_profile.profile_picture.url }}{% else %}{% static 'home/assets/default-profile.png' %}{% endif %}" 
                             alt="Profile"
-                            class="profile-icon" />
-                            
-                    <!-- <img src="{% static 'home/assets/newLogo.png' %}" alt="Profile" class="profile-icon" /> -->
-                    <div class="profile-texts">
-                        
+                            class="profile-icon"/>
+                            <div class="profile-texts">
                                 <h3>{{ user.alumni_profile.first_name }} {{ user.alumni_profile.last_name }}</h3>
-                                <p>Email: {{ user.username }}</p>
-                                <a href="{% url 'alumni_profile' %}">
-                                    <button>Edit Profile</button>
-                                </a>
-                            {% elif user.student_profile %}
-                            <div style="display: block;"> 
-                                <h3>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h3>
-                                <p>Email: {{ user.username }}</p>
-                            {% endif %}
-                            <button>
-                                <a href="{% url 'user_logout' %}" class="logout-link">Sign Out</a>
-                            </button>
                             </div>
-                        {% else %}
-                        <div style="display: block; "><p>Please <a href="{% url 'user_login' %}">login</a> to access more features.</p>
                             
-                            <button >
-                                <a href="{% url 'user_login' %}" class="logout-link">Sign In</a>
-                            </button></div>
-                            
-                        {% endif %}
-                    </div>
                 </div>
+                        <!-- <img src="{% static 'home/assets/newLogo.png' %}" alt="Profile" class="profile-icon" /> -->
+                        <div class="profile-btn">
+                            
+                                    <!-- <p>Email: {{ user.username }}</p> -->
+                                     <button class="primary-btn">
+                                         <a href="{% url 'alumni_profile' %}">
+                                            <i class="fa-solid fa-user"></i> Profile
+                                         </a>
+                                     </button>
+                                {% elif user.student_profile %}
+                                <div style="display: block;"> 
+                                    <h3>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h3>
+                                    <!-- <p>Email: {{ user.username }}</p> -->
+                                {% endif %}
+                                <button class="secondry-btn">
+                                    <a href="{% url 'user_logout' %}" class="logout-link"><img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Sign Out</a>
+                                </button>
+                                </div>
+                            {% else %}
+                            <div class="not-signedin"><p>Please <a href="{% url 'user_login' %}">login</a> to access more features.</p>
+                                
+                                <button class="primary-btn">
+                                    <a href="{% url 'user_login' %}" class="logout-link">Sign In</a>
+                                </button>
+                            </div>
+                                
+                            {% endif %}
+                        </div>
+                        <div class="sidebar-middle">
+                            <li><a href=""><i class="fa-solid fa-podcast"></i> Podcast</a></li>
+                            <li><a href=""><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+                            <li><a href=""><i class="fa-solid fa-user-graduate"></i> Find Nearby Alumni</a></li>
+                            <li><a href=""><img src="../assets/workspaces_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Find the Portal Work Team</a></li>
+                        </div>
+                        <div class="social-mediaicons">
+                            <h3>Contact Information</h3>
+                            <div class="social-icons">
+                                <i class="fa-brands fa-facebook"></i>
+                                <i class="fa-brands fa-youtube"></i>
+                                <i class="fa-brands fa-instagram"></i>
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </div>
+                        </div>
                 <!-- <button>Profile</button>
                 <button><a href="/login" class="logout-link">Sign Out</a></button> -->
             </div>

@@ -297,6 +297,39 @@ padding: 10px;
 border-bottom: 1px solid white;
 }
 
+.profile-section .primary-btn {
+  padding: 10px 20px;
+  background-color: #df7103;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  color: white;
+  border-radius: 300px;
+}
+
+.profile-section .secondry-btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  border: 2px solid orange;
+  color: white;
+  border-radius: 300px;
+}
+
+.primary-btn .not-signedin{
+  padding: 10px;
+  border-bottom: 1px solid white;
+}
+
+.profile-btn .logout-btn{
+  padding: 10px 20px;
+  background-color: #df7103;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  color: white;
+  border-radius: 300px;
+}
+
 .darkmode-section {
 color: white;
 padding: 20px;

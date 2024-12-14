@@ -55,7 +55,7 @@ import os
 from datetime import datetime
 
 def validate_image_size(image):
-    max_size = 2 * 1024 * 1024  # 2 MB limit
+    max_size = 5 * 1024 * 1024  # 2 MB limit
     if image.size > max_size:
         raise ValidationError('Image file too large ( > 2mb )')
 
