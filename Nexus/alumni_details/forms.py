@@ -5,7 +5,7 @@ class AlumniUpdateForm(forms.ModelForm):
     class Meta:
         model = Alumni
         fields = [
-            'first_name', 'last_name', 'phone_number', 'graduation_year', 'location', 
+            'first_name', 'last_name', 'phone_number', 'graduation_year',  'job_location','location',
             'profile_picture', 'batch', 'usn', 'linkedin_url', 'current_position', 
             'company_name', 'bio', 'achievements', 'dob', 'personal_email'
         ]
