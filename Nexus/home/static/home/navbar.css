@@ -297,15 +297,15 @@ display: none;
   margin-top: 1rem;
 }
 
-.sidebar .profile {
+.sidebar .profile-section .profile {
   display: flex; 
   justify-content: center;
   align-items: center;
 }
 
-.sidebar .profile-section .profile img{
+/* .sidebar .profile-section .profile img{
   border-radius: 100%;
-}
+} */
 .profile-texts {
   text-align: left;
   margin-left: 4px;
@@ -320,7 +320,7 @@ display: none;
   margin-bottom: 0;
 }
 
-.profile-section {
+.sidebar .profile-section {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -343,9 +343,10 @@ display: none;
   justify-content: space-between;
 }
 
-.sidebar .profile-section .profile-icon{
+.sidebar .profile-section .profile img{
   width: 50px;
-  height: 50px
+  height: 50px;
+  border-radius: 100%;
 }
 
 .profile-section .profile-text{

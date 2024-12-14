@@ -33,12 +33,12 @@ body{
     background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
     z-index: -1; /* Keeps the overlay behind the header content */
 }
-.alumni-header .profile{
+.alumni-header .alumni-profile{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
-.alumni-header img{
+.alumni-header .alumni-profile img{
     
     width: 100%;
     max-width: 150px;
