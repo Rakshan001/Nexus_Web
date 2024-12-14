@@ -14,6 +14,7 @@ from utils.decorators import login_required_with_message  # Import the decorator
 
 @login_required_with_message
 def alumni_profile(request):
+    list(messages.get_messages(request))
     # Fetch the alumni object
     alumni = get_object_or_404(Alumni, user=request.user)
     
@@ -33,6 +34,7 @@ def alumni_profile(request):
 
 @login_required_with_message
 def update_alumni_profile(request):
+    list(messages.get_messages(request))
     alumni = get_object_or_404(Alumni, user=request.user)
 
     if not alumni.is_alumni:
@@ -361,7 +363,8 @@ def search_alumni_query(term):
         Q(first_name__icontains=term) |
         Q(last_name__icontains=term) |
         Q(current_position__icontains=term) |
-        Q(company_name__icontains=term)  # Added company_name in search
+        Q(company_name__icontains=term) |
+        Q(job_location__icontains=term)
     ).distinct()
 
 
@@ -375,34 +378,61 @@ from .models import Alumni
 def autocomplete(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
-        qs = Alumni.objects.filter(
-            first_name__icontains=term
-        ) | Alumni.objects.filter(
-            last_name__icontains=term
-        ) | Alumni.objects.filter(
-            current_position__icontains=term
-        ) | Alumni.objects.filter(
-            company_name__icontains=term  # Added company_name in autocomplete
-        )
+        
+        # Split the search term into words, if any
+        query_parts = term.split()
+        
+        # Filter based on the presence of multiple parts in the query
+        qs = Alumni.objects.none()
+        
+        # If there are multiple query parts, perform the search based on each
+        if len(query_parts) > 1:
+            qs = Alumni.objects.filter(
+                first_name__icontains=query_parts[0],
+                last_name__icontains=query_parts[-1]
+            )
+        else:
+            qs = Alumni.objects.filter(
+                Q(first_name__icontains=term) |
+                Q(last_name__icontains=term) |
+                Q(current_position__icontains=term) |
+                Q(company_name__icontains=term) |
+                Q(job_location__icontains=term)
+            )
+        
         # Using sets to avoid duplicates
-        names = {f"{alumni.first_name} {alumni.last_name}" for alumni in qs}
-        positions = {alumni.current_position for alumni in qs}
-        companies = {alumni.company_name for alumni in qs}  # Collect company names
-        suggestions = list(names | positions | companies)  # Merge sets
+        names = {f"{alumni.first_name} {alumni.last_name}" for alumni in qs if alumni.first_name and alumni.last_name}
+        positions = {alumni.current_position for alumni in qs if alumni.current_position}
+        companies = {alumni.company_name for alumni in qs if alumni.company_name}
+        job_locations = {alumni.job_location for alumni in qs if alumni.job_location}
+
+        # Combine suggestions from multiple fields
+        suggestions = list(names | positions | companies | job_locations)
+        
         return JsonResponse(suggestions, safe=False)
     return render(request, 'alumni_details/search.html')
 
 
+
 #this performs the full search and renders the results page.
 '''Below code '''
-from django.core.paginator import Paginator
-from django.shortcuts import render
+
+
 
 @login_required_with_message
 def alumni_search(request):
     query = request.GET.get('alumni')
-    alumni_list = Alumni.objects.none()
+    graduation_year = request.GET.get('graduation_year')  # Graduation year filter
+    job_location = request.GET.get('job_location')  # Job location filter
 
+    # Fetch distinct graduation years and job locations for the filters
+    graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct()
+    job_locations = Alumni.objects.values_list('job_location', flat=True).distinct()
+
+    # Initialize the alumni list
+    alumni_list = Alumni.objects.all()
+
+    # Apply search query
     if query:
         query_parts = query.split()
         name_search = Alumni.objects.none()
@@ -419,6 +449,8 @@ def alumni_search(request):
                 first_name__icontains=query
             ) | Alumni.objects.filter(
                 last_name__icontains=query
+            ) | Alumni.objects.filter(
+                job_location__icontains=query
             )
 
         position_search = Alumni.objects.filter(current_position__icontains=query)
@@ -426,12 +458,28 @@ def alumni_search(request):
 
         alumni_list = name_search | position_search | company_search
 
+    # Apply graduation year filter
+    if graduation_year:
+        alumni_list = alumni_list.filter(graduation_year=graduation_year)
+
+    # Apply job location filter
+    if job_location:
+        alumni_list = alumni_list.filter(job_location__icontains=job_location)
+
     # Paginate the results
     paginator = Paginator(alumni_list.distinct(), 5)  # 5 results per page
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'alumni_details/alumni_search_results.html', {'page_obj': page_obj})
+    context = {
+        'page_obj': page_obj,
+        'graduation_years': graduation_years,
+        'job_locations': job_locations,
+        'graduation_year': graduation_year,  # To highlight the selected graduation year
+        'job_location': job_location,  # To highlight the selected job location
+        'query': query,  # To preserve the search query
+    }
+    return render(request, 'alumni_details/alumni_search_results.html', context)
 
 
 

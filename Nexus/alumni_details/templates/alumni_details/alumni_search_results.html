@@ -234,33 +234,68 @@ button:hover {
 }
 
 </style>
+<!-- Include jQuery (latest version) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include jQuery UI (required for autocomplete) -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- Include Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Include Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
 <div class="search-filter">
-<!-- Search Form -->
-<form method="GET" action="{% url 'alumni_search' %}" class="search">
-    <label for="alumni">Search Alumni:</label>
-    <input type="text" name="alumni" id="alumni" placeholder="Search alumni by name">
-    <button type="submit">Search</button>
-</form>
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'alumni_search' %}" class="search">
+        <label for="alumni">Search Alumni:</label>
+        <input type="text" id="alumni" name="alumni" value="{{ query }}" placeholder="Search by name, position, company, etc." />
+        <button type="submit">Search</button>
+    </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-$(function () {
-    $("#alumni").autocomplete({
-        source: '{% url "autocomplete" %}',
-        minLength: 2,
-        select: function(event, ui) {
-            $('#alumni').val(ui.item.value);
-        }
+    $(function () {
+        // Initialize autocomplete for the 'alumni' input field
+        $("#alumni").autocomplete({
+            source: '{% url "autocomplete" %}',
+            minLength: 2,
+            select: function(event, ui) {
+                $('#alumni').val(ui.item.value);
+            }
+        });
+
+        // Apply Select2 to the job_location dropdown
+        $('#job_location').select2({
+            placeholder: 'Select a job location',
+            allowClear: true // Option to clear the selection
+        });
     });
-});
 </script>
 
-
-
-
 <h1>Alumni Search Results</h1>
+<div class="search-filter">
+    <form method="get" action="" class="filter">
+        <label for="graduation_year">Graduation Year:</label>
+        <select id="graduation_year" name="graduation_year">
+            <option value="">All Years</option>
+            {% for year in graduation_years %}
+                <option value="{{ year }}" {% if year == graduation_year %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="job_location">Job Location:</label>
+        <select id="job_location" name="job_location">
+            <option value="">All Locations</option>
+            {% for location in job_locations %}
+                <option value="{{ location }}" {% if location == job_location %}selected{% endif %}>{{ location }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+</div>
 
 {% if page_obj.object_list %}
 <div class="alumni-results">
