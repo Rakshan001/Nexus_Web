@@ -257,7 +257,7 @@ body {
 }
 
 .profile-section .primary-btn {
-  padding: 10px 20px;
+  padding: 10px 30px;
   background-color: #df7103;
   margin-top: 1rem;
   margin-bottom: 0.4rem;
@@ -280,6 +280,23 @@ body {
   color: white;
 }
 
+.profile-section .primary-btn:hover, .secondry-btn:hover{
+  padding: 10px 30px;
+  background-color: #df7103;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  color: white;
+  border-radius: 300px;
+}
+
+
+
+/* .profile-section button {
+  background-color: #ed8722;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  color: white;
+  } */
 
 
 /* Main Content when sidebar is open */

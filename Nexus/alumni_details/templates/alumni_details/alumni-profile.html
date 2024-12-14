@@ -10,18 +10,19 @@
 
 
 {% block extra_head %}
+<link rel="stylesheet" href="{% static 'alumni_details/css/alumni-profile.css ' %}">
+<link rel="icon" type="image/x-icon" href="../../static/alumni_details/assets/NexusFavicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
 <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-    <link rel="stylesheet" href="{% static 'alumni_details/css/alumni-profile.css ' %}">
     
 {% endblock %}
 
 
 {% block content %}
 <body>
-    <header>
+    <header class="alumni-header">
         <div class="profile">
             {% if alumni.profile_picture %}
                      <img src="{{ alumni.profile_picture.url }}" class="profile-img" alt="{{ alumni.first_name }}'s Profile Picture">
@@ -37,7 +38,7 @@
             <h2>Connect Me</h2>
             <div class="social-icons">
                 
-                <a href="{{ alumni.linkedin_url }}"><button><i class="fa-brands fa-linkedin-in"></i>LinkedIn</button></a>
+                <a href="{{ alumni.linkedin_url }}"><button><i class="fa-brands fa-linkedin-in"></i> LinkedIn</button></a>
                 <a href="mailto:{{ alumni.personal_email }}"><button><i class="fa-solid fa-envelope"></i> Email</button></a>
                 <a href="{% url 'update_alumni_profile' %}" class="button"><button><i class="fa-solid fa-pen"></i>Edit Profile</button> </a>
                 

@@ -7,6 +7,7 @@
     
     <title>{% block title %}Default Title{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'home/navbar.css' %}">
+
     
 
     <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
@@ -76,7 +77,7 @@
     </header>
 
     <!-- Sidebar and Mobile Sidebar Section -->
-    <div class="container">
+    <!-- <div class="container"> -->
         <div class="sidebar" id="sidebar">
             <div class="profile-section">
                 <div class="profile">
@@ -99,20 +100,21 @@
                                             <i class="fa-solid fa-user"></i> Profile
                                          </a>
                                      </button>
+                                     
                                 {% elif user.student_profile %}
-                                <div style="display: block;"> 
-                                    <h3>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h3>
+                                <div class="student-login"><span class="span">Username: </span> 
+                                    <h4>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h4>
                                     <!-- <p>Email: {{ user.username }}</p> -->
                                 {% endif %}
-                                <button class="secondry-btn">
+                                <button class="secondry-btn std-logout">
                                     <a href="{% url 'user_logout' %}" class="logout-link"><img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Sign Out</a>
                                 </button>
                                 </div>
                             {% else %}
-                            <div class="not-signedin"><p>Please <a href="{% url 'user_login' %}">login</a> to access more features.</p>
+                            <div class="not-signedin"><p>Please login to access more features.</p>
                                 
-                                <button class="primary-btn">
-                                    <a href="{% url 'user_login' %}" class="logout-link">Sign In</a>
+                                <button class="login-btn">
+                                    <a href="{% url 'user_login' %}" class="logout-link"><img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt=""> Sign In</a>
                                 </button>
                             </div>
                                 
@@ -122,7 +124,7 @@
                             <li><a href=""><i class="fa-solid fa-podcast"></i> Podcast</a></li>
                             <li><a href=""><i class="fa-solid fa-calendar-days"></i> Events</a></li>
                             <li><a href=""><i class="fa-solid fa-user-graduate"></i> Find Nearby Alumni</a></li>
-                            <li><a href=""><img src="../assets/workspaces_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Find the Portal Work Team</a></li>
+                            <li><a href=""><img src="../../static/home/assets/workspaces_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Nexus Team</a></li>
                         </div>
                         <div class="social-mediaicons">
                             <h3>Contact Information</h3>
@@ -145,7 +147,7 @@
                     <i class="fa-brands fa-linkedin-in"></i>
                 </div> -->
             </div>
-        </div>
+        <!-- </div> -->
 
         <div class="mobSidebar" id="mobSidebar">
             <ul>
