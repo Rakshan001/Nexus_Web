@@ -166,41 +166,70 @@ def manage_memories(request):
 #         'alumni_previous_years': alumni_previous_years,
 #         'graduation_years': graduation_years,
 #     })
-
-'''Below code with max year'''
-from django.shortcuts import render
-from .models import Alumni
-from django.db.models import Max
-from django.contrib.auth.decorators import login_required
-import datetime
+# views.py
+# views.py
+from django.http import JsonResponse
 
 @login_required_with_message
 def alumni_list(request):
-    # Get the highest graduation year from the database
-    current_year = Alumni.objects.aggregate(Max('graduation_year'))['graduation_year__max']
-
-    # Fetch all distinct graduation years
+    # Get all distinct graduation years ordered by most recent first
     graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct().order_by('-graduation_year')
-
-    # Get alumni for the current year sorted alphabetically
-    alumni_current_year = Alumni.objects.filter(graduation_year=current_year).order_by('first_name')[:5]
-
-    # Get alumni for previous years sorted alphabetically
-    alumni_previous_years = {}
-    for year in graduation_years:
-        if year < current_year:
-            alumni_previous_years[year] = Alumni.objects.filter(graduation_year=year).order_by('first_name')[:5]
-
+    
+    # Initial number of years to show
+    initial_years = 2
+    
+    # Get the years to display initially
+    visible_years = graduation_years[:initial_years]
+    
+    # Create a dictionary to store alumni by year
+    alumni_by_year = {}
+    
+    # Populate the dictionary with alumni for each visible year
+    for year in visible_years:
+        alumni_by_year[year] = Alumni.objects.filter(graduation_year=year).order_by('first_name')[:5]
+    
     return render(request, 'alumni_details/alumni_list.html', {
-        'current_year': current_year,
-        'alumni_current_year': alumni_current_year,
-        'alumni_previous_years': alumni_previous_years,
+        'alumni_by_year': alumni_by_year,
         'graduation_years': graduation_years,
+        'current_year': graduation_years[0] if graduation_years else None,
+        'has_more': len(graduation_years) > initial_years,
+        'next_page': initial_years,
     })
 
-'''Above code with max year'''
-
-
+@login_required_with_message
+def load_more_years(request):
+    page = int(request.GET.get('page', 0))
+    years_per_load = 2  # Number of additional years to load
+    
+    # Get all graduation years
+    graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct().order_by('-graduation_year')
+    
+    # Calculate the range for the next batch of years
+    start_idx = page
+    end_idx = page + years_per_load
+    
+    # Get the next batch of years
+    next_years = graduation_years[start_idx:end_idx]
+    
+    # Prepare the data for the response
+    data = {}
+    for year in next_years:
+        alumni_list = Alumni.objects.filter(graduation_year=year).order_by('first_name')[:5]
+        data[year] = [{
+            'id': alumni.alumni_id,
+            'first_name': alumni.first_name,
+            'last_name': alumni.last_name,
+            'current_position': alumni.current_position,
+            'company_name': alumni.company_name,
+            'linkedin_url': alumni.linkedin_url,
+            'profile_picture': alumni.profile_picture.url if alumni.profile_picture else None,
+        } for alumni in alumni_list]
+    
+    return JsonResponse({
+        'years': data,
+        'has_more': end_idx < len(graduation_years),
+        'next_page': end_idx
+    })
 
 
 '''Below code with paginator'''
