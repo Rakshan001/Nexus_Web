@@ -24,6 +24,11 @@ class Alumni(models.Model):
     batch = models.CharField(max_length=10)
     usn = models.CharField(max_length=20, unique=True)
     linkedin_url = models.URLField(max_length=255, blank=True, null=True)  # Optional LinkedIn URL
+    facebook_url = models.URLField(max_length=255, blank=True, null=True)  # Optional Facebook URL
+    instagram_url = models.URLField(max_length=255, blank=True, null=True)  # Optional Instagram URL
+    twitter_url = models.URLField(max_length=255, blank=True, null=True)  # Optional Twitter URL
+    youtube_url = models.URLField(max_length=255, blank=True, null=True)  # Optional YouTube URL
+    
     current_position = models.CharField(max_length=255, db_index=True, null=True)
     branch = models.CharField(max_length=100, db_index=True)  # Added index for branch
     company_name = models.CharField(max_length=255, db_index=True, null=True)  # Added index for company name
@@ -32,6 +37,7 @@ class Alumni(models.Model):
     dob = models.DateField()
     is_alumni = models.BooleanField(default=True)
     personal_email = models.EmailField(blank=True, null=True, unique=True)  # Add personal email field
+
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

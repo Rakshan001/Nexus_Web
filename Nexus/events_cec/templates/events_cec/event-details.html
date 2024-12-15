@@ -11,6 +11,31 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
     <link rel="stylesheet" href="{% static 'events_cec/event-details.css' %}">
+    <style>
+        #profileLinkDisplay {
+            margin: 10px 0;
+        }
+    
+        #profileLink {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+    
+        #copyMessage {
+            color: green;
+            margin: 10px 0;
+            font-size: 14px;
+            transition: opacity 0.5s ease-in-out;
+        }
+    
+        .fa-link:hover {
+            cursor: pointer;
+            color: #007bff;
+        }
+    </style>
 
 {% endblock %}
 
@@ -37,6 +62,13 @@
                         <i class="fa-brands fa-youtube"></i>
                         <i class="fa-brands fa-instagram"></i>
                         <i class="fa-brands fa-linkedin-in"></i>
+                        <i class="fa-solid fa-link" id="copyLinkBtn" title="Copy Event Link"></i>
+                        
+                        <!-- Add these new elements -->
+                        <div id="copyMessage" style="display: none;">Link copied to clipboard!</div>
+                        <div id="profileLinkDisplay" style="display: none;">
+                            <input type="text" id="profileLink" readonly>
+                        </div>
                     </div>
                 </div>
                 <div class="event-info">
@@ -80,6 +112,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+<!-- this code for copy link functionality  -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the current URL of the event page
+            const eventLink = window.location.href;
+            
+            // Setup copy link functionality
+            const copyLinkBtn = document.getElementById("copyLinkBtn");
+            const copyMessage = document.getElementById("copyMessage");
+            const profileLinkDisplay = document.getElementById("profileLinkDisplay");
+            const profileLinkInput = document.getElementById("profileLink");
+        
+            copyLinkBtn.addEventListener("click", function() {
+                // Show the link input
+                profileLinkDisplay.style.display = "block";
+                profileLinkInput.value = eventLink;
+        
+                // Copy to clipboard
+                profileLinkInput.select();
+                document.execCommand("copy");
+        
+                // Show success message
+                copyMessage.style.display = "block";
+                copyMessage.textContent = "Link copied to clipboard!";
+        
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    copyMessage.style.display = "none";
+                    profileLinkDisplay.style.display = "none";
+                }, 3000);
+            });
+        });
+    </script>
     <script>
         var swiper = new Swiper('.s1', {
             navigation: {
