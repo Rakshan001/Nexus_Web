@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'coordinators',
     'events_cec',
     'contact',
+    'notifications',
 
     
     
