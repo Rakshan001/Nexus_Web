@@ -35,7 +35,7 @@
             <!-- Search Form -->
             <form method="GET" action="{% url 'alumni_search' %}" class="search">
                 <label for="alumni">Search Alumni:</label>
-                <input type="text" name="alumni" id="alumni" placeholder="Search alumni by name">
+                <input type="text" name="alumni" id="alumni" placeholder="Search alumni by name, Company">
                 <button type="submit">Search</button>
             </form>
         </div>
@@ -56,7 +56,7 @@
 
        {% for year, alumni_list in alumni_by_year.items %}
 <div class="graduation-year">
-    <h3>{{ year }}</h3>
+    <h3>Graduation Year: {{ year }}</h3>
     <div class="alumni-profiles">
         {% for alumni in alumni_list %}
         <div class="alumni-profile">
@@ -92,6 +92,7 @@
         </button>
     </div>
 {% endif %}
+</div>
 
 <!-- Add this JavaScript at the bottom of your template -->
 <script>

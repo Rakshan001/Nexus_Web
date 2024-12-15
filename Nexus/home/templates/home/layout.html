@@ -107,7 +107,7 @@
                                     <!-- <p>Email: {{ user.username }}</p> -->
                                 {% endif %}
                                 <button class="secondry-btn std-logout">
-                                    <a href="{% url 'user_logout' %}" class="logout-link"><img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Sign Out</a>
+                                    <img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt=""><a href="{% url 'user_logout' %}" class="logout-link">Sign Out</a>
                                 </button>
                                 </div>
                             {% else %}
@@ -121,6 +121,7 @@
                             {% endif %}
                         </div>
                         <div class="sidebar-middle">
+                            <li><a href=""><i class="fa-solid fa-bell"></i> Notifications</a></li>
                             <li><a href=""><i class="fa-solid fa-podcast"></i> Podcast</a></li>
                             <li><a href=""><i class="fa-solid fa-calendar-days"></i> Events</a></li>
                             <li><a href=""><i class="fa-solid fa-user-graduate"></i> Find Nearby Alumni</a></li>

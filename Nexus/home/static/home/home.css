@@ -577,14 +577,14 @@ width: 100%;
 height: 100%;
 overflow: hidden;
 }
-.swiper-wrapper .swiper-slide {
+.swiper-container .swiper-wrapper .swiper-slide {
 height: 250px;
 /* background-color: #f3f3f3; */
 display: flex;
 align-items: center;
 justify-content: center;
 }
-.swiper-wrapper .swiper-slide img {
+.swiper-container .swiper-wrapper .swiper-slide img {
 width: 100%; /* Adjust width for desktop */
 height: auto;
 max-width: 500px; /* Sets a maximum width */
@@ -601,7 +601,7 @@ padding-top: 50px;
 padding-bottom: 50px;
 margin-bottom: 100px;
 }
-.swiper-slide {
+.swiper-container .swiper-wrapper .swiper-slide {
 background-position: center;
 background-size: cover;
 width: auto;
@@ -663,6 +663,10 @@ align-items: center;
 
 .social-logos i:nth-child(4) {
   color: #0077b5; /* LinkedIn blue */
+}
+
+.social-logos i:nth-child(5) {
+  color: #0fb500; /* LinkedIn blue */
 }
 
 /* Hover effect */

@@ -91,12 +91,13 @@ background-color: #205690;
   cursor: pointer;
   outline: none;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .event-load-more button{
   background-color: transparent;
   color: white;
-  padding: 20px;
+  padding: 20px; cursor: pointer;
 }
 
 .event-container .event-cards .event-load-more i{
