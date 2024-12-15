@@ -54,18 +54,9 @@
             <div class="name-role">
                 <Strong>{{ alumni.first_name }} {{ alumni.last_name }}</Strong>
                 <p> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
+                <a href="{% url 'update_alumni_profile' %}" class="button"><button><i class="fa-solid fa-pen"></i>Edit Profile</button> </a>
             </div>
         </div>
-        <div class="connect">
-            <h2>Connect Me</h2>
-            <div class="social-icons">
-                
-                <a href="{{ alumni.linkedin_url }}"><button><i class="fa-brands fa-linkedin-in"></i> LinkedIn</button></a>
-                <a href="mailto:{{ alumni.personal_email }}"><button><i class="fa-solid fa-envelope"></i> Email</button></a>
-                <a href="{% url 'update_alumni_profile' %}" class="button"><button><i class="fa-solid fa-pen"></i>Edit Profile</button> </a>
-                
-                
-            </div>
         </div>
     </header>
 
@@ -73,8 +64,20 @@
         <div class="left-side">
             <div class="edu-details">
                 <i class="fa-solid fa-building-columns"></i> <strong>Canara Engineering College</strong>
-                <p>Dept: {{alumni.batch}}</p>
+                <p>Batch: {{alumni.batch}}</p>
             </div>
+
+            <div class="follow-me">
+                <!-- <h2>To keep Connected, Follow Nexus</h2> -->
+                 <span>Connect Me</span>
+                <div class="social-logos">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-solid fa-envelope"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </div>
+            </div>
+    
             
             <div class="share-profile">
                 <h3>Share My Profile</h3>

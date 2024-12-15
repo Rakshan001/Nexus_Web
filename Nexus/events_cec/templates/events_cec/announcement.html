@@ -13,8 +13,7 @@
 {% block content %}
 
 <div class="heading">
-    <Strong>EVENTS</Strong>
-        <p>Engage with the community of Canara alumni wherever you are on campus, online, and in your region through programs and events.</p>
+    <Strong>ANNOUNCEMENTS AND EVENTS</Strong>
 </div>
 
 <div class="event-container">
@@ -31,9 +30,11 @@
                     <strong>{{ event.event_title }}</strong>
                     <p><i class="fa-regular fa-calendar-days"></i> {{ event.date }} {{ event.time }}</p>
                     <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
-                    <a href="{% url 'event_detail' event.event_id %}">
-                        <button type="button">View</button>
-                    </a>
+                    <button type="button">
+                        <a href="{% url 'event_detail' event.event_id %}">
+                            View
+                        </a>
+                    </button>
                 </div>
             </div>
             {% endfor %}

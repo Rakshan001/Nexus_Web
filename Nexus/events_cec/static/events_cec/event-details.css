@@ -63,14 +63,15 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.396);
 }
 
-.content .poster img{
+.content .event-details .details .poster img{
     margin: 0 auto;
     width: 400px;
 }
-.event-details {
+.content .event-details{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
 }
 .event-details div {
     flex: 1;
@@ -101,11 +102,13 @@ body {
     align-items: center;
 }
 .event-info{
+    margin: 10px;
     gap: 20px;
 }
 .event-details-container .event-info P{
     color: #4a4a4a;
     line-height: 24px;
+    padding: 10px;
 }
 .event-details-container .social-icons{
     display: flex;

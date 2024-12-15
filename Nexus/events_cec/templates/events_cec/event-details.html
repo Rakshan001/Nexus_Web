@@ -29,8 +29,8 @@
                 <div class="details">
                     <div class="poster">
                         {% if event.poster %}
-        <img src="{{ event.poster.url }}" alt="Event Poster" style="width: 300px; height: auto;">
-    {% endif %}
+                        <img src="{{ event.poster.url }}" alt="Event Poster">
+                        {% endif %}
                     </div>
                     <div class="social-icons">
                         <i class="fa-brands fa-facebook"></i>
@@ -58,7 +58,7 @@
                         {% if images %}
                             {% for image in images %}
                                 <div class="swiper-slide">
-                                    <img src="{{ image.image.url }}" alt="Event Image" style="width: 300px; height: auto;">
+                                    <img src="{{ image.image.url }}" alt="Event Image">
                                 </div>
                             {% endfor %}
                         {% else %}

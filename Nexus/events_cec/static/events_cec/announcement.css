@@ -31,6 +31,8 @@ max-width: 700px;
 }
 
 .event-cards .card{
+  border-right: 10px solid orange;
+  border-radius: 0  20px 20px;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -48,15 +50,17 @@ max-width: 400px;
 height: auto;
 }
 
-.event-container .event-cards .card .detail{
+.event-container  .card .detail{
 display: grid;
 flex-direction: column;
-justify-content: center;
+justify-content: space-between;
 width: 100%;
-padding: 10px;
+height: 100%;
+padding: 20px;
 }
 
 .event-container .detail p{
+  padding: 10px;
 gap: 20px;
 color: rgb(72, 72, 72);
 }
@@ -83,8 +87,8 @@ background-color: #205690;
 .filters .search {
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.395);
-  padding: 20px;
-  border-radius: 100px;
+  padding: 10px;
+  border-radius: 10px;
   /* width: 100%; */
 }
 .filters .search input,button{
@@ -101,6 +105,7 @@ background-color: #205690;
 .filters .categories{
   display: block;
   position: relative;
+  margin-top: 2rem;
 }
 
 .filters .categories p{
@@ -340,13 +345,13 @@ font-family: 'Arial', sans-serif;
     height: auto;
   }
   
-  .event-cards .card .detail{
+  /* .event-cards .card .detail{
     display: grid;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     padding: 10px;
-  }
+  } */
   
   .detail p{
     gap: 20px;

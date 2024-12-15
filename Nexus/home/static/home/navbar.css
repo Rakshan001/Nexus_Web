@@ -354,7 +354,7 @@ display: none;
   font-weight: 600;
 }
 
-.profile-section .primary-btn {
+.sidebar .profile-section .primary-btn {
   padding: 10px 30px;
   background-color: #df7103;
   margin-top: 1rem;
@@ -373,7 +373,9 @@ display: none;
   border-radius: 300px;
 }
 
-.profile-section .login-btn{
+
+
+.sidebar  .not-signedin .login-btn{
   width: 100%;
   padding: 10px 30px;
   background-color: #df7103;
@@ -405,10 +407,11 @@ height: auto; /* Maintains aspect ratio */
 object-fit: cover; /* Ensures the image covers the container */
 }
 
-.not-signedin{
+.sidebar .profile-section .profile-btn .not-signedin{
   border-bottom: 1px solid white;
   padding-bottom: 2rem;
   border-radius: 10px;
+  width: 100%;
 }
 
 .profile-section button {
