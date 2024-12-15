@@ -6,45 +6,55 @@ from django.utils import timezone
 from django.http import JsonResponse
 from django.urls import reverse
 from django.template.loader import render_to_string
-
+# views.py
+# views.py
 def event_list(request):
-    all_events = Event.objects.all()  # Fetch all events
-    event_type = request.GET.get('event_type')  # Get the selected event type
-    category = request.GET.get('category')  # Get the selected category
-    search_query = request.GET.get('search')  # Get the search query
-    page = request.GET.get('page', 1)  # Get the page number
+    all_events = Event.objects.all()
+    event_type = request.GET.get('event_type')
+    category = request.GET.get('category')
+    search_query = request.GET.get('search')
+    page = request.GET.get('page', 1)
 
-    # Get current date and time
     now = timezone.now()
     current_date = now.date()
     current_time = now.time()
 
-    # Filter events based on the selected event type
+    # Default ordering by date
+    all_events = all_events.order_by('-date', '-time')  # Notice the minus sign for descending order
+
     if event_type == 'upcoming':
-        all_events = all_events.filter(date__gt=now).order_by('date')
+        all_events = all_events.filter(date__gte=current_date)
     elif event_type == 'ongoing':
         all_events = all_events.filter(
             date=current_date,
-            time__gte=current_time
-        ).order_by('time')
+            time__lte=current_time
+        )
     elif event_type == 'past':
-        all_events = all_events.filter(date__lt=current_date).order_by('-date')
+        all_events = all_events.filter(date__lt=current_date)
 
-    # Filter by category if selected
     if category:
         all_events = all_events.filter(category=category)
 
-    # Filter based on search query if provided
     if search_query:
         all_events = all_events.filter(event_title__icontains=search_query)
 
-    # Paginate the events
-    paginator = Paginator(all_events, 3)  # Show 5 events per page
+    paginator = Paginator(all_events, 3)
     events = paginator.get_page(page)
 
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         event_data = []
         for event in events:
+            # Determine event status
+            if event.date > current_date:
+                event_status = 'Upcoming'
+            elif event.date == current_date:
+                if event.time and event.time >= current_time:
+                    event_status = 'Ongoing'
+                else:
+                    event_status = 'Past'
+            else:
+                event_status = 'Past'
+
             event_data.append({
                 'title': event.event_title,
                 'date': event.date.strftime('%Y-%m-%d'),
@@ -52,7 +62,8 @@ def event_list(request):
                 'location': event.location,
                 'category': event.get_category_display(),
                 'poster_url': event.poster.url if event.poster else '',
-                'detail_url': reverse('event_detail', args=[event.event_id])
+                'detail_url': reverse('event_detail', args=[event.event_id]),
+                'status': event_status
             })
         return JsonResponse({
             'events': event_data,
@@ -60,7 +71,18 @@ def event_list(request):
             'next_page': events.next_page_number() if events.has_next() else None
         })
 
-    # Get all available categories
+    # Add status to initial events for template
+    for event in events:
+        if event.date > current_date:
+            event.status = 'Upcoming'
+        elif event.date == current_date:
+            if event.time and event.time >= current_time:
+                event.status = 'Ongoing'
+            else:
+                event.status = 'Past'
+        else:
+            event.status = 'Past'
+
     categories = Event.CATEGORY_CHOICES
 
     context = {
@@ -72,7 +94,6 @@ def event_list(request):
     }
 
     return render(request, 'events_cec/announcement.html', context)
-
 # ... rest of your views remain the same ...
 
 def event_detail(request, event_id):

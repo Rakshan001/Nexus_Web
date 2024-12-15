@@ -525,8 +525,11 @@ cursor: pointer;
 }
 
 
+/* jskl
+ */
 .poster {
   position: relative;
+  overflow: hidden;
 }
 
 .status-badge {
@@ -538,6 +541,9 @@ cursor: pointer;
   color: white;
   font-size: 0.8em;
   font-weight: bold;
+  z-index: 2;
+  text-transform: capitalize;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .status-badge.upcoming {
@@ -550,4 +556,10 @@ cursor: pointer;
 
 .status-badge.past {
   background-color: #dc3545;
+}
+
+/* Optional: Add hover effect */
+.card:hover .status-badge {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }

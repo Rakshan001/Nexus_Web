@@ -46,7 +46,7 @@
             </div>
         </form>
     </div>
-
+ <!-- Event cards section -->
     <div class="event-cards">
         {% if all_events %}
             {% for event in all_events %}
@@ -55,12 +55,12 @@
                     {% if event.poster %}
                     <img src="{{ event.poster.url }}" alt="{{ event.event_title }}">
                     {% endif %}
-                    
-                    
+                    <div class="status-badge {{ event.status|lower }}">
+                        {{ event.status }}
+                    </div>
                 </div>
                 <div class="detail">
                     <strong>{{ event.event_title }}</strong>
-
                     <p><i class="fa-regular fa-calendar-days"></i> {{ event.date }} {{ event.time }}</p>
                     <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
                     <p><i class="fa-solid fa-tag"></i> {{ event.get_category_display }}</p>
@@ -74,14 +74,14 @@
             <p>No events available.</p>
         {% endif %}
         {% if all_events.has_next %}
-        <button id="load-more" data-next-page="{{ all_events.next_page_number }}">Load More</button>
-    {% endif %}
+            <button id="load-more" data-next-page="{{ all_events.next_page_number }}">Load More</button>
+        {% endif %}
     </div>
-    
-    
 </div>
+    
+    
 
-<!-- Popup Modal -->
+
 <div id="imgModal" class="modal">
     <span class="close">&times;</span>
     <div class="model-content">
@@ -93,55 +93,59 @@
     <button>View Event Gallery <i class="fa-solid fa-video"></i></button>
 </div>
 
+<!-- Place the JavaScript code here -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Load More functionality
-    const loadMoreBtn = document.getElementById('load-more');
-    const eventContainer = document.querySelector('.event-cards');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load More functionality
+        const loadMoreBtn = document.getElementById('load-more');
+        const eventContainer = document.querySelector('.event-cards');
 
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
-            const nextPage = this.dataset.nextPage;
-            const searchParams = new URLSearchParams(window.location.search);
-            searchParams.set('page', nextPage);
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', function() {
+                const nextPage = this.dataset.nextPage;
+                const searchParams = new URLSearchParams(window.location.search);
+                searchParams.set('page', nextPage);
 
-            fetch(`${window.location.pathname}?${searchParams.toString()}`, {
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                data.events.forEach(event => {
-                    const eventCard = `
-                        <div class="card">
-                            <div class="poster">
-                                ${event.poster_url ? `<img src="${event.poster_url}" alt="${event.title}">` : ''}
-                                
+                fetch(`${window.location.pathname}?${searchParams.toString()}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    data.events.forEach(event => {
+                        const eventCard = `
+                            <div class="card">
+                                <div class="poster">
+                                    ${event.poster_url ? `<img src="${event.poster_url}" alt="${event.title}">` : ''}
+                                    <div class="status-badge ${event.status.toLowerCase()}">
+                                        ${event.status}
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <strong>${event.title}</strong>
+                                    <p><i class="fa-regular fa-calendar-days"></i> ${event.date} ${event.time}</p>
+                                    <p><i class="fa-solid fa-location-dot"></i> ${event.location}</p>
+                                    <p><i class="fa-solid fa-tag"></i> ${event.category}</p>
+                                    <button type="button">
+                                        <a href="${event.detail_url}">View</a>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="detail">
-                                <strong>${event.title}</strong>
-                                <p><i class="fa-regular fa-calendar-days"></i> ${event.date} ${event.time}</p>
-                                <p><i class="fa-solid fa-location-dot"></i> ${event.location}</p>
-                                <p><i class="fa-solid fa-tag"></i> ${event.category}</p>
-                                <button type="button">
-                                    <a href="${event.detail_url}">View</a>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    eventContainer.insertAdjacentHTML('beforeend', eventCard);
-                });
+                        `;
+                        eventContainer.insertAdjacentHTML('beforeend', eventCard);
+                    });
 
-                if (data.has_next) {
-                    loadMoreBtn.dataset.nextPage = data.next_page;
-                } else {
-                    loadMoreBtn.remove();
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    }
+                    if (data.has_next) {
+                        loadMoreBtn.dataset.nextPage = data.next_page;
+                    } else {
+                        loadMoreBtn.remove();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
 
     // Category and Event Type Filter functionality
     const categoryItems = document.querySelectorAll('.category-item');
