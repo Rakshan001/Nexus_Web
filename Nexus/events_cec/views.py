@@ -1,7 +1,7 @@
 # views.py
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from .models import Event, EventImage
+from .models import Event, EventImage, Gallery
 from django.utils import timezone
 from django.http import JsonResponse
 from django.urls import reverse
