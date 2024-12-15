@@ -100,6 +100,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #this is for notification count in the navbar for all pages
+                'notifications.context_processors.notification_count',
 
                 # adding the auto logout
                 'django_auto_logout.context_processors.auto_logout_client',

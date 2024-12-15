@@ -126,6 +126,15 @@
                             <li><a href=""><i class="fa-solid fa-user-graduate"></i> Find Nearby Alumni</a></li>
                             <li><a href=""><img src="../../static/home/assets/workspaces_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Nexus Team</a></li>
                         </div>
+                        <!-- Notification Count -->
+                        {% if user.is_authenticated %}
+    <div class="notification-bell">
+        <a href="{% url 'notifications:notification_panel' %}" class="notification-icon">
+            <i class="fas fa-bell"></i>
+            <span class="notification-count" id="unreadNotificationCount"></span>
+        </a>
+    </div>
+    {% endif %}
                         <div class="social-mediaicons">
                             <h3>Contact Information</h3>
                             <div class="social-icons">
@@ -318,5 +327,55 @@
             mobSidebar.classList.toggle("active");
         }
     </script>
+
+
+<!-- Notification Count -->
+<!-- Add this JavaScript at the bottom of your base template -->
+<script>
+    function updateNotificationCount() {
+        fetch('{% url "notifications:get_unread_count" %}')
+            .then(response => response.json())
+            .then(data => {
+                const countElement = document.getElementById('unreadNotificationCount');
+                if (data.count > 0) {
+                    countElement.textContent = data.count;
+                    countElement.style.display = 'inline-block';
+                } else {
+                    countElement.style.display = 'none';
+                }
+            });
+    }
+    
+    // Update notification count every minute
+    document.addEventListener('DOMContentLoaded', function() {
+        updateNotificationCount();
+        setInterval(updateNotificationCount, 60000); // Update every minute
+    });
+    </script>
+    
+    <style>
+    .notification-bell {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .notification-icon {
+        color: #333;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+    
+    .notification-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #ff4444;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 0.75rem;
+        display: none;
+    }
+    </style>
 </body>
 </html>

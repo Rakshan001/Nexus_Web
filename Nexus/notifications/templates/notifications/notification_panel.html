@@ -1,0 +1,316 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="notification-panel">
+    <h2>Notifications</h2>
+    <div class="notification-actions">
+        <span id="unread-count">{{ unread_count }} unread notifications</span>
+        {% if unread_count > 0 %}
+            <button id="markAllReadBtn" class="btn btn-secondary">Mark All as Read</button>
+        {% endif %}
+    </div>
+    
+    <div class="notifications-list">
+        {% for notification in notifications %}
+            <div class="notification-item {% if not notification.viewed %}unread{% endif %}" 
+                 data-notification-id="{{ notification.id }}">
+                
+                {% if notification.notification_type == 'profile_view_alumni' %}
+                    <div class="notification-content alumni-view">
+                        <div class="viewer-info">
+                            {% if notification.viewer_photo %}
+                                <img src="{{ notification.viewer_photo }}" alt="{{ notification.viewer_name }}" class="viewer-photo">
+                            {% endif %}
+                            <div class="viewer-details">
+                                <h4>{{ notification.title }}</h4>
+                                <p>{{ notification.message }}</p>
+                                {% if notification.viewer_profile_url %}
+                                    <a href="{{ notification.viewer_profile_url }}" class="view-profile-link">View Profile</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% elif notification.notification_type == 'profile_view_student' %}
+                    <div class="notification-content student-view">
+                        <div class="viewer-info">
+                            <div class="viewer-details">
+                                <h4>{{ notification.title }}</h4>
+                                <p>{{ notification.message }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="notification-content">
+                        <h4>{{ notification.title }}</h4>
+                        <p>{{ notification.message }}</p>
+                    </div>
+                {% endif %}
+
+                <div class="notification-meta">
+                    <small>{{ notification.created_at|timesince }} ago</small>
+                </div>
+            </div>
+        {% empty %}
+            <p>No notifications</p>
+        {% endfor %}
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+            {% if notifications.has_next %}
+                <button id="loadMoreBtn" class="btn btn-primary" 
+                        data-next-page="{{ notifications.next_page_number }}">
+                    Load More Notifications
+                </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.notification-panel {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.notification-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.notification-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.notification-item.unread {
+    background-color: #f0f7ff;
+    border-left: 4px solid #007bff;
+}
+
+.viewer-info {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+}
+
+.viewer-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.viewer-details {
+    flex: 1;
+}
+
+.notification-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.view-profile-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.view-profile-link:hover {
+    text-decoration: underline;
+}
+
+#markAllReadBtn {
+    padding: 8px 16px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#markAllReadBtn:hover {
+    background-color: #5a6268;
+}
+
+.pagination-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#loadMoreBtn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#loadMoreBtn:hover {
+    background-color: #0056b3;
+}
+
+#loadMoreBtn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle individual notification clicks
+    const notifications = document.querySelectorAll('.notification-item');
+    notifications.forEach(notification => {
+        notification.addEventListener('click', function() {
+            if (this.classList.contains('unread')) {
+                const notificationId = this.dataset.notificationId;
+                markAsRead(notificationId, this);
+            }
+        });
+    });
+
+    // Handle mark all as read
+    const markAllBtn = document.getElementById('markAllReadBtn');
+    if (markAllBtn) {
+        markAllBtn.addEventListener('click', markAllAsRead);
+    }
+
+    // Load More functionality
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            const nextPage = this.dataset.nextPage;
+            this.disabled = true;
+            this.textContent = 'Loading...';
+
+            fetch(`?page=${nextPage}`)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    
+                    // Get new notifications
+                    const newNotifications = doc.querySelectorAll('.notification-item');
+                    const notificationsList = document.querySelector('.notifications-list');
+                    
+                    // Insert new notifications before the pagination container
+                    newNotifications.forEach(notification => {
+                        notificationsList.insertBefore(notification, 
+                            document.querySelector('.pagination-container'));
+                    });
+
+                    // Update or remove the Load More button
+                    const newLoadMoreBtn = doc.getElementById('loadMoreBtn');
+                    if (newLoadMoreBtn) {
+                        loadMoreBtn.dataset.nextPage = newLoadMoreBtn.dataset.nextPage;
+                        loadMoreBtn.disabled = false;
+                        loadMoreBtn.textContent = 'Load More Notifications';
+                    } else {
+                        loadMoreBtn.remove();
+                    }
+
+                    // Add click handlers to new notifications
+                    newNotifications.forEach(notification => {
+                        notification.addEventListener('click', function() {
+                            if (this.classList.contains('unread')) {
+                                const notificationId = this.dataset.notificationId;
+                                markAsRead(notificationId, this);
+                            }
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loadMoreBtn.disabled = false;
+                    loadMoreBtn.textContent = 'Load More Notifications';
+                });
+        });
+    }
+});
+
+function markAsRead(notificationId, element) {
+    fetch(`/notifications/mark-read/${notificationId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            element.classList.remove('unread');
+            updateUnreadCount();
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function markAllAsRead() {
+    fetch('/notifications/mark-all-read/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            document.querySelectorAll('.notification-item.unread').forEach(item => {
+                item.classList.remove('unread');
+            });
+            const markAllBtn = document.getElementById('markAllReadBtn');
+            if (markAllBtn) markAllBtn.style.display = 'none';
+            document.getElementById('unread-count').textContent = '0 unread notifications';
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function updateUnreadCount() {
+    fetch('/notifications/get-unread-count/')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('unread-count').textContent = `${data.count} unread notifications`;
+            const markAllBtn = document.getElementById('markAllReadBtn');
+            if (markAllBtn) {
+                markAllBtn.style.display = data.count > 0 ? 'block' : 'none';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+
+{% endblock %}

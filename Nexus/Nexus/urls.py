@@ -31,6 +31,7 @@ urlpatterns = [
     path('coordinators/',include("coordinators.urls")),
     path('events/',include("events_cec.urls")),
     path('contact/',include("contact.urls")),
+    path('notifications/', include('notifications.urls',namespace='notifications')),
 
 ]
 

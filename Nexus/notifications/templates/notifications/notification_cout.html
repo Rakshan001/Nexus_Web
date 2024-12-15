@@ -1,0 +1,8 @@
+<div class="notification-icon"></div>
+    <a href="{% url 'notification_panel' %}">
+        <i class="fas fa-bell"></i>
+        {% if unread_notifications_count > 0 %}
+            <span class="notification-badge">{{ unread_notifications_count }}</span>
+        {% endif %}
+    </a>
+</div>
