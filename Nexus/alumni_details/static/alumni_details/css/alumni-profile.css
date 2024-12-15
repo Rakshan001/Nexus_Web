@@ -40,9 +40,9 @@ body{
 }
 .alumni-header img{
     
-    width: 100%;
+    width: 200px;
     max-width: 150px;
-    height: auto;
+    height: 150px;
     border-radius: 50%;
    
     border: 5px solid orange;
@@ -185,12 +185,13 @@ body{
 }
 
 .follow-me{
+    border-top: 4px solid orange;
     display: flex;
   flex-direction: column; /* Arrange items vertically */
   align-items: center;
   padding: 20px 10px; /* Optional padding */
   background-color: rgba(255, 255, 255, 0.9); /* Optional background */
-  border-radius: 10px 0 0 10px; /* Optional rounded corners */
+  border-radius: 10px 10px 0 0; /* Optional rounded corners */
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
 }
 
@@ -220,7 +221,7 @@ body{
   }
   
   .social-logos i:nth-child(2) {
-    color: #FF0000; /* YouTube red */
+    color: #ff3333; /* YouTube red */
   }
   
   .social-logos i:nth-child(3) {

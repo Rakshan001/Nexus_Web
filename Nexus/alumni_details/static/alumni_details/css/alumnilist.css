@@ -25,13 +25,17 @@ body::before {
     background-attachment: fixed;
 }
 
+.alumni-container{
+    width: 100%;
+}
+
 .alumni-container h2{
     text-align: center;
     width: 100%;
     color: rgb(9, 40, 108);
     font-size: 30px;
     margin: 20px auto;
-    max-width: 70%;
+    /* max-width: 70%; */
     /* background-color: rgb(255, 255, 255);
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.393);
     border-radius: 20px; */
@@ -47,7 +51,7 @@ body::before {
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    max-width: 1000px; /* Limit the width */
+    /* Limit the width */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -256,6 +260,29 @@ button:hover {
 .ui-autocomplete li:last-child {
     border-bottom: none; /* Remove border from the last item */
 }
+
+
+ /* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #012f5d;
+  }
 
 
 
