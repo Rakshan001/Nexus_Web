@@ -11,6 +11,8 @@ urlpatterns = [
     # *******************
       path('alumni-details/', views.alumni_list, name='alumni_list'),  # Main alumni list view
     path('alumni/<int:graduation_year>/', views.alumni_by_year, name='alumni_by_year'),
+# load more years
+    path('load-more/', views.load_more_years, name='load_more_years'),
     
     #single Alumni profile
 

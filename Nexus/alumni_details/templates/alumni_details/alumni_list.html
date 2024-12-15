@@ -54,51 +54,148 @@
             });
         </script>
 
-        <!-- Current Year Alumni -->
-        <div class="graduation-year">
-            <h3>{{ current_year }}</h3>
-            <div class="alumni-profiles">
-                {% for alumni in alumni_current_year %}
-                    <div class="alumni-profile">
-                        <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
-                        <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}" >
-                        <p class="name" style="color: black;">{{ alumni.first_name }} {{ alumni.last_name }}</p>
-                        <p class="position">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
-                        <div class="connec-btn">
-                            <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
-                            <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
-                        </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-            <a href="{% url 'alumni_by_year' current_year %}" class="see-more"><i class="fa-solid fa-arrow-down"></i>See more</a>
-        </div>
-
-        <!-- Previous Years Alumni -->
-        {% for year, alumni_list in alumni_previous_years.items %}
-            <div class="graduation-year">
-                <h3>{{ year }}</h3>
-                <div class="alumni-profiles">
-                    {% for alumni in alumni_list %}
-                        <div class="alumni-profile">
-                            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
-                            <img src="{{ alumni.profile_picture.url }}" alt="Profile Picture">
-                            <p class="name" style="color: black;">{{ alumni.first_name }} {{ alumni.last_name }}</p>
-                            <p class="position">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
-                            <div class="connec-btn">
-                                <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
-                                <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
-                            </div>
-                            </a>
-                        </div>
-                    {% endfor %}
+       {% for year, alumni_list in alumni_by_year.items %}
+<div class="graduation-year">
+    <h3>{{ year }}</h3>
+    <div class="alumni-profiles">
+        {% for alumni in alumni_list %}
+        <div class="alumni-profile">
+            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
+                <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" 
+                     alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}">
+                <p class="name" style="color: black;">{{ alumni.first_name }} {{ alumni.last_name }}</p>
+                <p class="position">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
+                <div class="connec-btn">
+                    <button class="connect-btn">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a>
+                    </button>
+                    <button class="connect-btn">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="">Email</a>
+                    </button>
                 </div>
-                <a href="{% url 'alumni_by_year' year %}" class="see-more"><i class="fa-solid fa-arrow-down"></i>See more</a>
-            </div>
+            </a>
+        </div>
         {% endfor %}
     </div>
-</body>
-</html>
+    <a href="{% url 'alumni_by_year' year %}" class="see-more">
+        <i class="fa-solid fa-arrow-down"></i>See more
+    </a>
+</div>
+{% endfor %}
+<!-- Add this after the for loop -->
+{% if has_more %}
+    <div class="load-more-container">
+        <button id="loadMoreBtn" class="load-more-btn" data-page="{{ next_page }}">
+            <i class="fa-solid fa-plus"></i> Load More Years
+        </button>
+    </div>
+{% endif %}
+
+<!-- Add this JavaScript at the bottom of your template -->
+<script>
+document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
+    const button = this;
+    const page = button.dataset.page;
+    
+    // Show loading state
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Loading...';
+    button.disabled = true;
+
+    fetch(`/alumni/load-more/?page=${page}`)
+        .then(response => response.json())
+        .then(data => {
+            // Convert years object to array and sort in descending order
+            const sortedYears = Object.entries(data.years)
+                .sort((a, b) => parseInt(b[0]) - parseInt(a[0])); // Sort years numerically in descending order
+            
+            // Add new years and their alumni
+            for (const [year, alumniList] of sortedYears) {
+                const yearSection = document.createElement('div');
+                yearSection.className = 'graduation-year';
+                
+                yearSection.innerHTML = `
+                    <h3>${year}</h3>
+                    <div class="alumni-profiles">
+                        ${alumniList.map(alumni => `
+                            <div class="alumni-profile">
+                                <a href="/alumni/profile/${alumni.id}/">
+                                    <img src="${alumni.profile_picture || '/static/alumni_details/assets/default.png'}" 
+                                         alt="Profile Picture">
+                                    <p class="name" style="color: black;">${alumni.first_name} ${alumni.last_name}</p>
+                                    <p class="position">${alumni.current_position} at ${alumni.company_name}</p>
+                                    <div class="connec-btn">
+                                        <button class="connect-btn">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                            <a href="${alumni.linkedin_url}" target="_blank">LinkedIn</a>
+                                        </button>
+                                        <button class="connect-btn">
+                                            <i class="fa-solid fa-envelope"></i>
+                                            <a href="">Email</a>
+                                        </button>
+                                    </div>
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <a href="/alumni/year/${year}/" class="see-more">
+                        <i class="fa-solid fa-arrow-down"></i>See more
+                    </a>
+                `;
+                
+                // Insert before the load more button
+                button.parentElement.before(yearSection);
+            }
+
+            if (data.has_more) {
+                // Update the page number for next load
+                button.dataset.page = data.next_page;
+                button.innerHTML = '<i class="fa-solid fa-plus"></i> Load More Years';
+                button.disabled = false;
+            } else {
+                // Remove the button if no more years to load
+                button.parentElement.remove();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            button.innerHTML = '<i class="fa-solid fa-plus"></i> Load More Years';
+            button.disabled = false;
+        });
+});
+</script>
+
+<!-- Add this CSS -->
+<style>
+.load-more-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.load-more-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.load-more-btn:hover {
+    background-color: #0056b3;
+}
+
+.load-more-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.load-more-btn i {
+    margin-right: 8px;
+}
+</style>
 
 {% endblock %}
