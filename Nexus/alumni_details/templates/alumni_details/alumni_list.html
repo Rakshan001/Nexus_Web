@@ -15,10 +15,10 @@
     <title>Alumni List</title>
     <link rel="stylesheet" href="{% static 'alumni_details/css/alumnilist.css' %}">
     <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../../static/alumni_details/assets/NexusFavicon.png">
 </head>
 <body>
     <div class="alumni-container">
-        <h2>Alumni Details</h2>
         <!-- Filter Form -->
         <div class="search-filter">
             <form method="get" action="{% if graduation_year %}{% url 'alumni_by_year' graduation_year %}{% else %}{% url 'alumni_by_year' 0 %}{% endif %}" class="filter">

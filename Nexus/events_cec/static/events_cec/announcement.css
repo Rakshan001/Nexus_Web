@@ -13,6 +13,7 @@ body{
 .event-container {
 display: flex;
 justify-content: space-evenly;
+flex-direction: row-reverse;
   padding: 20px;
   /* width: 70%; */
   margin: 20px auto;
@@ -26,6 +27,9 @@ justify-content: space-evenly;
 }
 
 .event-container .event-cards{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 width: 100%;
 max-width: 700px;
 }
@@ -71,12 +75,38 @@ width: 100%;
 }
 
 .event-container .card button{
-background-color: #003366;color: white;
+background-color: #0a1219;color: white;
 outline: none;border: none;
 padding: 10px; cursor: pointer;
 }
 .event-container .card button:hover{
 background-color: #205690;
+}
+
+.event-container .event-cards .event-load-more{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0a1219;
+  cursor: pointer;
+  outline: none;
+  border-radius: 10px;
+}
+
+.event-load-more button{
+  background-color: transparent;
+  color: white;
+  padding: 20px;
+}
+
+.event-container .event-cards .event-load-more i{
+  color: orange;
+  font-size: 2rem;
+  padding: 0;
+}
+
+.event-container .event-cards .event-load-more:hover{
+  background-color: #060b0f;
 }
 
 .container .filters{
@@ -129,6 +159,10 @@ background-color: #205690;
   background-color: rgb(238, 157, 5);
   border: none;
   user-select: none; /* Prevent text selection */
+}
+
+.filters .event-status{
+  margin-top: 2rem;
 }
 
 .filters .category-list  .active{

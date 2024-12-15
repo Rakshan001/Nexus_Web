@@ -16,6 +16,9 @@
 </head>
 <body>
     <div class="center_div">
+        <div class="query-image">
+            <img src="https://img.freepik.com/premium-vector/customer-support-concepts_662093-1854.jpg?semt=ais_hybrid" alt="Company Logo">
+        </div>
     <div class="form-container">
         <h1>Contact Us</h1>
         <form method="post" action="">
@@ -55,20 +58,29 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 /* Form container styling */
+
+body{
+    width: 100%;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 .center_div{
     display: flex;
     justify-content: center;
     align-items: center;
     /* height: 100vh; */
+    margin-bottom: 4rem;
 
 }
 
+
+
 .form-container {
+    margin-top: 2rem;
     background: #ffffff;
     padding: 30px;
     width: 100%;
@@ -79,19 +91,19 @@
    
 }
 
-h1 {
+.form-container h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333333;
 }
 
 /* Form group styling */
-.form-group {
+.form-container .form-group {
     margin-bottom: 15px;
     text-align: left;
 }
 
-.form-group label {
+.form-container .form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
@@ -105,7 +117,7 @@ h1 {
     padding: 12px 15px;
     border: 1px solid #cccccc;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: transparent;
     font-size: 16px;
     color: #333333;
     transition: border-color 0.3s ease;
@@ -114,23 +126,21 @@ h1 {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: #00b4d8;
+    border-color: orange;
     outline: none;
 }
 
 /* Submit button styling */
-.submit-btn {
+.form-container .submit-btn {
     width: 100%;
     padding: 12px 0;
-    background-color: #00b4d8;
+    background-color: rgb(224, 132, 12);
     border: none;
     border-radius: 4px;
     color: #ffffff;
     font-size: 18px;
-    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    text-transform: uppercase;
 }
 
 .submit-btn:hover {
@@ -140,6 +150,28 @@ h1 {
 .submit-btn:focus {
     outline: none;
 }
+
+ /* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #012f5d;
+  }
 
 </style>
 </html>

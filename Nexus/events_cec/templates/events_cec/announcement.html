@@ -32,8 +32,8 @@
                            data-category="{{ category_code }}">{{ category_name }}</p>
                     {% endfor %}
                 </div>
-                <p>EVENT STATUS</p>
-                <div class="category-list">
+                <div class="category-list event-status">
+                    <p>EVENT STATUS</p>
                     <p class="category-item {% if not selected_event_type %}active{% endif %}" 
                        data-event-type="">All Events</p>
                     <p class="category-item {% if selected_event_type == 'upcoming' %}active{% endif %}" 
@@ -65,7 +65,7 @@
                     <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
                     <p><i class="fa-solid fa-tag"></i> {{ event.get_category_display }}</p>
                     <button type="button">
-                        <a href="{% url 'event_detail' event.event_id %}">View</a>
+                        <a href="{% url 'event_detail' event.event_id %}">View</a> <i class="fa-solid fa-eye"></i>
                     </button>
                 </div>
             </div>
@@ -74,7 +74,10 @@
             <p>No events available.</p>
         {% endif %}
         {% if all_events.has_next %}
-            <button id="load-more" data-next-page="{{ all_events.next_page_number }}">Load More</button>
+            <div class="event-load-more">
+                <button id="load-more" data-next-page="{{ all_events.next_page_number }}">Load More Events</button>
+                <i class="fa-solid fa-sort-down"></i>
+            </div>
         {% endif %}
     </div>
 </div>
