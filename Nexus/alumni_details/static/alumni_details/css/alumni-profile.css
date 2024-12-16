@@ -39,7 +39,7 @@ body{
     align-items: center;
 }
 .alumni-header img{
-    
+    object-fit: cover;
     width: 200px;
     max-width: 150px;
     height: 150px;
@@ -70,14 +70,14 @@ body{
     width: 100%;
     overflow: hidden;
 }
-.swiper-wrapper .swiper-slide {
+.swiper-container .swiper-wrapper .swiper-slide {
     height: 300px;
     /* background-color: #f3f3f3; */
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.swiper-wrapper .swiper-slide img {
+.swiper-container .swiper-wrapper .swiper-slide img {
     width: 100%; /* Adjust width for desktop */
     height: 100%;
     max-width: 500px; /* Sets a maximum width */

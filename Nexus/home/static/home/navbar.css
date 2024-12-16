@@ -364,7 +364,9 @@ display: none;
 }
 
 .profile-section .secondry-btn {
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  /* padding: 10px 20px; */
   background-color: transparent;
   margin-top: 1rem;
   margin-bottom: 0.4rem;
@@ -374,8 +376,7 @@ display: none;
 }
 
 
-
-.sidebar  .not-signedin .login-btn{
+.sidebar .not-signedin button{
   width: 100%;
   padding: 10px 30px;
   background-color: #df7103;

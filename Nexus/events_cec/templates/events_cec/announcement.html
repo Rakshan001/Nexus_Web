@@ -65,7 +65,7 @@
                     <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
                     <p><i class="fa-solid fa-tag"></i> {{ event.get_category_display }}</p>
                     <button type="button">
-                        <a href="{% url 'event_detail' event.event_id %}">View</a> <i class="fa-solid fa-eye"></i>
+                        <a href="{% url 'event_detail' event.event_id %}">View <i class="fa-solid fa-eye"></i></a>
                     </button>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                                     <p><i class="fa-solid fa-location-dot"></i> ${event.location}</p>
                                     <p><i class="fa-solid fa-tag"></i> ${event.category}</p>
                                     <button type="button">
-                                        <a href="${event.detail_url}">View</a>
+                                        <a href="${event.detail_url}">View <i class="fa-solid fa-eye"></i></a>
                                     </button>
                                 </div>
                             </div>

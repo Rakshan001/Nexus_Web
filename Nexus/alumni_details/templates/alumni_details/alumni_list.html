@@ -35,7 +35,7 @@
             <!-- Search Form -->
             <form method="GET" action="{% url 'alumni_search' %}" class="search">
                 <label for="alumni">Search Alumni:</label>
-                <input type="text" name="alumni" id="alumni" placeholder="Search alumni by name">
+                <input type="text" name="alumni" id="alumni" placeholder="Search alumni by name, Company">
                 <button type="submit">Search</button>
             </form>
         </div>
@@ -56,7 +56,7 @@
 
        {% for year, alumni_list in alumni_by_year.items %}
 <div class="graduation-year">
-    <h3>{{ year }}</h3>
+    <h3>Graduation Year: {{ year }}</h3>
     <div class="alumni-profiles">
         {% for alumni in alumni_list %}
         <div class="alumni-profile">
@@ -65,6 +65,7 @@
                      alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}">
                 <p class="name" style="color: black;">{{ alumni.first_name }} {{ alumni.last_name }}</p>
                 <p class="position">{{ alumni.current_position }} at {{ alumni.company_name }}</p>
+                <p class="position">{{ alumni.branch }}</p>
                 <div class="connec-btn">
                     <button class="connect-btn">
                         <i class="fa-brands fa-linkedin"></i>
@@ -87,11 +88,14 @@
 <!-- Add this after the for loop -->
 {% if has_more %}
     <div class="load-more-container">
+        <h2>More Alumni are Active on Canara community</h2>
+        <p>To see more  click on the load more button</p>
         <button id="loadMoreBtn" class="load-more-btn" data-page="{{ next_page }}">
             <i class="fa-solid fa-plus"></i> Load More Years
         </button>
     </div>
 {% endif %}
+</div>
 
 <!-- Add this JavaScript at the bottom of your template -->
 <script>
@@ -116,7 +120,7 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
                 yearSection.className = 'graduation-year';
                 
                 yearSection.innerHTML = `
-                    <h3>${year}</h3>
+                    <h3>Graduation Year: ${year}</h3>
                     <div class="alumni-profiles">
                         ${alumniList.map(alumni => `
                             <div class="alumni-profile">
