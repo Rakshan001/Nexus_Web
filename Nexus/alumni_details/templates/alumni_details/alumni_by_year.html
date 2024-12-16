@@ -215,6 +215,38 @@ button:hover {
     color: white;
 }
 
+/* Remove bullet points from the suggestions */
+.ui-autocomplete {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-width: 300px;
+    z-index: 1000;
+    position: absolute;
+    overflow-y: auto;
+    max-height: 200px; /* Limit height and add scroll if necessary */
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.ui-autocomplete li {
+    padding: 10px;
+    border-bottom: 1px solid #eee; /* Separate suggestions */
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.ui-autocomplete li:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}
+
+.ui-autocomplete li:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
 /* mobile width */
 @media screen and (max-width: 768px){
     .search-filter {

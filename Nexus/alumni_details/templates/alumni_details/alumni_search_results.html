@@ -93,25 +93,32 @@ button:hover {
     margin-bottom: 4rem;
 }
 
+.alumni-results .alumni-profile-card .profile-details a{
+    color: #000;
+    
+}
+
 .alumni-profile-card {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.219);
     text-align: center;
     width: 300px; /* Adjust card width */
     transition: transform 0.3s ease;
+    border-top: 3px solid orange;
 }
+
 
 .alumni-profile:hover {
     transform: translateY(-5px); /* Slight hover effect */
 }
 
-.alumni-profile img {
+.alumni-profile-card .profile-image img {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
-    border: 3px solid #005582;
+    border: 3px solid #d86800;
     width: 140px;
     height: 140px;
 }
@@ -138,10 +145,10 @@ button:hover {
     margin-top: 10px;
 }
 
-.connect-btn {
+.connec-btn .connect-btn {
     display: flex;
     align-items: center;
-    background-color: #007bff; /* LinkedIn Blue */
+    background-color: #111b24; /* LinkedIn Blue */
     border: none;
     border-radius: 5px;
     padding: 10px 12px;
@@ -151,7 +158,7 @@ button:hover {
     gap: 10px;
 }
 
-.connec-btn button a{
+.connec-btn .connect-btn button a{
     text-decoration: none;
     color: white;
 }
@@ -164,6 +171,29 @@ button:hover {
     text-align: center;
     font-size: 25px;
     margin: 10px;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 5px;
+    padding: 10px;
+}
+
+.pagination .next-prev{
+    background-color: #d67a10;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.pagination .first-prev{
+    background-color: #e9810a;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
 }
 
 /* Remove bullet points from the suggestions */
@@ -305,15 +335,15 @@ button:hover {
             <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
 
 
-          <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}" width="100" height="100">
+          <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}">
 
         </div>
         <div class="profile-details" >
             <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
-            <h3 style="color: black;">{{ alumni.first_name }} {{ alumni.last_name }}</h3>
-            <p style="color: black;"><strong>Graduation Year:</strong> {{ alumni.graduation_year }}</p>
-            <p style="color: black;"><strong>Location:</strong> {{ alumni.location }}</p>
-            <p style="color: black;"><strong>Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
+            <h3>{{ alumni.first_name }} {{ alumni.last_name }}</h3>
+            <p><strong style="color: #333;">Graduation Year:</strong> {{ alumni.graduation_year }}</p>
+            <p><strong style="color: #333;">Location:</strong> {{ alumni.location }}</p>
+            <p><strong style="color: #333;">Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
                 <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
                 <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
@@ -326,23 +356,23 @@ button:hover {
 </div>
 
 <!-- Pagination Controls -->
-<div class="pagination" style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
+<div class="pagination">
     {% if page_obj.has_previous %}
-        <a href="?alumni={{ request.GET.alumni }}&page=1">First</a>
-        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.previous_page_number }}">Previous</a>
+        <a href="?alumni={{ request.GET.alumni }}&page=1" class="first-prev">First</a>
+        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.previous_page_number }}" class="first-prev">Previous</a>
     {% endif %}
 
     {% for page_num in page_obj.paginator.page_range %}
         {% if page_num == page_obj.number %}
-            <strong style="padding: 5px; background-color: #ddd;">{{ page_num }}</strong>
+            <strong style="padding: 10px; background-color: #111b24; color: white;">{{ page_num }}</strong>
         {% else %}
             <a href="?alumni={{ request.GET.alumni }}&page={{ page_num }}">{{ page_num }}</a>
         {% endif %}
     {% endfor %}
 
     {% if page_obj.has_next %}
-        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.next_page_number }}">Next</a>
-        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.paginator.num_pages }}">Last</a>
+        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.next_page_number }}" class="next-prev">Next</a>
+        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.paginator.num_pages }}" class="next-prev">Last</a>
     {% endif %}
 </div>
 
