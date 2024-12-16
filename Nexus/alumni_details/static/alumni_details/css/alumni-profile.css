@@ -39,7 +39,7 @@ body{
     align-items: center;
 }
 .alumni-header img{
-    
+    object-fit: cover;
     width: 200px;
     max-width: 150px;
     height: 150px;
