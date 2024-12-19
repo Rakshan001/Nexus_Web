@@ -4,23 +4,319 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
+    <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+
     <style>
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        /* General resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-        .gallery-item {
-            width: 200px;
+        body{
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Header */
+        header {
             text-align: center;
+            padding: 20px;
         }
+
+        .welcome-text {
+            margin: 40px 0;
+            padding: 20px;
+            border-radius: 50px 0 50px 0;
+        }
+
+        .welcome-text h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #0e1720;
+        }
+
+        .welcome-text p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Gallery styling */
+        .gallery{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
         .gallery-item img {
+            border-radius: 20px;
             width: 100%;
             height: auto;
-            border-radius: 8px;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Initial state of the text: hidden */
+        .gallery-item .hover-text {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        /* Show the text when hovering over the gallery item */
+        .gallery-item:hover .hover-text {
+            opacity: 1;
+        }
+
+        /* Optional gradient overlay on hover */
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(3, 42, 100, 0.856), rgba(0, 0, 0, 0));
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: rgb(244, 244, 244);
+            position: relative;
+            margin: auto;
+            margin-top: 5rem;
+            padding: 20px;
+            max-width: 700px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal img {
+            width: 70%;
+            border-radius: 10px;
+        }
+
+        .modal-description {
+            padding-left: 20px;
+            color: #000000;
+            text-align: center;
+            margin-top: 10px;
+            padding: 20px;
+        }
+
+        .modal-description p i{
+            color: black;
+        }
+
+        .modal-description h2 {
+            font-size: 24px;
+            text-align: left;
+        }
+
+        .modal-description p {
+            font-size: 18px; text-align: left;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        /* Styles for the see-more button */
+        /* See More button */
+        .see-more {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .see-more button {
+            background-color: #090e14;
+            color: white;
+            outline: none;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease-out;
+        }
+
+        .see-more button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            transition: left 0.5s ease-out;
+            z-index: -1;
+        }
+
+        .see-more button:hover::before {
+            left: 0;
+        }
+
+        .see-more button:hover {
+            color: #0f161f;
+            z-index: 1;
+        }
+
+        /* Hidden images section (initially hidden) */
+        .hidden-images {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .hidden-images .gallery-item img {
+            border-radius: 20px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Linear gradient for the bottom overlay */
+        .gradient-overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            background: linear-gradient(to top, rgb(165, 107, 0), rgba(161, 73, 1, 0));
+            z-index: 1;
+        }
+
+         /* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0d1720;
+  }
+
+
+        /* Hover effects for gallery images */
+        .gallery .gallery-item:nth-child(odd) img:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery .gallery-item:nth-child(even) img:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .welcome-text h1{
+                font-size: 25px;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .modal-content {
+                background-color: rgb(244, 244, 244);
+                position: relative;
+                margin: auto;
+                margin-top: 7rem;
+                padding: 20px;
+                max-width: 800px;
+                border-radius: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal img {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .see-more button{
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .modal-description h2 {
+                font-size: 18px;
+            }
         }
     </style>
-    <script>
+    <!-- <script>
         async function loadMore() {
             const loadMoreButton = document.getElementById('load-more');
             const galleryContainer = document.getElementById('gallery-container');
@@ -50,21 +346,138 @@
                 loadMoreButton.style.display = 'none';
             }
         }
-    </script>
+    </script> -->
+ 
 </head>
 <body>
-    <h1>Gallery</h1>
+    <header>
+        
+        <div class="welcome-text">
+            <h1>Welcome to the Past Events Gallery</h1>
+            <!-- <p>Creation by CEC NEXUS</p> -->
+        </div>
+        
+    </header>
     <div id="gallery-container" class="gallery">
         {% for image in images %}
-        <div class="gallery-item">
+        <div class="gallery-item" data-title="{{ image.title }}" data-date="{{ image.date_uploaded|date:"Y-m-d" }}">
             <img src="{{ image.image.url }}" alt="{{ image.title }}">
-            <h4>{{ image.title }}</h4>
-            <p>{{ image.date_uploaded|date:"Y-m-d" }}</p>
+            <p class="hover-text">Click on image for more info</p>
+            <!-- <h4>{{ image.title }}</h4>
+            <p>{{ image.date_uploaded|date:"Y-m-d" }}</p> -->
         </div>
+        
         {% endfor %}
     </div>
-    {% if loaded_count < total_count %}
-    <button id="load-more" data-loaded-count="{{ loaded_count }}" data-total-count="{{ total_count }}" onclick="loadMore()">Load More</button>
-    {% endif %}
+    <div class="container-xxl">
+        <div class="gradient-overlay"></div>
+        <div class="see-more">
+            {% if loaded_count < total_count %}
+            <button id="load-more" class="see-more-btn" data-loaded-count="{{ loaded_count }}" data-total-count="{{ total_count }}" onclick="loadMore()">See More Images <i class="fa-solid fa-chevron-down"></i></button>
+            {% endif %}
+        </div>
+    </div>
+            
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="" alt="Image" id="modal-img">
+            <div class="modal-description">
+                <h2 id="modal-title"><i class="fa-solid fa-sheet-plastic"></i> Title</h2>
+                <p id="modal-date"><i class="fa-solid fa-calendar-days"></i> Date</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get modal elements
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDate = document.getElementById('modal-date');
+        const closeModal = document.querySelector('.close');
+        
+        // Function to handle image clicks for the modal
+        function showModal(item) {
+            // Get the image source and other details from data attributes
+            const imgSrc = item.querySelector('img').getAttribute('src');
+            const title = item.getAttribute('data-title');  // Get the title from the data attribute
+            const date = item.getAttribute('data-date');    // Get the date from the data attribute
+        
+            // Set the modal image and description
+            modalImg.src = imgSrc;
+            modalTitle.innerText = `Title: ${title}`;
+            modalDate.innerText = `Date: ${date}`;
+        
+            // Show the modal
+            modal.style.display = 'block';
+        }
+        
+        // Event listener for each gallery item (including dynamically loaded ones)
+        function addModalEventListeners() {
+            document.querySelectorAll('.gallery-item').forEach(function(item) {
+                item.addEventListener('click', function() {
+                    showModal(item);  // Show modal with the clicked item's details
+                });
+            });
+        }
+        
+        // Add event listeners initially
+        addModalEventListeners();
+        
+        // Close modal when the close button is clicked
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';  // Hide the modal
+        });
+        
+        // Close modal when clicking outside the modal content
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';  // Hide the modal if the user clicks outside of it
+            }
+        });
+        
+        // Modified loadMore function to handle dynamically loaded gallery items
+        async function loadMore() {
+        const loadMoreButton = document.getElementById('load-more');
+        const galleryContainer = document.getElementById('gallery-container');
+        const gradientOverlay = document.querySelector('.gradient-overlay');  // Select the gradient overlay
+        let loadedCount = parseInt(loadMoreButton.dataset.loadedCount, 10);
+        const totalCount = parseInt(loadMoreButton.dataset.totalCount, 10);
+    
+        if (loadedCount >= totalCount) return;
+    
+        // Fetch additional images
+        const response = await fetch(`?limit=${loadedCount + 10}`);
+        const html = await response.text();
+    
+        // Extract new gallery items
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const newItems = tempDiv.querySelectorAll('.gallery-item');
+    
+        // Append new items to the gallery
+        newItems.forEach(item => galleryContainer.appendChild(item));
+    
+        // Update loaded count
+        loadedCount += newItems.length;
+        loadMoreButton.dataset.loadedCount = loadedCount;
+    
+        // Hide button if all images are loaded
+        if (loadedCount >= totalCount) {
+            loadMoreButton.style.display = 'none';
+        }
+    
+        // Re-add modal event listeners for the new items
+        addModalEventListeners();
+    
+        // Remove the gradient overlay
+        if (gradientOverlay) {
+            gradientOverlay.style.display = 'none';  // Hide the gradient overlay
+        }
+        }
+        
+        </script>
 </body>
 </html>
