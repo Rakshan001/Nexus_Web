@@ -1,0 +1,101 @@
+[33mcommit 26c42e5b5fe8c359d84f32e4a5ab003cbd40740b[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Tue Nov 26 20:43:21 2024 +0530
+
+    added Delete button for update profile
+
+[33mcommit 8faaa7a58d980aab1125ecae0248a0b673b068c4[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Mon Nov 18 12:15:34 2024 +0530
+
+    added paginators
+
+[33mcommit e9a7515283327589281d975582af11e6dcc2ac5d[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Sun Nov 17 12:36:33 2024 +0530
+
+    save
+
+[33mcommit 32aca5d2900ee8f698ad0acc681becbea909a909[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Sat Nov 2 18:38:52 2024 +0530
+
+    added event filter and update home
+
+[33mcommit 78d00fc01caca4d2c0fadd99311b0e786050acb0[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Fri Nov 1 23:38:21 2024 +0530
+
+    added autologout session
+
+[33mcommit fd72af4892afcd7cee6d861cc427022d758837de[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Fri Nov 1 21:12:21 2024 +0530
+
+    added forget password
+
+[33mcommit 29009561c332ab4e843cbddf6b302416037340c7[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Fri Nov 1 19:00:29 2024 +0530
+
+    saving the auto-logout-error
+
+[33mcommit 835aef98fdacc69e92059abe66ef1d16791d6ec2[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Fri Nov 1 17:39:00 2024 +0530
+
+    save event design
+
+[33mcommit 819e2c8bc7a13627a9a62ad93517a527eebd3389[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Fri Nov 1 00:10:54 2024 +0530
+
+    added custom decorator to verify the user login
+
+[33mcommit 0ac45e29194598c1a8c17111f1131999abd790d4[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Thu Oct 31 23:02:46 2024 +0530
+
+    linkend navbar
+
+[33mcommit ba554148c17c997f156b4b6547815a3c598d4dae[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Thu Oct 31 22:19:58 2024 +0530
+
+    added navbar
+
+[33mcommit 272add4b824cd581daa5c53fada0e390a0308b04[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Thu Oct 31 19:00:24 2024 +0530
+
+    saving contact
+
+[33mcommit 35835d840ae84cea542dc7c7453192e383cf337d[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Thu Oct 31 14:40:38 2024 +0530
+
+     added event
+
+[33mcommit 4eba3103fc76c56134cbf773a9e7a76bba235ab0[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Wed Oct 30 22:37:18 2024 +0530
+
+    added coordinators
+
+[33mcommit 55988a4bc3c87f2c79818f81e392bd507d500f6f[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Wed Oct 30 19:28:33 2024 +0530
+
+    removing image from the file system when it is updated with new profile picture
+
+[33mcommit cac5da916234eaee1ac5af61330895e1e6b468c7[m
+Author: Rakshan001 <rakshanshetty2003@gmail.com>
+Date:   Wed Oct 30 19:05:32 2024 +0530
+
+    saving all
+
+[33mcommit 9ff1c8abb8820a9c0e5dda32a1580386f3f28a0a[m
+Author: Rakshan Shetty <104481440+Rakshan001@users.noreply.github.com>
+Date:   Wed Oct 30 18:55:44 2024 +0530
+
+    Initial commit

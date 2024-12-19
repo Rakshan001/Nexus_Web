@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Manage Memories</title>
     {% load static %}
     <style>
+        .memories-container{
+            margin-top: 4rem;
+        }
+        .memories-container h1{
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .memories-container .memory-list{
+            display: flex;
+            justify-content: space-around;
+        }
         .memory-item {
-            display: inline-block;
+            display: inline-flex;
+            flex-direction: column;
             margin: 10px;
             text-align: center;
         }
         .memory-image {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             object-fit: cover;
             margin-bottom: 5px;
         }
@@ -22,38 +35,90 @@
             padding: 5px 10px;
             cursor: pointer;
         }
-        #upload-section {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f5f5f5;
+        .img-upload {
+            display: flex;
+            margin: 10px;
+            padding: 40px;
+            background-color: #090f14;
+            border-radius: 5px;
+            color: white;
+        }
+        .img-upload button{
+            background-color: orange;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            color: #090f14;
+            font-size: 18px;
             border-radius: 5px;
         }
+        .uploaded-post{
+            margin-top: 2rem;
+        }
+        /* add mobile media queries */
+        @media only screen and (max-width: 768px) {
+    .memories-container {
+        padding: 20px;
+    }
+    .img-upload{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 50px;
+    }
+    .img-upload input{
+        margin: 10px;
+    }
+    .memories-container .memory-list{
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap; /* Allow images to wrap */
+        justify-content: center; /* Center the images */
+        gap: 20px; /* Add space between images */
+    }
+    /* Move the uploaded images to the center at the bottom */
+    .uploaded-post {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center images vertically */
+    }
+}
+
     </style>
 </head>
 <body>
-    <h1>Manage Memories</h1>
 
-    <!-- Add URL as data attribute -->
-    <div id="urls" 
-         data-manage-memories-url="{% url 'manage_memories' %}"
-         data-csrf-token="{{ csrf_token }}">
+    <div class="memories-container">
+
+        <h1>Manage Memories</h1>
+    
+        <!-- Add URL as data attribute -->
+        <div id="urls" 
+             data-manage-memories-url="{% url 'manage_memories' %}"
+             data-csrf-token="{{ csrf_token }}">
+        </div>
+    
+        <div id="upload-section" class="img-upload">
+            <label for="image-upload">Upload Image:</label>
+            <input type="file" id="image-upload" accept="image/*">
+            <button onclick="uploadImage()"><i class="fa-solid fa-upload"></i> Upload</button>
+        </div>
+    
+        <div class="uploaded-post">
+            <h2>Uploaded Images</h2>
+            <ul id="memory-list">
+                {% for memory in memories %}
+                    <li id="memory-{{ memory.id }}" class="memory-item">
+                        <img src="{{ memory.image.url }}" alt="Memory" class="memory-image">
+                        <button class="delete-btn" onclick="deleteImage({{ memory.id }})"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-
-    <div id="upload-section">
-        <label for="image-upload">Upload Image:</label>
-        <input type="file" id="image-upload" accept="image/*">
-        <button onclick="uploadImage()">Upload</button>
-    </div>
-
-    <h2>Uploaded Memories:</h2>
-    <ul id="memory-list">
-        {% for memory in memories %}
-            <li id="memory-{{ memory.id }}" class="memory-item">
-                <img src="{{ memory.image.url }}" alt="Memory" class="memory-image">
-                <button class="delete-btn" onclick="deleteImage({{ memory.id }})">Delete</button>
-            </li>
-        {% endfor %}
-    </ul>
 
     <script>
         // Get URLs from data attributes

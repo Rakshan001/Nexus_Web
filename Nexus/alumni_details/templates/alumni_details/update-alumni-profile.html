@@ -16,20 +16,16 @@
     font-family: 'Arial', sans-serif;
     width: 100%;
     height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
   }
   .container {
-    max-width: 900px;
+    width: 100%;
     margin: 40px auto;
     padding: 20px;
   }
   .container h2 {
     text-align: center;
     color: #111111;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid rgb(224, 146, 0);
     padding-bottom: 10px;
     margin-bottom: 30px;
   }
@@ -82,6 +78,11 @@
     margin-bottom: 15px;
     width: 48%;
   }
+
+  .form-group label{
+    color: rgb(212, 138, 0);
+  }
+
   .profile-img-delete{
     display: flex;
     margin: 2rem;
@@ -91,10 +92,9 @@
   /* Form Group Style */
   .profile-picture-group {
     margin: 20px 0;
-    background-color: #f8f9fa;
+    background-color: transparent;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   /* Label Style */
@@ -113,9 +113,22 @@
 
   /* Profile Image Container */
   .profile-img-container {
-    display: flex;
+    display: grid;
+    gap: 20px;
+    flex-direction: column;
     align-items: center;
     margin-top: 10px;
+  }
+
+  .profile-img-container a{
+    background-color: rgb(226, 147, 0);
+    color: #111111;
+  }
+  
+  .profile-img-container a:hover{
+    background-color: rgb(202, 131, 0);
+    transition: none;
+
   }
 
   /* Profile Image */
@@ -135,6 +148,29 @@
     margin-left: auto;  /* Align the delete button to the right */
   }
 
+  /* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #012f5d;
+  }
+
+
   /* Responsive Design */
   @media (max-width: 768px) {
     .form-row {
@@ -144,6 +180,12 @@
       width: 100%;
     }
   }
+
+  .container form .btn{
+    background-color: orange;
+    color: #111111;
+    font-weight: bold;
+  }
 </style>
 {% endblock %}
 
@@ -151,108 +193,117 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <h2>Update Your Profile</h2>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        {{ form.first_name|add_class:"form-control" }}
-                    </div>
-                    <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        {{ form.last_name|add_class:"form-control" }}
-                    </div>
+            <h2>Update Profile</h2>
+            <div class="left-right">
+
+              <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-group profile-picture-group">
+                    <label for="profile_picture" class="profile-label">Profile Picture</label>
+                    {{ form.profile_picture|add_class:"form-control-file" }}
+                    {% if alumni.profile_picture %}
+                        <p class="current-picture-info">
+                            <a href="{{ alumni.profile_picture.url }}" target="_blank">View</a>
+                        </p>
+                        <div class="profile-img-container">
+                            <img src="{{ alumni.profile_picture.url }}" alt="Profile Picture" class="profile-img" height="150px">
+                            <a href="{% url 'delete_profile_picture' %}" 
+                               class="delete btn btn-danger btn-sm"
+                               onclick="return confirm('Are you sure you want to delete your profile picture?');">
+                               <i class="fa-solid fa-trash"></i> Remove Profile
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="phone_number">Phone Number</label>
-                        {{ form.phone_number|add_class:"form-control" }}
-                    </div>
-                    <div class="form-group">
-                        <label for="personal_email">Personal Email</label>
-                        {{ form.personal_email|add_class:"form-control" }}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="graduation_year">Graduation Year</label>
-                        {{ form.graduation_year|add_class:"form-control" }}
+                <div class="right">
+  
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="first_name">First Name</label>
+                          {{ form.first_name|add_class:"form-control" }}
+                      </div>
+                      <div class="form-group">
+                          <label for="last_name">Last Name</label>
+                          {{ form.last_name|add_class:"form-control" }}
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="phone_number">Phone Number</label>
+                          {{ form.phone_number|add_class:"form-control" }}
+                      </div>
+                      <div class="form-group">
+                          <label for="personal_email">Personal Email</label>
+                          {{ form.personal_email|add_class:"form-control" }}
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="graduation_year">Graduation Year</label>
+                          {{ form.graduation_year|add_class:"form-control" }}
+                          
+                      </div>
+                      <div class="form-group">
+                        <label for="location">Job Location</label>
+                        {{ form.job_location|add_class:"form-control" }}
                         
                     </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="location">Location</label>
+                          {{ form.location|add_class:"form-control" }}
+                          
+                      </div>
+                      <div class="form-group">
+                          <label for="batch">Batch</label>
+                          {{ form.batch|add_class:"form-control" }}
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="usn">USN</label>
+                          {{ form.usn|add_class:"form-control" }}
+                      </div>
+                      <div class="form-group">
+                          <label for="linkedin_url">LinkedIn URL</label>
+                          {{ form.linkedin_url|add_class:"form-control" }}
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label for="current_position">Current Position</label>
+                          {{ form.current_position|add_class:"form-control" }}
+                      </div>
+                      <div class="form-group">
+                          <label for="company_name">Company Name</label>
+                          {{ form.company_name|add_class:"form-control" }}
+                      </div>
+                  </div>
+                  <div class="form-row">
+  
                     <div class="form-group">
-                      <label for="location">Job Location</label>
-                      {{ form.job_location|add_class:"form-control" }}
-                      
+                        <label for="bio">Bio</label>
+                        {{ form.bio|add_class:"form-control" }}
+                    </div>
+                    <div class="form-group">
+                        <label for="achievements">Achievements</label>
+                        {{ form.achievements|add_class:"form-control" }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="dob">Date of Birth</label>
+                      {{ form.dob|add_class:"form-control" }}
                   </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="location">Location</label>
-                        {{ form.location|add_class:"form-control" }}
-                        
-                    </div>
-                    <div class="form-group">
-                        <label for="batch">Batch</label>
-                        {{ form.batch|add_class:"form-control" }}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="usn">USN</label>
-                        {{ form.usn|add_class:"form-control" }}
-                    </div>
-                    <div class="form-group">
-                        <label for="linkedin_url">LinkedIn URL</label>
-                        {{ form.linkedin_url|add_class:"form-control" }}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="current_position">Current Position</label>
-                        {{ form.current_position|add_class:"form-control" }}
-                    </div>
-                    <div class="form-group">
-                        <label for="company_name">Company Name</label>
-                        {{ form.company_name|add_class:"form-control" }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="bio">Bio</label>
-                    {{ form.bio|add_class:"form-control" }}
-                </div>
-                <div class="form-group">
-                    <label for="achievements">Achievements</label>
-                    {{ form.achievements|add_class:"form-control" }}
-                </div>
-                <div class="form-group">
-                    <label for="dob">Date of Birth</label>
-                    {{ form.dob|add_class:"form-control" }}
-                </div>
-                <div class="form-group profile-picture-group">
-                  <label for="profile_picture" class="profile-label">Profile Picture</label>
-                  {{ form.profile_picture|add_class:"form-control-file" }}
-                  {% if alumni.profile_picture %}
-                      <p class="current-picture-info">
-                          Current Picture:
-                          <a href="{{ alumni.profile_picture.url }}" target="_blank">View</a>
-                      </p>
-                      <div class="profile-img-container">
-                          <img src="{{ alumni.profile_picture.url }}" alt="Profile Picture" class="profile-img" height="150px">
-                          <a href="{% url 'delete_profile_picture' %}" 
-                             class="delete btn btn-danger btn-sm"
-                             onclick="return confirm('Are you sure you want to delete your profile picture?');">
-                              Delete Profile Picture
-                          </a>
-                      </div>
-                  {% endif %}
-              </div>
-              
-
-              
-                <button type="submit" class="btn btn-primary">Update Profile</button>
-
-            </form>
+                  
+                
+  
+                
+                  <button type="submit" class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Update Profile</button>
+  
+              </form>
+            </div>
         {% include 'alumni_details/alumni-profile/alumni-memory.html' %}
             
         </div>
