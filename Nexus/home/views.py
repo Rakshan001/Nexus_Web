@@ -69,3 +69,12 @@ def alumni_profile(request):
         messages.error(request, "You are not authorized to view this page as you're not an alumni.")
         return redirect('home')  # Redirect non-alumni users to home page
     return render(request, 'alumni_details/update-alumni-profile.html', {'alumni': alumni})  # Alumni profile view
+
+
+def nexusTeam(request):
+    return render(request, 'home/nexusTeam.html')
+
+def webTeam(request):
+    return render(request, 'home/webTeam.html')
+
+

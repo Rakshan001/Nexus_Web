@@ -1,0 +1,358 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+
+
+{% block title %}NEXUS TEAM{% endblock %}
+
+{% block extra_head %}
+  <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/icon" href="{% static 'home/assets/NexusFavicon.png' %}">
+  <style>
+    /* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+.team-section {
+  text-align: center;
+  padding: 20px;
+}
+
+.team-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  /* border-top: 5px solid #eb830d ; */
+  /* background-color: rgb(194, 106, 6); */
+  background: linear-gradient(#e69b10, rgb(190, 102, 0));
+  overflow: hidden;
+  text-align: center;
+  width: 300px;
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+
+.image-container {
+  /* background: rgb(219, 120, 6); */
+  padding: 20px;
+}
+
+.image-container img {
+  border: 5px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.team-member h2 {
+  font-size: 1.25rem;
+  margin: 10px 0;
+  color: #000;
+}
+
+.team-member p {
+  color: #ffffff;
+  margin: 5px 0 15px;
+  font-size: 0.9rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 0;
+}
+
+.social-icons a {
+  color: #555;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #000;
+}
+
+/* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #e69b10;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0a1219;
+  }
+
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .team-member{
+    width: 70%;
+    border-top: 5px solid #0a1219;
+    border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+
+  }
+}
+
+  </style>
+{% endblock %}
+
+{% block content %}
+<body>
+  <div class="team-section">
+    <h1>Team Nexus</h1>
+    <div class="yearwise-team">
+        <!-- <h2>Year:2024</h2> -->
+    </div>
+    <div class="team-container">
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Akhila Prabhu.jpg' %}" alt="Robert McGrath">
+        </div>
+        <h2>M Akhila Prabhu</h2>
+        <p>Club Advisor, Lead Interaction team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Ankith Shenoy.jpg' %}" alt="Michelle Mager">
+        </div>
+        <h2>K Ankith Shenoy</h2>
+        <p>Podcast Lead</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Sanjay G Kamath.jpg' %}" alt="Paul Carter">
+        </div>
+        <h2>Sanjay G Kamath</h2>
+        <p>Lead
+          Media team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Adi Bhaktha.jpeg' %}" alt="Paul Carter">
+        </div>
+        <h2>K Adithya Bhaktha </h2>
+        <p>Lead podcast team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+    </div>
+    <div class="team-container">
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Devashree.jpg' %}" alt="Robert McGrath">
+        </div>
+        <h2>Devashree N</h2>
+        <p>Newsletter & Interaction Team </p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Deekshith.jpeg' %}" alt="Michelle Mager">
+        </div>
+        <h2>Deekshith Nayak</h2>
+        <p>Videography</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Arya - Navaneeth Arya.png' %}" alt="Paul Carter">
+        </div>
+        <h2>Navaneeth Arya</h2>
+        <p>Search team </p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Prajna Nayak.jpeg' %}" alt="Paul Carter">
+        </div>
+        <h2>Prajna Nayak</h2>
+        <p>Podcast team  Member</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+    </div>
+    <div class="team-container">
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Khushi.jpg' %}" alt="Robert McGrath">
+        </div>
+        <h2>Khushi </h2>
+        <p>Newsletter Team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/M. Vaibhav.png' %}" alt="Michelle Mager">
+        </div>
+        <h2>M.Vaibhav</h2>
+        <p>Search team </p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Pragathi Shanubhag.jpg' %}" alt="Paul Carter">
+        </div>
+        <h2>Pragathi</h2>
+        <p>Member Engagement team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Shivani Kamath.jpeg' %}" alt="Paul Carter">
+        </div>
+        <h2>Shivani kamath</h2>
+        <p>Backup lead 
+          Engagement team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+    </div>
+    <div class="team-container">
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Tanvi Bhat.jpeg' %}" alt="Robert McGrath">
+        </div>
+        <h2>Tanvi Bhat</h2>
+        <p>Interaction Team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Darshan.JPG' %}" alt="Michelle Mager">
+        </div>
+        <h2>U Darshan Raj </h2>
+        <p>Media Team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Melisha.jpg' %}" alt="Paul Carter">
+        </div>
+        <h2>MELISHA</h2>
+        <p>Sucessor Search team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Pragathi Shanubhag.jpg' %}"  "../Professional Photograph/Varsha Nayak.jpg" alt="Paul Carter">
+        </div>
+        <h2>Varsha Nayak K </h2>
+        <p>Engagement Team</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+    </div>
+    <div class="team-container">
+      <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Abhishek Nayak.jpg' %}" alt="Paul Carter">
+        </div>
+        <h2>Abhishek Nayak </h2>
+        <p>Nexus Member</p>
+        <!-- <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  
+{% endblock %}
