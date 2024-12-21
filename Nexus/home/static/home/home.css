@@ -996,7 +996,7 @@ align-items: center;
   .nexus-features{
     width: 100%;
     background-color: #0a1219;
-    padding: 20px;
+    padding: 4rem 20px 4rem 20px;
     margin-top: 4rem;
     margin-bottom: 3rem;
     display: flex;
