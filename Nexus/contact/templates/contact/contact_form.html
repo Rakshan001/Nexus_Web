@@ -15,42 +15,65 @@
     <title>Submit Contact Form</title>
 </head>
 <body>
-    <div class="center_div">
-        <div class="query-image">
-            <img src="https://img.freepik.com/premium-vector/customer-support-concepts_662093-1854.jpg?semt=ais_hybrid" alt="Company Logo">
+    <div class="contact-container">
+        <div class="top-head">
+            <h2>Contact our team</h2>
+            <p>Got any question on our ortal? our team is there to help you out. So please Feel free to contact.</p>
         </div>
-    <div class="form-container">
-        <h1>Contact Us</h1>
-        <form method="post" action="">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.name.label_tag }} 
-                {{ form.name }}
+        <div class="center_div">
+            <div class="left-contact">
+                <h2>Get in touch</h2>
+                <p><strong>Address</strong> Canara Engineering College, Sudhindra nagar Benjanapadavu Managalore.</p>
+                <div class="cont-email">
+                    <strong>Conctact us</strong>
+                    <p><i class="fa-solid fa-envelope"></i> nexus.CEC@canaraengineering.in</p>
+                </div>
+                <div class="college-web">
+                    <strong>Visit our official college Portal:</strong>
+                    <p><i class="fa-solid fa-globe"></i> <a href="https://canaraengineering.ac.in/">https://canaraengineering.in</a></p>
+                </div>
+                <div class="socials">
+                    <strong>Follow us</strong>
+                    <div class="social-icon">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                {{ form.email.label_tag }} 
-                {{ form.email }}
-            </div>
-            <div class="form-group">
-                {{ form.phone_number.label_tag }} 
-                {{ form.phone_number }}
-            </div>
-            <div class="form-group">
-                {{ form.branch.label_tag }}
-                {{ form.branch }}
-            </div>
-            <div class="form-group">
-                {{ form.subject.label_tag }}
-                {{ form.subject }}
-            </div>
-            <div class="form-group">
-                {{ form.details.label_tag }}
-                {{ form.details }}
-            </div>
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
+        <div class="form-container">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.name.label_tag }} 
+                    {{ form.name }}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label_tag }} 
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    {{ form.phone_number.label_tag }} 
+                    {{ form.phone_number }}
+                </div>
+                <div class="form-group">
+                    {{ form.branch.label_tag }}
+                    {{ form.branch }}
+                </div>
+                <div class="form-group">
+                    {{ form.subject.label_tag }}
+                    {{ form.subject }}
+                </div>
+                <div class="form-group">
+                    {{ form.details.label_tag }}
+                    {{ form.details }}
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
     </div>
-</div>
+    </div>
 </body>
 <style>
     /* General styling */
@@ -68,24 +91,105 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.center_div{
+.contact-container{
+    padding: 0;
+    margin: 0;
+}
+
+.contact-container .top-head{
+    margin-top: 3rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.top-head h2{
+    font-size: 3em;
+}
+
+.center_div{
+    display: flex;
+    justify-content: space-around;
+    align-items:first baseline;
     /* height: 100vh; */
     margin-bottom: 4rem;
 
 }
 
+.contact-container .college-web p a{
+    color: black;
+}
+
+.left-contact {
+    padding: 10px;
+    /* background-color: #f9f9f9; */
+    /* border-right: 1px solid #ddd; */
+    /* max-width: 600px; */
+     /* Center the contact section */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.left-contact h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.left-contact p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.left-contact strong {
+    display: block;
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.left-contact .cont-email,
+.left-contact .college-web,
+.left-contact .socials {
+    margin-bottom: 20px; /* Add spacing between sections */
+}
+
+.left-contact a {
+    color: #d67a10;
+    text-decoration: none;
+}
+
+.left-contact a:hover {
+    text-decoration: underline;
+}
+
+.left-contact .social-icon {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.left-contact .social-icon i {
+    font-size: 3em;
+    color: #d67a10;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.left-contact .social-icon i:hover {
+    color: #0c131a;
+}
+
+
 
 
 .form-container {
     margin-top: 2rem;
-    background: #ffffff;
     padding: 30px;
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: center;
    
@@ -116,7 +220,7 @@ body{
     width: 100%;
     padding: 12px 15px;
     border: 1px solid #cccccc;
-    border-radius: 4px;
+    border-radius: 10px;
     background-color: transparent;
     font-size: 16px;
     color: #333333;
@@ -136,15 +240,17 @@ body{
     padding: 12px 0;
     background-color: rgb(224, 132, 12);
     border: none;
-    border-radius: 4px;
-    color: #ffffff;
+    border-radius: 100px;
+    color: rgb(11, 15, 24);
     font-size: 18px;
+    font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
-    background-color: #0096c7;
+    background-color: #0a0e14;
+    color: white;
 }
 
 .submit-btn:focus {
@@ -172,6 +278,49 @@ body{
   ::-webkit-scrollbar-thumb:hover {
     background: #012f5d;
   }
+
+  /* Responsive Design */
+@media (max-width: 768px) {
+    .center_div{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .top-head p{
+        text-align: center;
+        padding: 20px;
+    }
+    .left-contact {
+        padding: 15px;
+    }
+    
+    .left-contact h2 {
+        font-size: 20px;
+    }
+    
+    .left-contact p, .left-contact strong {
+        font-size: 14px;
+    }
+
+    .left-contact .social-icon{
+        gap: 20px;
+    }
+    
+    .left-contact .social-icon i {
+        font-size: 1.5em;
+    }
+}
+
+/* media query for tablet device */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .center_div{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 </style>
 </html>

@@ -144,7 +144,7 @@ body{
     margin-top: 10px;
 }
 
-.connec-btn .connect-btn {
+.alumni-results .profile-details .connec-btn .connect-btn{
     display: flex;
     align-items: center;
     background-color: #111b24; /* LinkedIn Blue */
@@ -157,7 +157,7 @@ body{
     gap: 10px;
 }
 
-.connec-btn .connect-btn button a{
+.alumni-results .profile-details .connec-btn .connect-btn button a{
     text-decoration: none;
     color: white;
 }
@@ -323,13 +323,13 @@ body{
 <div class="search-filter">
     <!-- Search Form -->
     <form method="GET" action="{% url 'alumni_search' %}" class="search">
-        <!-- <label for="alumni">Search Alumni:</label> -->
+        <label for="alumni">Search Alumni:</label>
         <input type="text" id="alumni" name="alumni" value="{{ query }}" placeholder="Search by name, position, company, etc." />
         <button type="submit">Search</button>
     </form>
 
     <form method="get" action="" class="filter">
-        <!-- <label for="graduation_year">Graduation Year:</label> -->
+        <label for="graduation_year">Graduation Year:</label>
         <select id="graduation_year" name="graduation_year">
             <option value="">All Years</option>
             {% for year in graduation_years %}
@@ -337,7 +337,7 @@ body{
             {% endfor %}
         </select>
 
-        <!-- <label for="job_location">Job Location:</label> -->
+        <label for="job_location">Job Location:</label>
         <select id="job_location" name="job_location">
             <option value="">All Locations</option>
             {% for location in job_locations %}
@@ -367,8 +367,8 @@ body{
             <p><strong style="color: #333;">Location:</strong> {{ alumni.location }}</p>
             <p><strong style="color: #333;">Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
-                <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
-                <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
+                <button class="connect-btn"><a href="{{ alumni.linkedin_url }}" target="_blank" style="color: white;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></button>
+                <button class="connect-btn"><a href="" style="color: white;"><i class="fa-solid fa-envelope"></i> Email</a></button>
             </div>
         </a>
         </div>
