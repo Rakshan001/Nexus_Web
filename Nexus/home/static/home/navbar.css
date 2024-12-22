@@ -433,7 +433,7 @@ display: none; /* Hide sidebar by default */
 position: fixed;
 top: 0;
 left: -100%; /* Slide in from off-screen */
-width: 250px;
+width: 280px;
 height: 100%; /* Make 100vh to 100%*/
 background-color: #0e151c;
 color: #fff;
@@ -441,7 +441,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-evenly;
 transition: left 0.3s ease;
-z-index: 1; 
+z-index: 999; 
 padding: 20px;
 }
 
@@ -452,17 +452,25 @@ left: 0; /* Slide in when active */
 .mobSidebar ul {
 list-style-type: none;
 padding: 0;
-margin: 0;
+margin-top: 2rem;
 }
 
 .mobSidebar ul li {
 cursor: pointer;
 padding: 15px;
-border-bottom: 1px solid #ffffff66;
+/* border-bottom: 1px solid #ffffff66; */
+}
+
+.mobSidebar ul li a{
+  text-decoration: none;
+  color: white;
 }
 
 .mobSidebar ul li:hover {
-background-color: #0056b3;
+background-color: #0e151c;
+}
+.mobSidebar ul li a:hover {
+border-bottom: 1px solid white;
 }
 
 .mobSidebar ul .dropdown-content {
@@ -474,12 +482,24 @@ padding-left: 20px;
 display: block;
 }
 
-.login-btn button {
-background-color: #fefefe;
-color: #ec6200;
+
+.profile-section .profile-texts .primary-btn {
+background-color: #df7103;
+color: #ffffff;
 border: none;
 padding: 8px 16px;
-border-radius: 5px;
+border-radius: 100px;
+cursor: pointer;
+font-size: 14px;
+transition: background-color 0.3s;
+width: 100%;
+}
+.profile-section .profile-texts .secondry-btn{
+background-color: transparent;
+border: 2px solid #df7103;
+color: #ffffff;
+padding: 8px 16px;
+border-radius: 100px;
 cursor: pointer;
 font-size: 14px;
 transition: background-color 0.3s;
@@ -500,12 +520,12 @@ border-top: 1px solid #ffffff66;
 
 .mobSidebar .profile-section .profile {
 display: flex;
-align-items: center;
+align-items: left;
 }
 
 .mobSidebar .profile-section .profile-icon {
-width: 40px;
-height: 40px;
+width: 60px;
+height: 60px;
 border-radius: 50%;
 border: 1px solid orange;
 margin-right: 10px;

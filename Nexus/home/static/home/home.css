@@ -1293,9 +1293,17 @@ align-items: center;
     height: 20px;
   }
 
+  .follow-nexus{
+    display: none;
+  }
+
   .alumni-h-message{
     display: flex;
     flex-direction: column;
+  }
+
+  .alumni-h-message .speaker-img{
+    display: none;
   }
 
   .deans-text p{
@@ -1363,8 +1371,8 @@ align-items: center;
   position: absolute;
   left: 0;
   top: 0;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-color: #004080; /* Deep red color */
   color: #fff;
@@ -1379,8 +1387,8 @@ align-items: center;
   position: absolute;
   right: 0;
   top: 0;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-color: #004080; /* Deep red color */
   color: #fff;
@@ -1392,6 +1400,14 @@ align-items: center;
   border: 2px solid #f2f2f2; */
   }
   
+  .left-side  h3{
+    font-size: 15px;
+  }
+
+  .right-side .content h3{
+    font-size: 15px;
+  }
+
   .left-side .content {
   text-align: left;
   margin-left: 7rem;

@@ -75,8 +75,8 @@
                     <thead>
                         <tr>
                             <th>S.No</th>
-                            <th>Specialization - Branch - Programme name</th>
-                            <th>Faculty-in-charge</th>
+                            <th>Name</th>
+                            <th>Department</th>
                             <th>Email id</th>
                             <th>Mobile No</th>
                         </tr>
@@ -85,9 +85,8 @@
                         {% for coordinator in student_coordinators %}
                         <tr>
                             <td>{{ coordinator.coordinator_id }}</td>
-                            <td>{{ coordinator.branch }}</td>
                             <td>{{ coordinator.name }}</td>
-
+                            <td>{{ coordinator.branch }}</td>
                             <td>{{ coordinator.email }}</td>
                             <td>{{ coordinator.phone_number }}</td>
                         </tr>
