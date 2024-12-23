@@ -102,7 +102,7 @@ def event_detail(request, event_id):
     return render(request, 'events_cec/event-details.html', {'event': event, 'images': images})
 
 def gallery_view(request):
-    initial_count = 2
+    initial_count = 6
     gallery_images = Gallery.objects.all()
     limit = request.GET.get('limit', initial_count)
     limit = int(limit)

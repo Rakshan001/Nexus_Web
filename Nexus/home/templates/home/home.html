@@ -166,6 +166,76 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="nexus-post-activities">
+            <div class="nexus-activities">
+                <div class="header">
+                    <h2>Nexus Activities</h2>
+                    <div class="social-icons">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="activity-cards">
+                    <div class="card">
+                        <div class="count" data-target="50">0</div>
+                        <p>Podcast</p>
+                        <button>View</button>
+                    </div>
+                    <div class="card">
+                        <div class="count" data-target="30">0</div>
+                        <p>Events</p>
+                        <button>View</button>
+                    </div>
+                    <div class="card">
+                        <div class="count" data-target="60">0</div>
+                        <p>Interactions</p>
+                        <button>View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="post-container">
+                <div class="post">
+                    <div class="post-header">
+                        <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
+                        <span>cec.nexus</span>
+                        <div class="icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/home/assets/IMG_5274.JPG" alt="Session" class="post-image">
+                    <div class="share">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-comment"></i>
+                        <i class="fa-solid fa-share"></i>
+                    </div>
+                    <div class="post-caption">
+                        A session on how to improve the Leadership Quality
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="post-header">
+                        <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
+                        <span>cec.nexus</span>
+                        <div class="icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/home/assets/IMG_5266.JPG" alt="Session" class="post-image">
+                    <div class="share">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-regular fa-comment"></i>
+                        <i class="fa-solid fa-share"></i>
+                    </div>
+                    <div class="post-caption">
+                        A session on how to improve the Leadership Quality
+                    </div>
+                </div>
+            </div>
+        </div>
     
         <div class="top-events-display">
             <div class="section-header">
@@ -439,6 +509,31 @@ function togglemenu() {
             },
         });
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+const counters = document.querySelectorAll('.count');
+
+counters.forEach(counter => {
+    const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+
+        const increment = target / 200; // Adjust speed here
+
+        if (current < target) {
+            counter.innerText = Math.ceil(current + increment);
+            setTimeout(updateCount, 10); // Adjust interval here
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    updateCount();
+});
+});
+
+</script>
 
 {% endblock %}
 
