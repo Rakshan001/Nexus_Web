@@ -9,8 +9,15 @@
 
 
     <style>
+
+        body{
+            width: 100%;
+            height: 100vh;
+            
+        }
         
-        h1 {
+        .faculty h1 {
+            margin-top: 2rem;
             text-align: center;
             color: #333;
         }
@@ -20,9 +27,12 @@
         }
         table {
             width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
             border-collapse: collapse;
             box-shadow: 0 2px 3px rgba(0,0,0,0.1);
             border: 1px solid #ddd;
+            overflow-x: hidden;
         }
         th, td {
             padding: 12px;
@@ -30,8 +40,8 @@
             border: 1px solid #ddd;
         }
         th {
-            background-color: #2e7ff9;
-            color: white;
+            background-color: #0c1016;
+            color: rgb(255, 255, 255);
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -39,19 +49,53 @@
         tr:hover {
             background-color: #ddd;
         }
+
+        /* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #e69b10;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0a1219;
+  }
+
+  /* add media queries */
+@media (max-width: 768px) {
+    .faculty h1{
+        font-size: 1.5rem;
+    }
+    .faculty table tr td{
+        overflow: hidden;
+    }
+}
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="faculty">
-            <h1>Faculty-in-charge for Alumni Relations</h1>
+            <h1>Faculty Incharge for Alumni Relations</h1>
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
                             <th>S.No</th>
-                            <th>Specialization - Branch - Programme name</th>
-                            <th>Faculty-in-charge</th>
+                            <th>Name</th>
+                            <th>Branch</th>
                             <th>Email id</th>
                             
                         </tr>

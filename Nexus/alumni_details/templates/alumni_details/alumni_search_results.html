@@ -22,11 +22,11 @@ body{
   h1{
     text-align: center;
     width: 100%;
-    color: rgb(9, 40, 108);
+    color: #0a1219;
     font-size: 30px;
     margin: 20px auto;
     max-width: 70%;
-    border-bottom: 1px solid #003282;
+    border-bottom: 1px solid #d86800;
     /* background-color: rgb(255, 255, 255);
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.393);
     border-radius: 20px; */
@@ -34,55 +34,54 @@ body{
 }
 .search-filter {
     display: flex;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
+    gap: 20px;
+    align-items: center; /* Vertically align items */
+    justify-content: space-around; /* Spread the filters evenly */
     margin: 20px auto; /* Center horizontally */
-    padding: 20px;
+    padding: 15px 20px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    max-width: 1000px; /* Limit the width */
+    max-width: 1200px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.filter, .search {
+.search-filter .search,
+.search-filter .filter {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 20px;
-    /* margin-bottom: 20px; */
+    gap: 10px;
+    align-items: center; /* Ensure vertical alignment */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    width: auto;
 }
 
-label {
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 20px;
-}
-
-select, input[type="text"] {
-    padding: 15px 10px;
-    width: 100%;
-    max-width: 300px; /* Keep input fields aligned */
-    margin-bottom: 10px;
+.search-filter input[type="text"],
+.search-filter select {
+    padding: 10px;
+    width: auto;
+    max-width: 300px;
+    min-width: 150px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
+    height: 40px; /* Ensure consistent height */
 }
 
-button {
-    padding: 15px 15px;
-    background-color: #007bff;
+.search-filter button {
+    padding: 10px 20px;
+    background-color: #d67a10;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    height: 40px; /* Ensure button matches input height */
 }
 
-button:hover {
+.search-filter button:hover {
     background-color: #0056b3;
 }
+
 
 .alumni-results {
     display: flex;
@@ -145,7 +144,7 @@ button:hover {
     margin-top: 10px;
 }
 
-.connec-btn .connect-btn {
+.alumni-results .profile-details .connec-btn .connect-btn{
     display: flex;
     align-items: center;
     background-color: #111b24; /* LinkedIn Blue */
@@ -158,7 +157,7 @@ button:hover {
     gap: 10px;
 }
 
-.connec-btn .connect-btn button a{
+.alumni-results .profile-details .connec-btn .connect-btn button a{
     text-decoration: none;
     color: white;
 }
@@ -238,7 +237,28 @@ button:hover {
     font-weight: bold;           /* Optional: make selected suggestion bold */
 }
 
-
+/* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #e69b10;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0a1219;
+  }
 
 /* mobile width */
 @media screen and (max-width: 768px){
@@ -276,14 +296,9 @@ button:hover {
 <!-- Include Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
-<div class="search-filter">
-    <!-- Search Form -->
-    <form method="GET" action="{% url 'alumni_search' %}" class="search">
-        <label for="alumni">Search Alumni:</label>
-        <input type="text" id="alumni" name="alumni" value="{{ query }}" placeholder="Search by name, position, company, etc." />
-        <button type="submit">Search</button>
-    </form>
-</div>
+<!-- <div class="search-filter">
+    
+</div> -->
 
 <script>
     $(function () {
@@ -306,6 +321,13 @@ button:hover {
 
 <h1>Alumni Search Results</h1>
 <div class="search-filter">
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'alumni_search' %}" class="search">
+        <label for="alumni">Search Alumni:</label>
+        <input type="text" id="alumni" name="alumni" value="{{ query }}" placeholder="Search by name, position, company, etc." />
+        <button type="submit">Search</button>
+    </form>
+
     <form method="get" action="" class="filter">
         <label for="graduation_year">Graduation Year:</label>
         <select id="graduation_year" name="graduation_year">
@@ -323,7 +345,7 @@ button:hover {
             {% endfor %}
         </select>
 
-        <button type="submit">Apply Filters</button>
+        <button type="submit">Search</button>
     </form>
 </div>
 
@@ -345,8 +367,8 @@ button:hover {
             <p><strong style="color: #333;">Location:</strong> {{ alumni.location }}</p>
             <p><strong style="color: #333;">Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
-                <button class="connect-btn"><i class="fa-brands fa-linkedin"></i><a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a></button>
-                <button class="connect-btn"><i class="fa-solid fa-envelope"></i><a href="">Email</a></button>
+                <button class="connect-btn"><a href="{{ alumni.linkedin_url }}" target="_blank" style="color: white;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></button>
+                <button class="connect-btn"><a href="" style="color: white;"><i class="fa-solid fa-envelope"></i> Email</a></button>
             </div>
         </a>
         </div>

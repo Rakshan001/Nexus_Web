@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'events_cec/event-details.css' %}">
     <style>
         #profileLinkDisplay {
-            margin: 10px 0;
+            margin: 5px;
         }
     
         #profileLink {
@@ -33,7 +33,7 @@
     
         .fa-link:hover {
             cursor: pointer;
-            color: #007bff;
+            color: #0f151d;
         }
     </style>
 
@@ -64,11 +64,11 @@
                         <i class="fa-brands fa-linkedin-in"></i>
                         <i class="fa-solid fa-link" id="copyLinkBtn" title="Copy Event Link"></i>
                         
-                        <!-- Add these new elements -->
-                        <div id="copyMessage" style="display: none;">Link copied to clipboard!</div>
-                        <div id="profileLinkDisplay" style="display: none;">
-                            <input type="text" id="profileLink" readonly>
-                        </div>
+                    </div>
+                    <!-- Add these new elements -->
+                    <div id="copyMessage" style="display: none;">Link copied to clipboard!</div>
+                    <div id="profileLinkDisplay" style="display: none;">
+                        <input type="text" id="profileLink" readonly>
                     </div>
                 </div>
                 <div class="event-info">

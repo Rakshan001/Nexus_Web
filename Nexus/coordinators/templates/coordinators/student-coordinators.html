@@ -10,7 +10,8 @@
     <style>
       
         
-        h1 {
+      h1 {
+            margin-top: 2rem;
             text-align: center;
             color: #333;
         }
@@ -20,6 +21,8 @@
         }
         table {
             width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
             border-collapse: collapse;
             box-shadow: 0 2px 3px rgba(0,0,0,0.1);
             border: 1px solid #ddd;
@@ -30,8 +33,8 @@
             border: 1px solid #ddd;
         }
         th {
-            background-color: #2e7ff9;
-            color: white;
+            background-color: #0c1016;
+            color: rgb(255, 255, 255);
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -39,19 +42,41 @@
         tr:hover {
             background-color: #ddd;
         }
+        /* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #e69b10;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0a1219;
+  }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="faculty">
-            <h1>Faculty-in-charge for Alumni Relations</h1>
+            <h1>Student Incharge for Alumni Relations</h1>
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
                             <th>S.No</th>
-                            <th>Specialization - Branch - Programme name</th>
-                            <th>Faculty-in-charge</th>
+                            <th>Name</th>
+                            <th>Department</th>
                             <th>Email id</th>
                             <th>Mobile No</th>
                         </tr>
@@ -60,9 +85,8 @@
                         {% for coordinator in student_coordinators %}
                         <tr>
                             <td>{{ coordinator.coordinator_id }}</td>
-                            <td>{{ coordinator.branch }}</td>
                             <td>{{ coordinator.name }}</td>
-
+                            <td>{{ coordinator.branch }}</td>
                             <td>{{ coordinator.email }}</td>
                             <td>{{ coordinator.phone_number }}</td>
                         </tr>
