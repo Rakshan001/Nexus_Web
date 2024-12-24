@@ -370,18 +370,30 @@ def alumni_by_year(request, graduation_year):
 
 
 '''' Alumni-Profile'''
-from notifications.utils import create_profile_view_notification
+# from notifications.utils import create_profile_view_notification
+# @login_required_with_message
+# def public_alumni_profile(request, alumni_id):
+#     alumni = get_object_or_404(Alumni, pk=alumni_id)
+    
+#     # Create notification only if viewer is not the profile owner
+#     if request.user != alumni.user:
+#         create_profile_view_notification(request.user, alumni.user)
+    
+#     return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', {'alumni': alumni})
+
 @login_required_with_message
 def public_alumni_profile(request, alumni_id):
     alumni = get_object_or_404(Alumni, pk=alumni_id)
+    
+    # Fetch memories for this alumni
+    memories = alumni.memories.all()
     
     # Create notification only if viewer is not the profile owner
     if request.user != alumni.user:
         create_profile_view_notification(request.user, alumni.user)
     
-    return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', {'alumni': alumni})
-
-
+    return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', 
+                 {'alumni': alumni, 'memories': memories})
 
 
 from django.http import JsonResponse
