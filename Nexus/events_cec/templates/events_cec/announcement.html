@@ -18,7 +18,7 @@
         <form method="GET" action="{% url 'event_list' %}" id="event-filter-form">
             <div class="search">
                 <input type="text" name="search" id="event_search" 
-                       placeholder="Search" value="{{ search_query|default:'' }}">
+                       placeholder="Search Events" value="{{ search_query|default:'' }}">
                 <button type="submit">Search</button>
                 <i class="fa-solid fa-filter sort"></i>
             </div>
@@ -204,4 +204,29 @@
     });
 });
 </script>
+
+<script>
+    // Toggle the dropdown for mobile and tablet
+document.querySelector('.fa-filter').addEventListener('click', function() {
+document.querySelector('.categories').classList.toggle('show');
+});
+
+// Close the dropdown if clicking outside of it
+document.addEventListener('click', function(event) {
+const categoryList = document.querySelector('.categories');
+const filterBtn = document.querySelector('.fa-filter');
+if (!filterBtn.contains(event.target) && !categoryList.contains(event.target)) {
+    categoryList.classList.remove('show');
+}
+});
+
+// Toggle 'active' class for selected category
+document.querySelectorAll('.categories').forEach(item => {
+item.addEventListener('click', function() {
+    document.querySelectorAll('.categories').forEach(el => el.classList.remove('active'));
+    this.classList.add('active');
+});
+});
+</script>
+
 {% endblock %}
