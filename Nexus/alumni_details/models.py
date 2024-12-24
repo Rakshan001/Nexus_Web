@@ -1,4 +1,5 @@
-
+import uuid
+import random
 
 # Alumni model
 from django.db import models
@@ -10,6 +11,9 @@ def validate_image_size(image):
     max_size = 1 * 1024 * 1024  # 5 MB limit
     if image.size > max_size:
         raise ValidationError('Image file too large ( > 2MB )')
+
+def generate_random_views():
+    return random.randint(1, 10)
 
 class Alumni(models.Model):
     alumni_id = models.AutoField(primary_key=True)
@@ -37,7 +41,8 @@ class Alumni(models.Model):
     dob = models.DateField()
     is_alumni = models.BooleanField(default=True)
     personal_email = models.EmailField(blank=True, null=True, unique=True)  # Add personal email field
-
+    profile_views = models.IntegerField(default=generate_random_views)  # Random views between 1-10
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

@@ -4,20 +4,21 @@
 
 
 {% block title %}Nexus{% endblock %}
+    
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'alumni_details/css/alumnilist.css' %}">
+<script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
+<link rel="icon" type="image/x-icon" href="../../static/alumni_details/assets/NexusFavicon.png">
+<style>
+    .ui-helper-hidden-accessible {
+    display: none !important;
+}
+</style>
+{% endblock %}
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alumni List</title>
-    <link rel="stylesheet" href="{% static 'alumni_details/css/alumnilist.css' %}">
-    <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="../../static/alumni_details/assets/NexusFavicon.png">
-</head>
-<body>
+
     <div class="alumni-container">
         <!-- Filter Form -->
         <div class="search-filter">
@@ -59,8 +60,14 @@
     <h3>Graduation Year: {{ year }}</h3>
     <div class="alumni-profiles">
         {% for alumni in alumni_list %}
+        
         <div class="alumni-profile">
-            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
+            <!-- Add view count here -->
+        <div class="profile-views">
+            <i class="fa-solid fa-eye"></i>
+            <span>{{ alumni.profile_views }} views</span>
+        </div>
+            <a href="{% url 'public_alumni_profile' alumni.uuid %}">
                 <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" 
                      alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}">
                 <p class="name" style="color: black;">{{ alumni.first_name }} {{ alumni.last_name }}</p>
@@ -112,7 +119,7 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
         .then(data => {
             // Convert years object to array and sort in descending order
             const sortedYears = Object.entries(data.years)
-                .sort((a, b) => parseInt(b[0]) - parseInt(a[0])); // Sort years numerically in descending order
+                .sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
             
             // Add new years and their alumni
             for (const [year, alumniList] of sortedYears) {
@@ -124,16 +131,23 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
                     <div class="alumni-profiles">
                         ${alumniList.map(alumni => `
                             <div class="alumni-profile">
-                                <a href="/alumni/profile/${alumni.id}/">
+                                <div class="profile-views">
+                                    <i class="fa-solid fa-eye"></i>
+                                    <span>${alumni.profile_views || 0} views</span>
+                                </div>
+                                <a href="/alumni/profile/${alumni.uuid}/">
                                     <img src="${alumni.profile_picture || '/static/alumni_details/assets/default.png'}" 
-                                         alt="Profile Picture">
+                                         alt="${alumni.first_name}'s Profile Picture">
                                     <p class="name" style="color: black;">${alumni.first_name} ${alumni.last_name}</p>
-                                    <p class="position">${alumni.current_position} at ${alumni.company_name}</p>
+                                    <p class="position">${alumni.current_position || ''} ${alumni.company_name ? 'at ' + alumni.company_name : ''}</p>
+                                    <p class="position">${alumni.branch || ''}</p>
                                     <div class="connec-btn">
-                                        <button class="connect-btn">
-                                            <i class="fa-brands fa-linkedin"></i>
-                                            <a href="${alumni.linkedin_url}" target="_blank">LinkedIn</a>
-                                        </button>
+                                        ${alumni.linkedin_url ? `
+                                            <button class="connect-btn">
+                                                <i class="fa-brands fa-linkedin"></i>
+                                                <a href="${alumni.linkedin_url}" target="_blank">LinkedIn</a>
+                                            </button>
+                                        ` : ''}
                                         <button class="connect-btn">
                                             <i class="fa-solid fa-envelope"></i>
                                             <a href="">Email</a>
@@ -143,12 +157,12 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
                             </div>
                         `).join('')}
                     </div>
-                    <a href="/alumni/year/${year}/" class="see-more">
+                    <a href="/alumni/alumni/${year}/" class="see-more">
                         <i class="fa-solid fa-arrow-down"></i>See more
                     </a>
                 `;
                 
-                // Insert before the load more button
+                // Insert before the load more button container
                 button.parentElement.before(yearSection);
             }
 
