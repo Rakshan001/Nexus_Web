@@ -16,7 +16,10 @@ urlpatterns = [
     
     #single Alumni profile
 
-    path('alumni-profile/<int:alumni_id>/', views.public_alumni_profile, name='public_alumni_profile'),
+path('alumni-profile/<uuid:uuid>/', views.public_alumni_profile, name='public_alumni_profile'),
+path('share-alumni-profile/', views.share_alumni_profile, name='share_alumni_profile'),
+
+    
 
 
 

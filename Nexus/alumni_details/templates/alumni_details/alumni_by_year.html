@@ -339,7 +339,12 @@ button:hover {
 <div class="alumni-profiles">
     {% for alumni in alumni %}
         <div class="alumni-profile">
-            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
+            <!-- Add view count here -->
+            <div class="profile-views">
+                <i class="fa-solid fa-eye"></i>
+                <span>{{ alumni.profile_views }} views</span>
+            </div>
+            <a href="{% url 'public_alumni_profile' alumni.uuid  %}">
             <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}" width="100" height="100">
             <p class="name" >{{ alumni.first_name }} {{ alumni.last_name }}</p>
             <p class="job">{{ alumni.current_position }} at {{ alumni.company_name }}</p>

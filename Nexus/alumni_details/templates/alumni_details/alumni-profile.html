@@ -247,8 +247,89 @@
 
     <!-- Include QRCode.js library -->
      
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the share URL via AJAX
+            fetch('{% url "share_alumni_profile" %}')
+                .then(response => response.json())
+                .then(data => {
+                    const profileLink = data.public_url;  // This will be the public profile URL
+                    
+                    // Generate QR Code
+                    const qrCodeContainer = document.getElementById("qr-code-container");
+                    new QRCode(qrCodeContainer, {
+                        text: profileLink,
+                        width: 100,
+                        height: 100,
+                    });
+                
+                    // Setup copy link functionality
+                    const copyLinkBtn = document.getElementById("copyLinkBtn");
+                    const copyMessage = document.getElementById("copyMessage");
+                    const profileLinkDisplay = document.getElementById("profileLinkDisplay");
+                    const profileLinkInput = document.getElementById("profileLink");
+                
+                    copyLinkBtn.addEventListener("click", function() {
+                        profileLinkDisplay.style.display = "block";
+                        profileLinkInput.value = profileLink;
+                
+                        // Copy to clipboard
+                        profileLinkInput.select();
+                        document.execCommand("copy");
+                
+                        // Show success message
+                        copyMessage.style.display = "block";
+                        copyMessage.textContent = "Link copied to clipboard!";
+                
+                        // Hide message after 3 seconds
+                        setTimeout(() => {
+                            copyMessage.style.display = "none";
+                            profileLinkDisplay.style.display = "none";
+                        }, 3000);
+                    });
+        
+                    // Social sharing functionality
+                    const shareButtons = {
+                        facebook: document.querySelector('.fa-facebook'),
+                        twitter: document.querySelector('.fa-twitter'),
+                        linkedin: document.querySelector('.fa-linkedin')
+                    };
+        
+                    if (shareButtons.facebook) {
+                        shareButtons.facebook.addEventListener('click', () => {
+                            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(profileLink)}`);
+                        });
+                    }
+        
+                    if (shareButtons.twitter) {
+                        shareButtons.twitter.addEventListener('click', () => {
+                            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(profileLink)}`);
+                        });
+                    }
+        
+                    if (shareButtons.linkedin) {
+                        shareButtons.linkedin.addEventListener('click', () => {
+                            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(profileLink)}`);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const copyMessage = document.getElementById("copyMessage");
+                    if (copyMessage) {
+                        copyMessage.style.display = "block";
+                        copyMessage.style.color = "red";
+                        copyMessage.textContent = "Error generating share link";
+                        setTimeout(() => {
+                            copyMessage.style.display = "none";
+                        }, 3000);
+                    }
+                });
+        });
+    </script>
+    // ... existing code ...
+    <!-- 
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

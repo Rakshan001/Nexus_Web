@@ -8,6 +8,8 @@ from django.conf import settings
 from django.contrib import messages
 from utils.decorators import login_required_with_message  # Import the decorator
 from notifications.utils import create_profile_view_notification
+import uuid
+from django.urls import reverse 
 
 
 
@@ -202,28 +204,26 @@ def load_more_years(request):
     page = int(request.GET.get('page', 0))
     years_per_load = 2  # Number of additional years to load
     
-    # Get all graduation years
     graduation_years = Alumni.objects.values_list('graduation_year', flat=True).distinct().order_by('-graduation_year')
     
-    # Calculate the range for the next batch of years
     start_idx = page
     end_idx = page + years_per_load
-    
-    # Get the next batch of years
     next_years = graduation_years[start_idx:end_idx]
     
-    # Prepare the data for the response
     data = {}
     for year in next_years:
         alumni_list = Alumni.objects.filter(graduation_year=year).order_by('first_name')[:5]
         data[year] = [{
             'id': alumni.alumni_id,
+            'uuid': alumni.uuid,  # Make sure to include uuid
             'first_name': alumni.first_name,
             'last_name': alumni.last_name,
             'current_position': alumni.current_position,
             'company_name': alumni.company_name,
+            'branch': alumni.branch,
             'linkedin_url': alumni.linkedin_url,
             'profile_picture': alumni.profile_picture.url if alumni.profile_picture else None,
+            'profile_views': alumni.profile_views,  # Add this line
         } for alumni in alumni_list]
     
     return JsonResponse({
@@ -382,18 +382,46 @@ def alumni_by_year(request, graduation_year):
 #     return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', {'alumni': alumni})
 
 @login_required_with_message
-def public_alumni_profile(request, alumni_id):
-    alumni = get_object_or_404(Alumni, pk=alumni_id)
-    
-    # Fetch memories for this alumni
+def public_alumni_profile(request, uuid):
+    alumni = get_object_or_404(Alumni, uuid=uuid)
     memories = alumni.memories.all()
     
-    # Create notification only if viewer is not the profile owner
-    if request.user != alumni.user:
+    # Get session key for this profile
+    profile_view_key = f'profile_view_{uuid}'
+    
+    # Only increment view if:
+    # 1. Viewer is not the profile owner
+    # 2. Haven't viewed in this session
+    if request.user != alumni.user and not request.session.get(profile_view_key):
+        # Set session key to prevent multiple counts from same session
+        request.session[profile_view_key] = True
+        # Increment view count
+        alumni.profile_views += 1
+        alumni.save(update_fields=['profile_views'])
+        # Create notification
         create_profile_view_notification(request.user, alumni.user)
     
     return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', 
                  {'alumni': alumni, 'memories': memories})
+
+
+def share_alumni_profile(request):
+    try:
+        # Get the current user's alumni profile
+        alumni_profile = Alumni.objects.get(user=request.user)
+        
+        # Generate or get UUID for the profile
+        if not alumni_profile.uuid:  # Changed from share_uuid to uuid to match model
+            alumni_profile.uuid = str(uuid.uuid4())
+            alumni_profile.save()
+        
+        # Generate the full URL for the public profile
+        public_url = request.build_absolute_uri(
+            reverse('public_alumni_profile', kwargs={'uuid': alumni_profile.uuid})  # Changed from share_uuid to uuid
+        )
+        return JsonResponse({'public_url': public_url})
+    except Alumni.DoesNotExist:
+        return JsonResponse({'error': 'Profile not found'}, status=404)
 
 
 from django.http import JsonResponse
@@ -662,6 +690,12 @@ def council_members_view(request):
         members.sort(key=lambda x: role_order.get(x.role, 5))  # Use 5 as default for any undefined roles
     
     return render(request, 'alumni_details/council_member_list.html', {'grouped_council_members': grouped_council_members})
+
+
+
+
+
+
 
 
 

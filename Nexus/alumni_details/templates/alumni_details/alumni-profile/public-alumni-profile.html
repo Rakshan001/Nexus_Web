@@ -17,6 +17,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <style>
+            #profileLinkDisplay {
+    margin: 10px 0;
+}
+
+#profileLink {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+}
+
+#copyMessage {
+    color: green;
+    margin: 10px 0;
+    font-size: 14px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fa-link:hover {
+    cursor: pointer;
+    color: #007bff;
+}
+        .profile-stats {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+    
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+    
+        .stat-item i {
+            color: #007bff;
+        }
+    </style>
     
 {% endblock %}
 
@@ -38,6 +81,12 @@
                 <Strong>{{ alumni.first_name }} {{ alumni.last_name }}</Strong>
                 <p> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
             </div>
+        </div>
+    </div>
+    <div class="profile-stats">
+        <div class="stat-item">
+            <i class="fa-solid fa-eye"></i>
+            <span>{{ alumni.profile_views }} Profile Views</span>
         </div>
     </div>
         <!-- <div class="connect">
@@ -71,20 +120,28 @@
                 </div>
             </div>
             
-            <!-- <div class="share-profile">
+            <div class="share-profile">
                 <h3>Share My Profile</h3>
                 <div class="social-icons">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-linkedin"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-solid fa-link"></i>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <button id="copyLinkBtn">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
                 </div>
-                <div class="qr-code" id="qr-code-container">
-                    
+                <div id="profileLinkDisplay" style="display: none;">
+                    <input type="text" id="profileLink" readonly>
+                    <span id="copyMessage"></span>
                 </div>
-                
-            </div> -->
+                <div class="qr-code" id="qr-code-container"></div>
+            </div>
         </div>
         <div class="right-side">
             <div class="profile-details">
@@ -158,19 +215,47 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const qrCodeContainer = document.getElementById("qr-code-container");
-    const profileLink = "https://google.com"; // Replace with the actual profile link
 
-    new QRCode(qrCodeContainer, {
-        text: profileLink,
-        width: 100,
-        height: 100,
-    });
-});
-
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the current URL of the profile page
+            const profileLink = window.location.href;
+            
+            // Generate QR Code
+            const qrCodeContainer = document.getElementById("qr-code-container");
+            new QRCode(qrCodeContainer, {
+                text: profileLink,
+                width: 100,
+                height: 100,
+            });
+        
+            // Setup copy link functionality
+            const copyLinkBtn = document.getElementById("copyLinkBtn");
+            const copyMessage = document.getElementById("copyMessage");
+            const profileLinkDisplay = document.getElementById("profileLinkDisplay");
+            const profileLinkInput = document.getElementById("profileLink");
+        
+            copyLinkBtn.addEventListener("click", function() {
+                // Show the link input
+                profileLinkDisplay.style.display = "block";
+                profileLinkInput.value = profileLink;
+        
+                // Copy to clipboard
+                profileLinkInput.select();
+                document.execCommand("copy");
+        
+                // Show success message
+                copyMessage.style.display = "block";
+                copyMessage.textContent = "Link copied to clipboard!";
+        
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    copyMessage.style.display = "none";
+                    profileLinkDisplay.style.display = "none";
+                }, 3000);
+            });
+        });
+    </script>
     <script>
         var swiper = new Swiper('.s1', {
             navigation: {

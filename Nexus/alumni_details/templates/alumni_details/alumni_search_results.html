@@ -353,15 +353,19 @@ body{
 <div class="alumni-results">
     {% for alumni in page_obj.object_list %}
     <div class="alumni-profile-card">
+        <div class="profile-views">
+            <i class="fa-solid fa-eye"></i>
+            <span>{{ alumni.profile_views }} views</span>
+        </div>
         <div class="profile-image">
-            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
+            <a href="{% url 'public_alumni_profile' alumni.uuid %}">
 
 
           <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}">
 
         </div>
         <div class="profile-details" >
-            <a href="{% url 'public_alumni_profile' alumni.alumni_id %}">
+            <a href="{% url 'public_alumni_profile' alumni.uuid %}">
             <h3>{{ alumni.first_name }} {{ alumni.last_name }}</h3>
             <p><strong style="color: #333;">Graduation Year:</strong> {{ alumni.graduation_year }}</p>
             <p><strong style="color: #333;">Location:</strong> {{ alumni.location }}</p>

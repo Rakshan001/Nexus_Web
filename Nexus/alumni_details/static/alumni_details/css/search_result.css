@@ -42,3 +42,24 @@
     color: #555;
     font-size: 1em;
 }
+.profile-views {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 8px 0;
+    padding: 4px 8px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #666;
+}
+
+.profile-views i {
+    color: #007bff;
+    font-size: 14px;
+}
+
+/* Hover effect */
+.alumni-profile:hover .profile-views {
+    background-color: #e9ecef;
+}
