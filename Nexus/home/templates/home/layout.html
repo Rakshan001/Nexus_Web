@@ -110,6 +110,13 @@
                                 <button class="secondry-btn std-logout">
                                     <img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt=""><a href="{% url 'user_logout' %}" class="logout-link">Sign Out</a>
                                 </button>
+                                {% if user.is_staff %}
+                    <div class="admin-panel-btn">
+                        <button class="primary-btn">
+                            <a href="{% url 'admin:index' %}"><i class="fa-solid fa-gear"></i> Admin Panel</a>
+                        </button>
+                    </div>
+                {% endif %}
                                 </div>
                             {% else %}
                             <div class="not-signedin"><p>Please login to access more features.</p>
@@ -237,6 +244,7 @@
                         {% endif %}
                     </div>
                 </div>
+                
                 <!-- <button>Profile</button>
                 <button><a href="/login" class="logout-link">Sign Out</a></button> -->
             </div>

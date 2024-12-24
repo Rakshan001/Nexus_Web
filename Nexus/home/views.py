@@ -78,3 +78,63 @@ def webTeam(request):
     return render(request, 'home/webTeam.html')
 
 
+from django.utils import timezone
+from events_cec.models import Event
+
+def home(request):
+    now = timezone.now()
+    current_date = now.date()
+    current_time = now.time()
+
+    # First, try to get an ongoing event
+    ongoing_events = Event.objects.filter(
+        date=current_date,
+        time__lte=current_time
+    ).order_by('time')[:1]
+
+    # If no ongoing event, try to get an upcoming event
+    upcoming_events = Event.objects.filter(
+        date__gte=current_date
+    ).exclude(
+        date=current_date,
+        time__lte=current_time
+    ).order_by('date', 'time')
+
+    # Get past events
+    past_events = Event.objects.filter(
+        date__lt=current_date
+    ).order_by('-date', '-time')
+
+    events_to_display = []
+    
+    # First card priority logic
+    if ongoing_events:
+        # If there's an ongoing event, use it as first card
+        events_to_display.extend(ongoing_events)
+        # Then add up to 3 upcoming events, if available
+        remaining_upcoming = upcoming_events[:3]
+        events_to_display.extend(remaining_upcoming)
+        # If still need more, add past events
+        slots_remaining = 4 - len(events_to_display)
+        if slots_remaining > 0:
+            events_to_display.extend(past_events[:slots_remaining])
+    
+    elif upcoming_events:
+        # If no ongoing but has upcoming, use first upcoming as first card
+        first_upcoming = upcoming_events[:1]
+        events_to_display.extend(first_upcoming)
+        # Add up to 3 past events
+        events_to_display.extend(past_events[:3])
+    
+    else:
+        # If no ongoing or upcoming events, show 4 past events
+        events_to_display.extend(past_events[:4])
+
+    # Add current time context for template status display
+    context = {
+        'events': events_to_display,
+        'current_date': current_date,
+        'current_time': current_time,
+    }
+    
+    return render(request, 'home/home.html', context)

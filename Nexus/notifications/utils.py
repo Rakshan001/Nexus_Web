@@ -31,7 +31,7 @@ def create_profile_view_notification(viewer, profile_owner):
                 viewer_name = f"{alumni.first_name} {alumni.last_name}"
                 notification_type = 'profile_view_alumni'
                 viewer_photo = alumni.profile_picture.url if alumni.profile_picture else '/static/images/default_alumni.png'
-                viewer_profile_url = reverse('public_alumni_profile', kwargs={'alumni_id': alumni.alumni_id})
+                viewer_profile_url = reverse('public_alumni_profile', kwargs={'uuid': alumni.uuid})
 
         except Exception as e:
             print(f"Error determining viewer type: {e}")

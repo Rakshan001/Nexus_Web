@@ -1,6 +1,6 @@
 from django.db import models
 
-class Video(models.Model):
+class Podcast(models.Model):
     title = models.CharField(max_length=255)
     youtube_url = models.URLField(max_length=500)
     uploaded_at = models.DateTimeField(auto_now_add=True)  # Automatically set to now when the object is created

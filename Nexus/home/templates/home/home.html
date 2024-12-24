@@ -18,15 +18,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+
 {% endblock %}
 
 
 
-
-
-
-
-<body>
     
     
     {% block content %}
@@ -240,60 +236,37 @@
         <div class="top-events-display">
             <div class="section-header">
                 <span class="line"></span>
-                <div class="label">Upcoming Events</div>
+                <div class="label">Events</div>
                 <span class="line"></span>
             </div>
             <div class="swiper-container s1">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <div class="card-content">
-                                <h2>Event-1</h2>
-                                <p>Academic Preparation is a program designed to help students</p>
-                                <p><i class="fa-solid fa-location-dot"></i> Location: </p>
-                                <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
-                                <button class="button">View</button>
-                                
-                            </div>
-                            <div class="card-image">
-                                <img src="../../static/home/assets/diwali.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <div class="card-content">
-                                <h2>Event-2</h2>
-                                <p>Academic Preparation is a program designed to help students</p>
-                                <p><i class="fa-solid fa-location-dot"></i> Location: </p>
-                                <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
-                                
-                                <button class="button">View</button>
-                                
-                            </div>
-                            <div class="card-image">
-                                <img src="../../static/home/assets/Academic Preparation.png" alt="">
+                    {% for event in events %}
+                        <div class="swiper-slide">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h2>{{ event.event_title }}</h2>
+                                    <p>{{ event.description|truncatewords:20 }}</p>
+                                    <p><i class="fa-solid fa-location-dot"></i> Location: {{ event.location }}</p>
+                                    <p><i class="fa-solid fa-calendar-days"></i> Date: {{ event.date }}</p>
+                                    {% if event.time %}
+                                        <p><i class="fa-solid fa-clock"></i> Time: {{ event.time }}</p>
+                                    {% endif %}
+                                    
+                                    
+                                    
+                                    <a href="{% url 'event_detail' event.event_id %}" class="button">View</a>
+                                </div>
+                                <div class="card-image">
+                                    {% if event.poster %}
+                                        <img src="{{ event.poster.url }}" alt="{{ event.event_title }}">
+                                    {% else %}
+                                        <img src="{% static 'home/assets/default-event.png' %}" alt="Default Event Image">
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <div class="card-content">
-                                <h2>Event-3</h2>
-                                <p>Academic Preparation is a program designed to help students</p>
-                                <p><i class="fa-solid fa-location-dot"></i> Location: </p>
-                                <p><i class="fa-solid fa-calendar-days"></i> Date: </p>
-                                
-                                <button class="button">View</button>
-                                
-                            </div>
-                            <div class="card-image">
-                                <img src="../../static/home/assets/Academic Preparation.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
+                    {% endfor %}
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
