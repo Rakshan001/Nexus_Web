@@ -40,6 +40,58 @@
     cursor: pointer;
     color: #007bff;
 }
+    /* Success Message Styling */
+    .messages-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        min-width: 300px;
+    }
+
+    .alert {
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-in 4.5s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .alert-success {
+        background-color: #ffffff;
+        border-left: 4px solid #28a745;
+        color: #1e7e34;
+    }
+
+    .alert::before {
+        content: '✓';
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
 </style>
     
 {% endblock %}
@@ -194,8 +246,9 @@
 
 
     <!-- Include QRCode.js library -->
+     
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -236,7 +289,7 @@
                 }, 3000);
             });
         });
-    </script>
+    </script> -->
     <script>
         var swiper = new Swiper('.s1', {
             navigation: {

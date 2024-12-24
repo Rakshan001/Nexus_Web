@@ -7,6 +7,7 @@ import os
 from django.conf import settings
 from django.contrib import messages
 from utils.decorators import login_required_with_message  # Import the decorator
+from notifications.utils import create_profile_view_notification
 
 
 
@@ -369,15 +370,30 @@ def alumni_by_year(request, graduation_year):
 
 
 '''' Alumni-Profile'''
-from django.shortcuts import render, get_object_or_404
-from .models import Alumni  # Adjust import based on your app structure
+# from notifications.utils import create_profile_view_notification
+# @login_required_with_message
+# def public_alumni_profile(request, alumni_id):
+#     alumni = get_object_or_404(Alumni, pk=alumni_id)
+    
+#     # Create notification only if viewer is not the profile owner
+#     if request.user != alumni.user:
+#         create_profile_view_notification(request.user, alumni.user)
+    
+#     return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', {'alumni': alumni})
 
+@login_required_with_message
 def public_alumni_profile(request, alumni_id):
     alumni = get_object_or_404(Alumni, pk=alumni_id)
-    return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', {'alumni': alumni})
-
-
-
+    
+    # Fetch memories for this alumni
+    memories = alumni.memories.all()
+    
+    # Create notification only if viewer is not the profile owner
+    if request.user != alumni.user:
+        create_profile_view_notification(request.user, alumni.user)
+    
+    return render(request, 'alumni_details/alumni-profile/public-alumni-profile.html', 
+                 {'alumni': alumni, 'memories': memories})
 
 
 from django.http import JsonResponse

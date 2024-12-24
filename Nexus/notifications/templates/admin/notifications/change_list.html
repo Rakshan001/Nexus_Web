@@ -1,0 +1,52 @@
+{# notifications/templates/admin/notifications/notification/change_list.html #}
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    .bulk-notification-btn {
+        background: linear-gradient(45deg, #2196F3, #00BCD4);
+        color: white !important;
+        padding: 8px 16px !important;
+        border-radius: 20px !important;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        display: inline-flex !important;
+        align-items: center;
+        font-weight: 500;
+    }
+
+    .bulk-notification-btn:hover {
+        background: linear-gradient(45deg, #1976D2, #0097A7);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        transform: translateY(-1px);
+    }
+
+    .bulk-notification-btn::before {
+        content: "📨";
+        margin-right: 8px;
+        font-size: 1.1em;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .bulk-notification-btn {
+            padding: 6px 12px !important;
+            font-size: 0.9em;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block object-tools-items %}
+    {% if show_bulk_notification_button %}
+    <li>
+        <a href="{% url 'admin:notifications_notification_send_bulk' %}" class="bulk-notification-btn">
+            Send Bulk Notification
+        </a>
+    </li>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}

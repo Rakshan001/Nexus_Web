@@ -1,0 +1,53 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+
+
+{% block title %}NEXUS WEB TEAM{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'home/webTeam.css' %}">
+{% endblock %}
+
+
+{% block content %}
+  <header>
+    <h1>NEXUS Web Team</h1>
+  </header>
+  <section class="team-container">
+    
+    <div class="team-card">
+      <img src="{% static 'home/assets/Rahul.jpg' %}" alt="Gloria Woods" class="profile-img">
+      <h3>Mr. M Rahul Bhat</h3>
+      <p class="role">Tech Lead</p>
+      <p class="description">Use this space to share some details about your team member.</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="{% static 'home/assets/AnshuPotrait.jpg' %}" alt="Linda Willis" class="profile-img">
+      <h3>Mr. Anshu Shetty</h3>
+      <p class="role">Frontend Developer</p>
+      <p class="description">Use this space to share some details about your team member.</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="{% static 'home/assets/person-4.png' %}" alt="Susan Dean" class="profile-img">
+      <h3>Mr. Rakshan Shetty</h3>
+      <p class="role">Backend Developer</p>
+      <p class="description">Use this space to share some details about your team member.</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

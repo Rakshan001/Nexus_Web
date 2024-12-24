@@ -1,73 +1,168 @@
 {% extends 'home/layout.html' %}
 {% load static %}
 
-
-
 {% block title %}Podcast{% endblock %}
 
 {% block content %}
-    <style>
-        
-        h1 {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: #fff;
-            margin: 0;
-        }
-        .video-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-        }
-        .video-container {
-            flex: 1 1 300px;
-            background-color: #fff;
-            margin: 10px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 560px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        iframe {
-            width: 100%;
-            height: 315px;
-        }
-        @media (max-width: 768px) {
-            .video-container {
-                max-width: 100%;
-            }
-            iframe {
-                height: 200px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <h1>Video List</h1>
-    <div class="video-list">
-        {% for video in videos %}
-            <div class="video-container">
-                <h2>{{ video.title }}</h2>
+<style>
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+    }
+    
+    .video-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 15px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .video-title {
+        margin-bottom: 15px;
+        color: #333;
+        font-size: 1.5em;
+    }
+
+    .error-message {
+        color: #721c24;
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        padding: 10px;
+        border-radius: 4px;
+        margin: 10px 0;
+    }
+
+    .participants-section {
+        margin-top: 20px;
+        padding: 15px;
+        border-top: 1px solid #eee;
+    }
+
+    .participant-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .participant-card {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .participant-card:hover {
+        background: #e9ecef;
+        transform: translateY(-2px);
+    }
+
+    .participant-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    .participant-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .participant-name {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .participant-role {
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    .alumni-profile {
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .alumni-profile:hover {
+        text-decoration: none;
+    }
+</style>
+
+<div class="container">
+    {% for podcast in podcasts %}
+        <div class="video-container">
+            <h2 class="video-title">{{ podcast.title }}</h2>
+            <div class="video-wrapper">
                 <iframe 
-                    src="{{ video.embed_url }}" 
-                    title="{{ video.title }}" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
-                    allowfullscreen>
+                    src="{{ podcast.embed_url }}"
+                    title="{{ podcast.title }}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    allowfullscreen
+                    loading="lazy">
                 </iframe>
             </div>
-        {% empty %}
+
+            <div class="participants-section">
+                <h3>Participants</h3>
+                <div class="participant-list">
+                    {% for participant in podcast.participants.all %}
+                        {% if participant.role == 'ALUMNI' %}
+                            <a href="{% url 'alumni_profile' participant.user.id %}" class="alumni-profile">
+                                <div class="participant-card">
+                                    {% if participant.profile_image %}
+                                        <img src="{{ participant.profile_image.url }}" alt="{{ participant.user.get_full_name }}" class="participant-image">
+                                    {% else %}
+                                        <img src="{% static 'images/default-profile.png' %}" alt="Default Profile" class="participant-image">
+                                    {% endif %}
+                                    <div class="participant-info">
+                                        <span class="participant-name">{{ participant.user.get_full_name }}</span>
+                                        <span class="participant-role">{{ participant.role }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        {% else %}
+                            <div class="participant-card">
+                                <div class="participant-info">
+                                    <span class="participant-name">{{ participant.user.get_full_name }}</span>
+                                    <span class="participant-role">{{ participant.role }}</span>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if debug %}
+                <div class="debug-info">
+                    <p>Original URL: {{ podcast.youtube_url }}</p>
+                    <p>Embed URL: {{ podcast.embed_url }}</p>
+                </div>
+            {% endif %}
+        </div>
+    {% empty %}
+        <div class="video-container">
             <p>No videos available.</p>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

@@ -11,6 +11,7 @@ class AlumniUpdateForm(forms.ModelForm):
         ]
         widgets = {
             'dob': forms.DateInput(attrs={'type': 'date'}),
+            'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),  # This will hide the clear checkbox
         }
 
     def __init__(self, *args, **kwargs):
