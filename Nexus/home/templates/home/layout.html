@@ -66,6 +66,12 @@
 
                         </ul>
                     </li>
+                    <li>
+                        <a href="{% url 'notifications:notification_panel' %}">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count" id="unreadNotificationCount"></span>
+                        </a>
+                    </li>
                     <li class="login-btn-mobile">
                         <button id="loginBtn">Login</button>
                     </li>
@@ -138,7 +144,7 @@
                             <li><a href=""><i class="fa-solid fa-podcast"></i> Podcast</a></li>
                             <li><a href=""><i class="fa-solid fa-calendar-days"></i> Events</a></li>
                             <li><a href=""><i class="fa-solid fa-user-graduate"></i> Find Nearby Alumni</a></li>
-                            <li><a href=""><img src="../../static/home/assets/workspaces_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Nexus Team</a></li>
+                            <li><a href="{% url 'nexusTeam' %}"><img src="../../static/home/assets/workspaces_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Nexus Team</a></li>
                         </div>
                         <!-- Notification Count -->
                         {% if user.is_authenticated %}
@@ -257,7 +263,9 @@
     </div>
 
     <!-- Main Content -->
- 
+    <div class="help-block">
+        <a href="#" class="help-link">Need Help? | <i class="fa-solid fa-headset"></i></a> 
+      </div>
     
         <!-- Add your page-specific content here -->
         {% block content %}
@@ -294,7 +302,6 @@
                         <li><a href="#">New students</a></li>
                         <li><a href="#">Alumni</a></li>
                         <li><a href="#">Blogs</a></li>
-                        <li><a href="{% url 'webTeam' %}">Web Team</a></li> 
                     </ul>
                 </div>
                 <div class="column">
@@ -302,7 +309,6 @@
                     <ul>
                         <li><a href="#">Events</a></li>
                         <li><a href="#">Alumni</a></li>
-                        <li><a href="{% url 'nexusTeam' %}">Nexus Team</a></li>
                         <li><a href="#">Podcast</a></li>
                         <li><a href="#">Query</a></li>
                         <li><a href="#">Student Coordinators</a></li>
@@ -328,7 +334,7 @@
                     <a href="#">Privacy</a>
                     <a href="#">Terms of use</a>
                     <a href="#">Cookies</a>
-                    <a href="#">Nexus Web Team</a>
+                    <a href="{% url 'webTeam' %}">Nexus Web Team</a>
                 </div>
             </div>
         </div>
