@@ -22,13 +22,9 @@
             height: 100vh;
         }
 
-        /* Header */
-        header {
-            text-align: center;
-            padding: 20px;
-        }
-
+     
         .welcome-text {
+            text-align: center;
             margin: 40px 0;
             padding: 20px;
             border-radius: 50px 0 50px 0;
@@ -51,6 +47,7 @@
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 10px;
             padding: 20px;
+            position: relative;
         }
 
         .gallery-item {
@@ -121,7 +118,7 @@
             background-color: rgb(244, 244, 244);
             position: relative;
             margin: auto;
-            margin-top: 5rem;
+            margin-top: 8rem;
             padding: 20px;
             max-width: 700px;
             border-radius: 20px;
@@ -169,7 +166,7 @@
         /* Styles for the see-more button */
         /* See More button */
         .see-more {
-            position: fixed;
+            position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
@@ -230,12 +227,12 @@
 
         /* Linear gradient for the bottom overlay */
         .gradient-overlay {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 40vh;
-            background: linear-gradient(to top, rgb(165, 107, 0), rgba(161, 73, 1, 0));
+            background: linear-gradient(to top, rgb(165, 107, 0), rgba(165, 107, 0, 0.507), rgba(161, 73, 1, 0));
             z-index: 1;
         }
 
@@ -352,14 +349,14 @@
     </script> -->
  {% endblock %}
     {% block content %}
-    <header>
+ 
         
         <div class="welcome-text">
             <h1>Welcome to the Past Events Gallery</h1>
             <!-- <p>Creation by CEC NEXUS</p> -->
         </div>
         
-    </header>
+
     <div id="gallery-container" class="gallery">
         {% for image in images %}
         <div class="gallery-item" data-title="{{ image.title }}" data-date="{{ image.date_uploaded|date:"Y-m-d" }}">
@@ -370,8 +367,6 @@
         </div>
         
         {% endfor %}
-    </div>
-    <div class="container-xxl">
         <div class="gradient-overlay"></div>
         <div class="see-more">
             {% if loaded_count < total_count %}
@@ -379,6 +374,9 @@
             {% endif %}
         </div>
     </div>
+    <!-- <div class="container-xxl">
+        
+    </div> -->
             
 
     <div class="modal" id="modal">

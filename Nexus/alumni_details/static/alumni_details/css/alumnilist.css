@@ -54,6 +54,10 @@ body{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.search-filter .mob-filter{
+    display: none;
+}
+
 .filter, .search {
     display: flex;
     align-items: center;
@@ -314,12 +318,28 @@ button:hover {
 /* mobile width */
 @media screen and (max-width: 768px){
     .search-filter {
-        display: flex;
+        display: grid;
         flex-direction: column;
         padding: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .search-filter label{
+        font-weight: 500;
+    }
+
+    /* .search button, .search-filter button{
+        display: none;
+    } */
+
+    .search-filter .mob-filter{
+        display: none;
+        justify-content: space-between;
     }
 
     select, input[type="text"] {
+        /* display: none; */
         max-width: 100%; /* Full width on small screens */
     }
 

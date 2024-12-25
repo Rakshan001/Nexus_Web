@@ -129,7 +129,12 @@
                             {% endif %}
                         </div>
                         <div class="sidebar-middle">
-                            <li><a href=""><i class="fa-solid fa-bell"></i> Notifications</a></li>
+                            <li class="notification-bell">
+                                <a href="{% url 'notifications:notification_panel' %}" class="notification-icon">
+                                    <i class="fas fa-bell"></i> Notification
+                                    <span class="notification-count" id="unreadNotificationCount"></span>
+                                </a>
+                            </li>
                             <li><a href=""><i class="fa-solid fa-podcast"></i> Podcast</a></li>
                             <li><a href=""><i class="fa-solid fa-calendar-days"></i> Events</a></li>
                             <li><a href=""><i class="fa-solid fa-user-graduate"></i> Find Nearby Alumni</a></li>
@@ -137,12 +142,12 @@
                         </div>
                         <!-- Notification Count -->
                         {% if user.is_authenticated %}
-    <div class="notification-bell">
+    <!-- <div class="notification-bell">
         <a href="{% url 'notifications:notification_panel' %}" class="notification-icon">
             <i class="fas fa-bell"></i>
             <span class="notification-count" id="unreadNotificationCount"></span>
         </a>
-    </div>
+    </div> -->
     {% endif %}
                         <div class="social-mediaicons">
                             <h3>Contact Information</h3>

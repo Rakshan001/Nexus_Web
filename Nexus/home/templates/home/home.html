@@ -45,7 +45,7 @@
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
                             <div class="caption-overlay">
                                 <h2>Reconnect, and unlock endless possibilities</h2>
-                                <a href="#explore" class="explore-button">Explore More ></a>
+                                <a href="#explore" class="explore-button">Explore More <i class="fa-solid fa-angle-down"></i></a>
                             </div>
                             
                         </div>
@@ -55,7 +55,7 @@
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
                             <div class="caption-overlay">
                                 <h2>Inaugration of CEC Nexus Club</h2>
-                                <a href="#explore" class="explore-button">Explore More ></a>
+                                <a href="#explore" class="explore-button">Explore More <i class="fa-solid fa-angle-down"></i></a>
                             </div>
                         </div>
                     </div>
@@ -193,7 +193,7 @@
                     </div>
                 </div>
             </div>
-            <div class="post-container">
+            <div class="post-container" onclick="instaredirect()">
                 <div class="post">
                     <div class="post-header">
                         <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
@@ -236,7 +236,7 @@
         <div class="top-events-display">
             <div class="section-header">
                 <span class="line"></span>
-                <div class="label">Events</div>
+                <div class="label">Nexus Events</div>
                 <span class="line"></span>
             </div>
             <div class="swiper-container s1">
@@ -507,6 +507,14 @@ counters.forEach(counter => {
 });
 
 </script>
+
+    <!-- Add your JavaScript function to handle the redirection -->
+    <script>
+        function instaredirect() {
+            // Replace this URL with the actual Instagram page you want to redirect to
+            window.open('https://www.instagram.com/cec.nexus', '_blank');
+        }
+    </script>
 
 {% endblock %}
 

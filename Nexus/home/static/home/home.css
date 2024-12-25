@@ -1,4 +1,5 @@
 /* Existing styles */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -106,6 +107,7 @@ body {
   max-width: 900px;
   text-align: center;
   font-weight: bold;
+  font-family: "Playfair Display", serif;
 }
 
 
@@ -118,7 +120,7 @@ body {
   top: 0;
   left: 0;
   overflow: hidden;
-  transition: width 0.3s ease;
+  /* transition: width 0.3s ease; */
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -407,7 +409,7 @@ body {
 
 /* nexus do css */
 .nexus-do{
-  background-color: #142432;
+  background-color: #13181f;
   position: relative;
   /* width:100%; */
   padding: 10px;
@@ -428,8 +430,8 @@ body {
 .nexus-do .left-side {
   max-width: 700px;
   /* margin: 10px auto; */
-  background-color: #0a1219;
-  color: rgb(246, 246, 246);
+  background-color: #fdfdfd;
+  color: rgb(14, 19, 26);
   padding: 20px;
   margin-left: 2rem;
   margin-bottom: 20px;
@@ -444,8 +446,8 @@ body {
   left: 30rem; */
   max-width: 700px;
   margin-right: 2rem;
-  background-color: #0a1219;
-  color: rgb(246, 246, 246);
+  background-color: #ffffff;
+  color: rgb(14, 19, 26);
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 50px;
@@ -468,7 +470,7 @@ top: 10px;
 width: 120px;
 height: 120px;
 border-radius: 50%;
-background-color: #004080; /* Deep red color */
+background-color: #df7103; /* Deep red color */
 color: #fff;
 display: flex;
 justify-content: center;
@@ -485,7 +487,7 @@ top: 10px;
 width: 120px;
 height: 120px;
 border-radius: 50%;
-background-color: #004080; /* Deep red color */
+background-color: #df7103; /* Deep red color */
 color: #fff;
 display: flex;
 justify-content: center;
@@ -1033,7 +1035,7 @@ align-items: center;
             transform: rotate(180deg); /* Flip to align the text direction */
             font-size: 40px;
             font-family: Arial, sans-serif;
-            font-weight: bold;
+            font-weight: lighter;
             text-align: center;
             color: white;
             background-color: rgb(187, 91, 12);
@@ -1201,7 +1203,7 @@ align-items: center;
 
 .nexus-post-activities{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -1212,6 +1214,7 @@ align-items: center;
   align-items: center;
   gap: 10px;
   margin-top: 5rem;
+  padding: 20px;
 }
 .post {
   width: 300px;
@@ -1479,7 +1482,7 @@ align-items: center;
   .nexus-do .left-side {
     max-width: 500px;
     /* margin: 10px auto; */
-    background-color: #0a1219;
+    background-color: #ffffff;
     padding: 10px;
     /* margin-left: 2rem; */
     margin-bottom: 20px;
@@ -1493,9 +1496,9 @@ align-items: center;
     right: 0;
     left: 30rem; */
     max-width: 500px;
-    margin-right: 0;
-    background-color: #0a1219;
-    padding: 20px;
+    margin-left: 15px;
+    background-color: #ffffff;
+    /* padding: 20px; */
     margin-bottom: 20px;
     border-radius: 50px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.346);
@@ -1517,7 +1520,7 @@ align-items: center;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #004080; /* Deep red color */
+  background-color: #df7103; /* Deep red color */
   color: #fff;
   display: flex;
   justify-content: center;
@@ -1533,7 +1536,7 @@ align-items: center;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #004080; /* Deep red color */
+  background-color: #df7103; /* Deep red color */
   color: #fff;
   display: flex;
   justify-content: center;
@@ -1561,6 +1564,11 @@ align-items: center;
   margin-right: 7rem;
   font-size: 10px;
 
+  }
+
+
+  .right-side .content p{
+    margin: 0;
   }
 
   .follow-nexus h2{

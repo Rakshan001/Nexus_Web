@@ -23,6 +23,9 @@
         <!-- Filter Form -->
         <div class="search-filter">
             <form method="get" action="{% if graduation_year %}{% url 'alumni_by_year' graduation_year %}{% else %}{% url 'alumni_by_year' 0 %}{% endif %}" class="filter">
+                <div class="mob-filter">
+                    <p>Filters</p><i class="fa-solid fa-filter"></i>
+                </div>
                 <label for="graduation_year">Graduation Year:</label>
                 <select id="graduation_year" name="graduation_year">
                     <option value="">Select a year</option>
@@ -63,10 +66,10 @@
         
         <div class="alumni-profile">
             <!-- Add view count here -->
-        <div class="profile-views">
+        <!-- <div class="profile-views">
             <i class="fa-solid fa-eye"></i>
             <span>{{ alumni.profile_views }} views</span>
-        </div>
+        </div> -->
             <a href="{% url 'public_alumni_profile' alumni.uuid %}">
                 <img src="{% if alumni.profile_picture %}{{ alumni.profile_picture.url }}{% else %}{% static 'alumni_details/assets/default.png' %}{% endif %}" 
                      alt="{% if alumni.profile_picture %}{{ alumni.first_name }}'s Profile Picture{% else %}Default Profile Picture{% endif %}">

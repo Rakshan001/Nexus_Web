@@ -173,6 +173,7 @@ body{
 }
 
 .pagination{
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -353,10 +354,10 @@ body{
 <div class="alumni-results">
     {% for alumni in page_obj.object_list %}
     <div class="alumni-profile-card">
-        <div class="profile-views">
+        <!-- <div class="profile-views">
             <i class="fa-solid fa-eye"></i>
             <span>{{ alumni.profile_views }} views</span>
-        </div>
+        </div> -->
         <div class="profile-image">
             <a href="{% url 'public_alumni_profile' alumni.uuid %}">
 

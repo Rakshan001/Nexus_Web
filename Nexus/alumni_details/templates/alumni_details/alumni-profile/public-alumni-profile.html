@@ -52,12 +52,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #666;
+            color: #ffffff;
             font-size: 14px;
         }
     
         .stat-item i {
-            color: #007bff;
+            color: #eeeeee;
         }
     </style>
     
@@ -80,15 +80,16 @@
             <div class="name-role">
                 <Strong>{{ alumni.first_name }} {{ alumni.last_name }}</Strong>
                 <p> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
+                <div class="stat-item">
+                    <i class="fa-solid fa-eye"></i>
+                    <span>{{ alumni.profile_views }} Profile Views</span>
+                </div>
             </div>
         </div>
     </div>
-    <div class="profile-stats">
-        <div class="stat-item">
-            <i class="fa-solid fa-eye"></i>
-            <span>{{ alumni.profile_views }} Profile Views</span>
-        </div>
-    </div>
+    <!-- <div class="profile-stats">
+        
+    </div> -->
         <!-- <div class="connect">
             <h2>Connect Me</h2>
             <div class="social-icons">
