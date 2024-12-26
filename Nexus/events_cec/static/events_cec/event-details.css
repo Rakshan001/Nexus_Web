@@ -33,23 +33,15 @@ body {
     z-index: -1;
 }
 
-.header h1 {
+.event-details-container .header h1 {
     margin: 0 auto;
     width: 100%;
     max-width: 500px;
     position: relative; /* Needed for positioning the pseudo-element */
-    
+    padding-bottom: 1rem;
+    border-bottom:  4px solid #e69b10;
 }
-.header h1::after {
-    content: "";
-    text-align: center;
-    position: absolute;
-    left: 3rem;
-    bottom: -10px; /* Adjusts the distance from the text */
-    width: 40%; /* Makes the line half the width of the h1 */
-    height: 10px; /* Thickness of the underline */
-    background-color: orange;
-  }
+
 .content {
     background-color: white;
     padding: 20px;

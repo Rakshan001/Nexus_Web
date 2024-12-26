@@ -116,14 +116,14 @@
                                 <button class="secondry-btn std-logout">
                                     <img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt=""><a href="{% url 'user_logout' %}" class="logout-link">Sign Out</a>
                                 </button>
-                                {% if user.is_staff %}
-                    <div class="admin-panel-btn">
-                        <button class="primary-btn">
-                            <a href="{% url 'admin:index' %}"><i class="fa-solid fa-gear"></i> Admin Panel</a>
-                        </button>
-                    </div>
-                {% endif %}
-                                </div>
+                            </div>
+                            {% if user.is_staff %}
+                <div class="admin-panel-btn">
+                    <button class="primary-btn">
+                        <a href="{% url 'admin:index' %}"><i class="fa-solid fa-gear"></i> Admin Panel</a>
+                    </button>
+                </div>
+            {% endif %}
                             {% else %}
                             <div class="not-signedin"><p>Please login to access more features.</p>
                                 
@@ -214,7 +214,12 @@
                             <li> <a href="{% url 'student-coordinator-list'%}">Student Coordinators</a></li>
                     </ul>
                 </li>
-                
+                <li>
+                    <a href="{% url 'notifications:notification_panel' %}">
+                        Notifications <i class="fas fa-bell"></i>
+                        <span class="notification-count" id="unreadNotificationCount"></span>
+                    </a>
+                </li>
             </ul>
             <div class="profile-section">
                 <div class="profile">
@@ -264,8 +269,11 @@
 
     <!-- Main Content -->
     <div class="help-block">
-        <a href="#" class="help-link">Need Help? | <i class="fa-solid fa-headset"></i></a> 
-      </div>
+        <div class="help-data">
+            <a href="#" class="help-link">Need Help? |</a>
+            <p>Chatbot <i class="fa-solid fa-headset"></i></p>
+        </div>
+    </div>
     
         <!-- Add your page-specific content here -->
         {% block content %}
@@ -333,8 +341,8 @@
                     <!-- <a href="#">Accessibility</a> -->
                     <a href="#">Privacy</a>
                     <a href="#">Terms of use</a>
-                    <a href="#">Cookies</a>
-                    <a href="{% url 'webTeam' %}">Nexus Web Team</a>
+                    <!-- <a href="#">Cookies</a> -->
+                    <a href="{% url 'webTeam' %}">Nexus Portal Team</a>
                 </div>
             </div>
         </div>

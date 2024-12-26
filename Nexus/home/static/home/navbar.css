@@ -395,13 +395,13 @@ display: none;
 }
 
 
-.student-login{
+.sidebar .student-login{
   padding-bottom: 2rem;
   border-radius: 10px;
   border-bottom: 1px solid white;
 }
 
-.student-login .span{
+.sidebar .student-login .span{
   color: #d88b1d;
 }
 
@@ -570,10 +570,25 @@ text-decoration: none;
   display: inline-block;
   color: white; /* Text color */
   font-size: 14px; /* Text size */
-  padding: 10px 30px; /* Spacing inside the block */
+  padding: 10px; /* Spacing inside the block */
   border-radius: 5px; /* Rounded corners */
   text-decoration: none; /* Remove underline */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add some shadow */
+}
+
+.help-block .help-data{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.help-block .help-data p{
+  cursor: pointer;
+  padding-right: 10px;
+  color: white;
+  margin: 0;
+}
+.help-block .help-data p:hover{
+  text-decoration: underline;
 }
 
 .help-block:hover {
@@ -713,6 +728,36 @@ text-decoration: none;
 .mobSidebar   {
   display: flex; /* Enable sidebar on mobile */
   
+}
+.help-block {
+  position: fixed;
+  bottom: 0; /* Adjust the spacing from the bottom */
+  right: 10px; /* Adjust the spacing from the right */
+  z-index: 1000; /* Ensures it stays above other elements */
+  background-color: #da8300; /* Background color of the block */
+  border-top: 4px solid #0a1219;
+}
+
+.help-link {
+  display: inline-block;
+  color: white; /* Text color */
+  font-size: 14px; /* Text size */
+  padding: 5px; /* Spacing inside the block */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+}
+
+.help-block .help-data{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.help-block .help-data p{
+  cursor: pointer;
+  padding-right: 5px;
+  color: white;
+  margin: 0;
 }
 
 }
