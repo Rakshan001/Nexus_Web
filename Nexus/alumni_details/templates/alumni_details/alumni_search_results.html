@@ -269,6 +269,10 @@ body{
         padding: 10px;
     }
 
+    .search-filter .search label, .filter label{
+        display: none;
+    }
+
     select, input[type="text"] {
         max-width: 100%; /* Full width on small screens */
     }
@@ -320,7 +324,7 @@ body{
     });
 </script>
 
-<h1>Alumni Search Results</h1>
+<h1>Search Results</h1>
 <div class="search-filter">
     <!-- Search Form -->
     <form method="GET" action="{% url 'alumni_search' %}" class="search">
