@@ -75,8 +75,7 @@
         {% endif %}
         {% if all_events.has_next %}
             <div class="event-load-more">
-                <button id="load-more" data-next-page="{{ all_events.next_page_number }}">Load More Events</button>
-                <i class="fa-solid fa-sort-down"></i>
+                <button id="load-more" data-next-page="{{ all_events.next_page_number }}">Load More Events <i class="fa-solid fa-sort-down"></i></button>
             </div>
         {% endif %}
     </div>
