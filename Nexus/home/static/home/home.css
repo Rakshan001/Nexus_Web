@@ -1234,6 +1234,10 @@ align-items: center;
   width: 100%;
 }
 
+.caption-overlay .explore-button{
+  font-size: 12px;
+}
+
 .login-btn button:hover {
   background-color: #002244;
   color: white;

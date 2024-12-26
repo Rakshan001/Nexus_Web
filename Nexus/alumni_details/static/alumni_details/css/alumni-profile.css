@@ -91,12 +91,12 @@ body{
         width: 80%; /* Adjusts width for tablets */
         max-width: 400px;
     }
-    header{
+    /* header{
         height: 400px;
     }
     header::before{
-        background-color: rgba(0, 0, 0, 0.762); /* Black overlay with 50% opacity */
-    }
+        background-color: rgba(0, 0, 0, 0.762);
+    } */
 }
 @media (max-width: 480px) {
     .swiper-wrapper .swiper-slide img {
