@@ -886,6 +886,11 @@ align-items: center;
     padding: 10px;
     border-radius: 100px;
     background-color: #f6f6f6;
+    min-width: 200px;
+  }
+  .nexus-features .view-more:hover{
+    background-color: #0d131a;
+    color: white;
   }
 
 
@@ -964,6 +969,7 @@ align-items: center;
   padding: 20px;
   /* background-color:#0f1820; Black background */
   border-radius: 200px;
+  margin-bottom: 4rem;
 }
 
 /* Line styling */

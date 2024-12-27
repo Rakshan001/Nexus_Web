@@ -24,6 +24,8 @@ body {
   
   .team-card:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(255, 166, 0, 0.479);
+    
   }
   
   .profile-img {
@@ -31,6 +33,7 @@ body {
     height: 150px;
     border-radius: 50%;
     margin-bottom: 15px;
+    border: 3px solid #0c121d;
     object-fit: cover;
   
   }
@@ -47,7 +50,7 @@ body {
   
   .role {
     font-size: 0.9rem;
-    color: #6c63ff;
+    color: #dc7712;
     margin: 5px 0 15px;
   }
   

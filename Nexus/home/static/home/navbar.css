@@ -89,6 +89,7 @@ nav .nav .fa-angle-down {
 nav .nav-ele .dropdown .dropdown-content {
   display: none; /* Hide by default */
   position: absolute;
+  top: 40px;
   left: 0;
   background-color: #0e151c;
   min-width: 160px;

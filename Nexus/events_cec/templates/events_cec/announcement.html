@@ -23,7 +23,7 @@
                 <i class="fa-solid fa-filter sort"></i>
             </div>
             <div class="categories">
-                <p>EVENT CATEGORIES</p>
+                <p class="categ-head">EVENT CATEGORIES</p>
                 <div class="category-list">
                     <p class="category-item {% if not selected_category %}active{% endif %}" 
                        data-category="">All Categories</p>
@@ -33,7 +33,7 @@
                     {% endfor %}
                 </div>
                 <div class="category-list event-status">
-                    <p>EVENT STATUS</p>
+                    <p class="categ-head">EVENT STATUS</p>
                     <p class="category-item {% if not selected_event_type %}active{% endif %}" 
                        data-event-type="">All Events</p>
                     <p class="category-item {% if selected_event_type == 'upcoming' %}active{% endif %}" 

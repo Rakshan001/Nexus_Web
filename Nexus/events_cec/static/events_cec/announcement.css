@@ -34,6 +34,7 @@ flex-direction: row-reverse;
   justify-content: center;
 width: 100%;
 max-width: 700px;
+gap: 15px;
 }
 
 .event-cards .card{
@@ -122,6 +123,7 @@ background-color: #205690;
   background-color: #f9f9f9;
 }
 .filters .search {
+  border: 1px solid black;
   background-color: rgb(255, 255, 255);
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.395); */
   padding: 10px;
@@ -145,8 +147,9 @@ background-color: #205690;
   margin-top: 2rem;
 }
 
-.filters .categories p{
-  font-size: 20px;
+.filters .categories .categ-head{
+  font-size: 25px;
+  padding: 10px;
 }
 
 .filters .categories .category-list{
@@ -170,6 +173,11 @@ background-color: #205690;
 
 .filters .event-status{
   margin-top: 2rem;
+}
+
+.filters .event-status .categ-head{
+  font-family: 25px;
+  padding: 10px;
 }
 
 .filters .category-list  .active{
