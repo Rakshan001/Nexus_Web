@@ -1,9 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
+from alumni_details.models import Alumni,Student
 
 class Podcast(models.Model):
     title = models.CharField(max_length=255)
     youtube_url = models.URLField(max_length=500)
+    description = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)  # Automatically set to now when the object is created
+    hosts = models.ManyToManyField(Student, related_name="hosted_podcasts", blank=True)
+    speakers = models.ManyToManyField(Alumni, related_name="spoken_podcasts", blank=True)
 
     def __str__(self):
         return self.title

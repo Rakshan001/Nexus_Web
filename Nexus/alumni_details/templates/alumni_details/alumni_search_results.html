@@ -379,7 +379,7 @@ body{
             <p><strong style="color: #333;">Current Position:</strong> {{ alumni.current_position }} at {{ alumni.company_name }}</p>
             <div class="connec-btn">
                 <button class="connect-btn"><a href="{{ alumni.linkedin_url }}" target="_blank" style="color: white;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></button>
-                <button class="connect-btn"><a href="" style="color: white;"><i class="fa-solid fa-envelope"></i> Email</a></button>
+                <button class="connect-btn"><a href="mailto:{{ alumni.personal_email }}" style="color: white;"><i class="fa-solid fa-envelope"></i> Email</a></button>
             </div>
         </a>
         </div>
