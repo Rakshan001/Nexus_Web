@@ -6,8 +6,9 @@ from datetime import timedelta
 from .models import Notification
 from django.views.decorators.csrf import csrf_protect
 from django.core.paginator import Paginator
+from utils.decorators import login_required_with_message
 
-@login_required
+@login_required_with_message
 def notification_panel(request):
     # Get notifications from the last 30 days
     thirty_days_ago = timezone.now() - timedelta(days=30)
@@ -29,7 +30,7 @@ def notification_panel(request):
     }
     return render(request, 'notifications/notification_panel.html', context)
 
-@login_required
+@login_required_with_message
 @csrf_protect
 def mark_as_read(request, notification_id):
     if request.method == 'POST':
@@ -45,7 +46,7 @@ def mark_as_read(request, notification_id):
             return JsonResponse({'status': 'error'}, status=404)
     return JsonResponse({'status': 'error'}, status=400)
 
-@login_required
+@login_required_with_message
 @csrf_protect
 def mark_all_as_read(request):
     if request.method == 'POST':
@@ -56,7 +57,7 @@ def mark_all_as_read(request):
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'}, status=400)
 
-@login_required
+@login_required_with_message
 def get_unread_count(request):
     count = Notification.objects.filter(
         recipient=request.user, 

@@ -1,0 +1,267 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="podcasts-container">
+    {% for podcast in podcasts %}
+        <div class="podcast-item">
+            <div class="video-container">
+                <h2 class="video-title">{{ podcast.title }}</h2>
+                <div class="video-wrapper">
+                    <iframe src="{{ podcast.embed_url }}" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Host Section -->
+            <div class="host-section">
+                <h3>Host</h3>
+                <a href="{% url 'public_alumni_profile' podcast.host.uuid %}" class="host-card">
+                    <img src="{{ podcast.host.profile_picture.url }}" 
+                         alt="{{ podcast.host.first_name }}" 
+                         class="host-image">
+                    <div class="host-info">
+                        <span class="host-name">{{ podcast.host.first_name }} {{ podcast.host.last_name }}</span>
+                        <span class="host-batch">{{ podcast.host.batch }}</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Participants Section -->
+            <div class="participants-section">
+                <h3>Participants</h3>
+                <div class="participant-list">
+                    {% for participant in podcast.participants.all %}
+                        <a href="{% url 'public_alumni_profile' participant.uuid %}" class="participant-card">
+                            <img src="{{ participant.profile_picture.url }}" 
+                                 alt="{{ participant.first_name }}" 
+                                 class="participant-image">
+                            <div class="participant-info">
+                                <span class="participant-name">{{ participant.first_name }} {{ participant.last_name }}</span>
+                                <span class="participant-batch">{{ participant.batch }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if podcast.description %}
+            <div class="description-section">
+                <p>{{ podcast.description }}</p>
+            </div>
+            {% endif %}
+        </div>
+    {% empty %}
+        <div class="no-podcasts">
+            <p>No podcasts available.</p>
+        </div>
+    {% endfor %}
+</div>
+
+<style>
+    .podcasts-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .podcast-item {
+        margin-bottom: 40px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .video-container {
+        padding: 20px;
+    }
+
+    .video-title {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .participants-section {
+        padding: 20px;
+        background: #f8f9fa;
+        border-top: 1px solid #eee;
+    }
+
+    .participants-section h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .participant-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .participant-card {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: transform 0.2s ease;
+    }
+
+    .participant-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .participant-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .participant-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .participant-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 4px;
+        text-decoration: none;
+    }
+
+    .participant-name:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
+
+    .participant-role {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .no-podcasts {
+        text-align: center;
+        padding: 40px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+        .participant-list {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .video-title {
+            font-size: 20px;
+        }
+
+        .participant-card {
+            padding: 10px;
+        }
+
+        .participant-image {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .host-section {
+        padding: 20px;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+    }
+
+    .host-card {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s ease;
+    }
+
+    .host-card:hover {
+        transform: translateY(-2px);
+        background: #f0f0f0;
+    }
+
+    .host-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+        border: 3px solid #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .host-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .host-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 4px;
+    }
+
+    .host-batch, .participant-batch {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .description-section {
+        padding: 20px;
+        background: #fff;
+        border-top: 1px solid #eee;
+        line-height: 1.6;
+    }
+
+    /* Update participant card styles */
+    .participant-card {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .participant-card:hover {
+        background: #f0f0f0;
+    }
+</style>
+{% endblock %}
+    
+{% endblock %}
+    
