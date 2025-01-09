@@ -198,7 +198,7 @@ body {
 }
 .deans-text p {
   text-align: justify;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
   color: #000000;
 }
@@ -925,7 +925,7 @@ align-items: center;
 .alumni-startups .startup-card {
   background-color: #f8f9fa;
   border-top: 5px solid orange;
-  border-radius: 20px 20px 0 0 ;
+  border-radius: 10px ;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -1093,7 +1093,7 @@ align-items: center;
 
 .nexus-activities {
   background: linear-gradient(90deg, #ff9a3b, #f06d06);
-  padding: 20px;
+  padding: 40px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
