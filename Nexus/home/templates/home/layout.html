@@ -78,7 +78,7 @@
                 </ul>
             </div>
             <div class="nav-menu" id="menuBtn" onclick="toggleMobileSidebar()">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
             </div>
         </nav>
     </header>
@@ -252,7 +252,7 @@
                             </button>
                         </div>
                         {% else %}
-                        <div><p>Please login to access more features.</p>
+                        <div class="mob-signin"><p>Please login to access more features.</p>
                             
                             <button class="primary-btn">
                                 <a href="{% url 'user_login' %}">Sign In</a>
@@ -357,10 +357,27 @@
             sidebar.classList.toggle('open');
         }
 
+        // function toggleMobileSidebar() {
+        //     const mobSidebar = document.getElementById("mobSidebar");
+        //     mobSidebar.classList.toggle("active");
+        // }
         function toggleMobileSidebar() {
-            const mobSidebar = document.getElementById("mobSidebar");
-            mobSidebar.classList.toggle("active");
-        }
+    const mobSidebar = document.getElementById("mobSidebar");
+    const menuIcon = document.getElementById("menuIcon");
+
+    // Toggle sidebar visibility
+    mobSidebar.classList.toggle("active");
+
+    // Toggle icons
+    if (menuIcon.classList.contains("fa-bars")) {
+        menuIcon.classList.remove("fa-bars");
+        menuIcon.classList.add("fa-x");
+    } else {
+        menuIcon.classList.remove("fa-x");
+        menuIcon.classList.add("fa-bars");
+    }
+}
+
     </script>
 
 

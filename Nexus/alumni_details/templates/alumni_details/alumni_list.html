@@ -44,6 +44,36 @@
             </form>
         </div>
 
+        <!-- mobileview-filter -->
+         <div class="mob-search-filter">
+
+             <div class="mobile-view-filter">
+                <form method="GET" action="{% url 'alumni_search' %}" class="search">
+                    <input type="text" name="alumni" id="alumni" placeholder="Search alumni by name, Company">
+                    <button type="submit" class="search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button type="button" id="mobile-filter-toggle" class="filter-icon">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+                </form>
+             </div>
+    
+             <!-- Filter Dropdown (hidden by default in mobile view) -->
+        <div id="mobile-filter-dropdown-year" class="mobile-filter-dropdown">
+            <form method="get" action="{% if graduation_year %}{% url 'alumni_by_year' graduation_year %}{% else %}{% url 'alumni_by_year' 0 %}{% endif %}" class="filter">
+                <!-- <label for="graduation_year_mobile">Graduation Year:</label> -->
+                <select id="graduation_year_mobile" name="graduation_year">
+                    <option value="">Graduation Year</option>
+                    {% for year in graduation_years %}
+                        <option value="{{ year }}" {% if year == current_year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+         </div>
+
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
@@ -219,4 +249,11 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
 }
 </style>
 
+<script>
+    document.getElementById("mobile-filter-toggle").addEventListener("click", function () {
+    const filterDropdown = document.getElementById("mobile-filter-dropdown-year");
+    filterDropdown.classList.toggle("active");
+});
+
+</script>
 {% endblock %}

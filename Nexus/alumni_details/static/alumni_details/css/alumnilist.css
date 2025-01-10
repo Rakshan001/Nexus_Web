@@ -97,6 +97,10 @@ button:hover {
     background-color: #d67a10;
 }
 
+.alumni-container .mobile-view-filter, .mobile-filter-dropdown{
+    display: none;
+}
+
 .alumni-container .graduation-year {
     text-align: center;
     margin: 20px auto;
@@ -320,11 +324,63 @@ button:hover {
 /* mobile width */
 @media screen and (max-width: 768px){
     .search-filter {
-        display: grid;
-        flex-direction: column;
+        display: none;
+        /* flex-direction: column;
         padding: 10px;
         justify-content: center;
+        width: 100%; */
+    }
+
+    .alumni-container .mobile-view-filter{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 20px;
+    }
+
+    .mobile-view-filter input {
+        flex: 1;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .mobile-view-filter .search-icon,
+    .mobile-view-filter .filter-icon {
+        background: #d67a10;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    .alumni-container .mobile-filter-dropdown {
+        display: none;
+        margin-top: 10px;
+    }
+
+    .mobile-filter-dropdown.active {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .mobile-filter-dropdown select{
+        padding: 15px 10px;
         width: 100%;
+        max-width: 300px; /* Keep input fields aligned */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .mobile-filter-dropdown button {
+        padding: 15px 15px;
+        background-color: #d67a10;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
     }
 
     .search-filter label{

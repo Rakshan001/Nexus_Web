@@ -510,7 +510,8 @@ align-items: center;
 
 .swiper-wrapper .swiper-slide .card {
   flex-direction: column; /* Stack content vertically on mobile */
-  max-width: 90%; /* Adjust width for better layout on mobile */
+  width: 100%;
+  max-width: 500px; /* Adjust width for better layout on mobile */
 }
 
 .swiper-wrapper .swiper-slide .card .card-image {
@@ -902,7 +903,7 @@ align-items: center;
   overflow-x: hidden;
   text-align: center;
   margin-bottom: 2rem;
-  background:linear-gradient(rgba(238, 238, 238, 0.814), #f4f4f4);
+  /* background:linear-gradient(rgba(238, 238, 238, 0.814), #f4f4f4); */
   /* background-color: rgb(230, 230, 230); */
 }
 
@@ -1017,7 +1018,8 @@ align-items: center;
 /* Responsive Design */
 @media (max-width: 768px) {
   .startup-card {
-    width: 300px;
+    width: 100%;
+    max-width: 500px;
   }
 }
 
@@ -1441,6 +1443,7 @@ align-items: center;
 .nexus-post-activities{
   align-items: center;
   justify-content: center;
+  padding: 0;
 }
 .post-container{
   flex-direction: column;
@@ -1463,7 +1466,7 @@ align-items: center;
 }
 
 .activity-cards .card .count {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -1471,5 +1474,16 @@ align-items: center;
 .card p {
   font-size: 15px;
   margin-bottom: 15px;
+}
+.nexus-features .cards .card{
+  padding-top: 10px;
+}
+.nexus-features .view-more{
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 100px;
+  background-color: #f6f6f6;
+  margin-bottom: 1rem;
 }
 }
