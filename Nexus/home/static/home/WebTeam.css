@@ -10,6 +10,7 @@ body {
     justify-content: center;
     padding: 20px;
     gap: 20px;
+    margin-bottom: 2rem;
   }
   
   .team-card {
@@ -39,8 +40,11 @@ body {
   }
   
   .heading{
-    margin: 10px;
+    margin: 3rem auto;
     text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid orange;
+    max-width: 500px;
   }
   
   h3 {

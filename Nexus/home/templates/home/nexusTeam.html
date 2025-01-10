@@ -14,7 +14,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #e8e8e8;
+  background-color: #fcfcfc;
   color: #333;
 }
 
@@ -23,21 +23,46 @@ body {
   padding: 20px;
 }
 
+.nexus-team-heading{
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: space-between;align-items: center;
+  margin-top: 2rem;
+}
+
+.nexus-team-heading .portal-team{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0a1219;
+  padding: 12px;
+  color: white;
+  gap: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nexus-team-heading .portal-team:hover{
+  background: #e69b10;
+  color: #0a1219;
+  transition: ease-in-out 0.2s;
+}
+
 .team-section h1 {
   font-size: 2rem;
-  margin-bottom: 20px;
   color: #333;
+  border-bottom: 2px solid orange;
 }
 
 .team-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .team-member {
-  /* border-top: 5px solid #eb830d ; */
+  border-top: 2px solid #eb830d ;
   background-color: rgb(255, 255, 255);
   /* background: linear-gradient(#e69b10, rgb(190, 102, 0)); */
   overflow: hidden;
@@ -45,6 +70,8 @@ body {
   width: 300px;
   transition: transform 0.3s ease;
   margin-bottom: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(53, 53, 53, 0.274);
 }
 
 
@@ -132,10 +159,13 @@ body {
 {% block content %}
 <body>
   <div class="team-section">
-    <h1>Team Nexus</h1>
-    <div class="yearwise-team">
-        <!-- <h2>Year:2024</h2> -->
+    <div class="nexus-team-heading">
+      <h1>Nexus Team Members</h1>
+      <div class="portal-team">
+        <a href="{% url 'webTeam' %}"><i class="fa-solid fa-code"></i> Nexus Portal Team</a>
+      </div> 
     </div>
+    
     <div class="team-container">
       <div class="team-member">
         <div class="image-container">
