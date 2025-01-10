@@ -42,6 +42,10 @@ body {
   cursor: pointer;
 }
 
+.team-section .portal-team-mobile{
+  display: none;
+}
+
 .nexus-team-heading .portal-team:hover{
   background: #e69b10;
   color: #0a1219;
@@ -150,6 +154,26 @@ body {
     border-radius: 8px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 
+  }
+  .nexus-team-heading{
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+  }
+  .nexus-team-heading .portal-team{
+    display: none;
+  }
+  .team-section .portal-team-mobile{
+    display: block;
+  background-color: #0a1219;
+  padding: 12px;
+  color: white;
+  gap: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   }
 }
 
@@ -382,6 +406,9 @@ body {
         </div> -->
       </div>
     </div>
+    <div class="portal-team-mobile">
+      <a href="{% url 'webTeam' %}"><i class="fa-solid fa-code"></i> Nexus Portal Team</a>
+    </div> 
   </div>
 
   
