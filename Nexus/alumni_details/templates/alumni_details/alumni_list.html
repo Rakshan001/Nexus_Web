@@ -131,7 +131,7 @@
         <h2>More Alumni are Active on CEC community</h2>
         <p>To see more  click on the load more button</p>
         <button id="loadMoreBtn" class="load-more-btn" data-page="{{ next_page }}">
-            <i class="fa-solid fa-plus"></i> Load More Years
+            <i class="fa-solid fa-plus"></i> Load More Alumni
         </button>
     </div>
 {% endif %}
@@ -164,10 +164,7 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
                     <div class="alumni-profiles">
                         ${alumniList.map(alumni => `
                             <div class="alumni-profile">
-                                <div class="profile-views">
-                                    <i class="fa-solid fa-eye"></i>
-                                    <span>${alumni.profile_views || 0} views</span>
-                                </div>
+                                
                                 <a href="/alumni/profile/${alumni.uuid}/">
                                     <img src="${alumni.profile_picture || '/static/alumni_details/assets/default.png'}" 
                                          alt="${alumni.first_name}'s Profile Picture">
@@ -257,3 +254,9 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
 
 </script>
 {% endblock %}
+
+
+<!-- <div class="profile-views">
+    <i class="fa-solid fa-eye"></i>
+    <span>${alumni.profile_views || 0} views</span>
+</div> -->

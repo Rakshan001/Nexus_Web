@@ -889,6 +889,10 @@ align-items: center;
     background-color: #f6f6f6;
     min-width: 200px;
   }
+  .nexus-features .view-more a{
+    text-decoration: none;
+    color: black;
+  }
   .nexus-features .view-more:hover{
     background-color: #0d131a;
     color: white;
