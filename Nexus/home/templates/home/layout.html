@@ -129,7 +129,9 @@
                                 <p>Please login to access more features.</p>
                                 
                                 <button class="login-btn">
-                                    <a href="{% url 'user_login' %}" class="logout-link"><img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt=""> Sign In</a>
+                                    <a href="{% url 'user_login' %}" class="logout-link">
+                                        <i class="fa-solid fa-right-to-bracket"></i> Sign In
+                                    </a>
                                 </button>
                             </div>
                                 
@@ -145,7 +147,7 @@
                             <li><a href=""><i class="fa-solid fa-podcast"></i> Podcast</a></li>
                             <li><a href=""><i class="fa-solid fa-calendar-days"></i> Events</a></li>
                             <li><a href=""><i class="fa-solid fa-user-graduate"></i> Find Nearby Alumni</a></li>
-                            <li><a href="{% url 'nexusTeam' %}"><img src="../../static/home/assets/workspaces_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">Nexus Team</a></li>
+                            <li><a href="{% url 'nexusTeam' %}"><i class="fa-solid fa-people-group"></i> Nexus Team</a></li>
                         </div>
                         <!-- Notification Count -->
                         {% if user.is_authenticated %}

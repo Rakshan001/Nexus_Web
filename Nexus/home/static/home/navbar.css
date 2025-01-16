@@ -379,12 +379,13 @@ display: none;
 
 .sidebar .not-signedin .login-btn {
   width: 100%;
-  padding: 10px 30px;
+  padding: 10px 20px;
   background-color: #df7103;
   margin-top: 1rem;
   margin-bottom: 0.4rem;
   color: white;
   border-radius: 300px;
+  gap: 10px;
 }
 
 .sidebar .not-signedin button a{
@@ -395,6 +396,10 @@ display: none;
   align-items: center;
 }
 
+.sidebar .not-signedin button a i{
+  font-size: 25px;
+  padding: 5px;
+}
 
 .sidebar .student-login{
   padding-bottom: 2rem;
