@@ -451,18 +451,26 @@ body{
 }
 
 @media (max-width: 985px) {
-    header {
+    .alumni-header {
         flex-direction: column; /* Stack elements vertically on smaller screens */
         align-items: center;
 
         padding: 20px;
         height: auto;
     }
-    header .profile{
+    .alumni-header .profile{
         display: flex;
         justify-content: left;
         align-items: center;
+        margin-top: 1rem;
     }
+
+    .alumni-header::before {
+    
+        background-color: rgba(2, 2, 3, 0.767); /* Black overlay with 50% opacity */
+        z-index: -1; /* Keeps the overlay behind the header content */
+    }
+
 
     .connect {
         width: 100%;

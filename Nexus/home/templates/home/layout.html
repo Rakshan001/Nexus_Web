@@ -35,6 +35,7 @@
                         Members <i class="fa fa-angle-down"></i>
                         <ul class="dropdown-content">
                             <li><a href="{% url 'alumni_list'%}">CEC Alumni's</a></li>
+                            <li>Find Nearby Alumnis</li>
                             <!-- <li> <a href="{% url 'council_members' %}">Past Student Council Members</a></li> -->
                             <!-- <li> <a href="{% url 'achievements_list' %}">Alumni Achievements</a></li> -->
 
@@ -257,7 +258,7 @@
                         <div class="mob-signin"><p>Please login to access more features.</p>
                             
                             <button class="primary-btn">
-                                <a href="{% url 'user_login' %}">Sign In</a>
+                                <a href="{% url 'user_login' %}"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
                             </button>
                         </div>
                         {% endif %}
@@ -373,9 +374,9 @@
     // Toggle icons
     if (menuIcon.classList.contains("fa-bars")) {
         menuIcon.classList.remove("fa-bars");
-        menuIcon.classList.add("fa-x");
+        menuIcon.classList.add("fa-xmark");
     } else {
-        menuIcon.classList.remove("fa-x");
+        menuIcon.classList.remove("fa-xmark");
         menuIcon.classList.add("fa-bars");
     }
 }
