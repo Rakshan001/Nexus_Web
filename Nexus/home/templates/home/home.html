@@ -177,23 +177,51 @@
                 </div>
                 <div class="activity-cards">
                     <div class="card">
+                        <i class="fa-solid fa-microphone-lines"></i>
                         <div class="count" data-target="50">0</div>
                         <p>Podcast</p>
-                        <button>View</button>
+                        <!-- <button>View</button> -->
                     </div>
                     <div class="card">
+                        <i class="fa-solid fa-scissors"></i>
                         <div class="count" data-target="30">0</div>
                         <p>Events</p>
-                        <button>View</button>
+                        <!-- <button>View</button> -->
                     </div>
                     <div class="card">
+                        <i class="fa-solid fa-gears"></i>
                         <div class="count" data-target="60">0</div>
                         <p>Workshops</p>
-                        <button>View</button>
+                        <!-- <button>View</button> -->
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-people-group"></i>
+                        <div class="count" data-target="60">0</div>
+                        <p>Interactions</p>
+                        <!-- <button>View</button> -->
                     </div>
                 </div>
             </div>
-            <div class="post-container" onclick="instaredirect()">
+        </div>
+        <div class="post-container" onclick="instaredirect()">
+            <div class="post-header">
+                <h2>Latest From Nexus</h2>
+            </div>
+            <div class="post-details">
+
+                <div class="video-container">
+                    <iframe
+                     
+                      src="https://www.youtube.com/embed/XwuqCPjJYek?autoplay=1&mute=1"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allow="autoplay; encrypted-media; picture-in-picture"
+                      allowfullscreen>
+                    </iframe>
+                  </div>
+    
                 <div class="post">
                     <div class="post-header">
                         <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
@@ -515,6 +543,20 @@ counters.forEach(counter => {
             window.open('https://www.instagram.com/cec.nexus', '_blank');
         }
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const video = document.querySelector("iframe");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.src = "https://www.youtube.com/embed/XwuqCPjJYek?autoplay=1&mute=1";
+          }
+        });
+      });
+      observer.observe(video);
+    });
+  </script>
 
 {% endblock %}
 
