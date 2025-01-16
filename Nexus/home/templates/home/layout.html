@@ -245,7 +245,7 @@
                                     <button> <i class="fa-solid fa-user"></i> Profile</button>
                                 </a> -->
                             {% elif user.student_profile %}
-                            <div style="display: block;"> 
+                            <div style="display: block;" class="student-div"> 
                                 <h3>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h3>
                                 <p>Email: {{ user.username }}</p>
                             {% endif %}

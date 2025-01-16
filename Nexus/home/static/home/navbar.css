@@ -547,9 +547,11 @@ border: 1px solid orange;
 margin-right: 10px;
 }
 
+
+
 .mobSidebar .profile-section button {
-background-color: #fefefe;
-color: #002c50;
+background-color: #df7103;
+color: white;
 border: none;
 padding: 8px 16px;
 border-radius: 5px;

@@ -269,6 +269,9 @@ body{
 
 /* mobile width */
 @media screen and (max-width: 768px){
+    .ui-autocomplete {
+        display: block;
+    }
     .search-filter {
         display: none;
     }
@@ -359,6 +362,79 @@ body{
         width: 100%;
         max-width: 300px;
     }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    .search-filter {
+        display: none;
+    }
+
+    .search-filter .search label, .filter label{
+        display: none;
+    }
+
+    .mob-search-filter{
+        display: block;
+        width: 100%;
+    }
+
+    .mobile-view-filter{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 20px;
+    }
+
+    .mobile-view-filter .search input {
+        flex: 1;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 15px;
+    }
+
+    .mobile-view-filter .search-icon,
+    .mobile-view-filter .filter-icon {
+        background: #d67a10;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 3px;
+        color: white;
+    }
+
+    .mobile-filter-dropdown {
+        display: none;
+        margin-top: 10px;
+    }
+
+    .mobile-filter-dropdown.active {
+        display: block;
+        margin-top: 10px;
+        margin: 10px auto;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .mobile-filter-dropdown select{
+        padding: 15px 10px;
+        width: 100%;
+        max-width: 300px; /* Keep input fields aligned */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .mobile-filter-dropdown button {
+        padding: 15px 15px;
+        background-color: #d67a10;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
 }
 
 </style>

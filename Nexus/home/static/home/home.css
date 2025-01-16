@@ -167,7 +167,7 @@ body {
   /* background-color: #ffffff; */
   color: rgb(0, 0, 0);
   border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 20, 0.185);
+  box-shadow: none;
   z-index: 1;
   
 }
@@ -179,7 +179,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background:linear-gradient(360deg,white,rgb(255, 188, 62), orange);
+  /* background:linear-gradient(360deg,white,rgb(255, 188, 62), orange); */
   z-index: 2;
 }
 
@@ -1490,4 +1490,24 @@ align-items: center;
   background-color: #f6f6f6;
   margin-bottom: 1rem;
 }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  .nexus-features .cards{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  } 
+  .nexus-features .cards .card{
+    padding-top: 1rem;
+  }
+  .nexus-features .cards .card button{
+    margin-bottom: 1rem;
+  }
+  .alumni-h-message .speaker-img{
+    display: none;
+  }
+  .alumni-h-message .deans-text{
+    border: none;
+    box-shadow: none;
+  }
 }
