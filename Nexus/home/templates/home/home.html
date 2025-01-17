@@ -203,7 +203,7 @@
                 </div>
             </div>
         </div>
-        <div class="post-container" onclick="instaredirect()">
+        <div class="post-container">
             <div class="latest-header">
                 <h2>Latest From Nexus</h2>
             </div>
@@ -222,42 +222,45 @@
                     </iframe>
                   </div>
     
-                <div class="post">
-                    <div class="post-header">
-                        <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
-                        <span>cec.nexus</span>
-                        <div class="icon">
-                            <i class="fa-brands fa-instagram"></i>
-                        </div>
-                    </div>
-                    <img src="../../static/home/assets/IMG_5274.JPG" alt="Session" class="post-image">
-                    <div class="share">
-                        <i class="fa-regular fa-heart"></i>
-                        <i class="fa-regular fa-comment"></i>
-                        <i class="fa-solid fa-share"></i>
-                    </div>
-                    <div class="post-caption">
-                        A session on how to improve the Leadership Quality
-                    </div>
-                </div>
-                <div class="post">
-                    <div class="post-header">
-                        <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
-                        <span>cec.nexus</span>
-                        <div class="icon">
-                            <i class="fa-brands fa-instagram"></i>
-                        </div>
-                    </div>
-                    <img src="../../static/home/assets/IMG_5266.JPG" alt="Session" class="post-image">
-                    <div class="share">
-                        <i class="fa-regular fa-heart"></i>
-                        <i class="fa-regular fa-comment"></i>
-                        <i class="fa-solid fa-share"></i>
-                    </div>
-                    <div class="post-caption">
-                        A session on how to improve the Leadership Quality
-                    </div>
-                </div>
+                  <div class="insta-posts" onclick="instaredirect()">
+
+                      <div class="post">
+                          <div class="post-header">
+                              <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
+                              <span>cec.nexus</span>
+                              <div class="icon">
+                                  <i class="fa-brands fa-instagram"></i>
+                              </div>
+                          </div>
+                          <img src="../../static/home/assets/IMG_5274.JPG" alt="Session" class="post-image">
+                          <div class="share">
+                              <i class="fa-regular fa-heart"></i>
+                              <i class="fa-regular fa-comment"></i>
+                              <i class="fa-solid fa-share"></i>
+                          </div>
+                          <div class="post-caption">
+                              A session on how to improve the Leadership Quality
+                          </div>
+                      </div>
+                      <div class="post">
+                          <div class="post-header">
+                              <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
+                              <span>cec.nexus</span>
+                              <div class="icon">
+                                  <i class="fa-brands fa-instagram"></i>
+                              </div>
+                          </div>
+                          <img src="../../static/home/assets/IMG_5266.JPG" alt="Session" class="post-image">
+                          <div class="share">
+                              <i class="fa-regular fa-heart"></i>
+                              <i class="fa-regular fa-comment"></i>
+                              <i class="fa-solid fa-share"></i>
+                          </div>
+                          <div class="post-caption">
+                              A session on how to improve the Leadership Quality
+                          </div>
+                      </div>
+                  </div>
             </div>
         </div>
     
@@ -513,26 +516,42 @@ function togglemenu() {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-const counters = document.querySelectorAll('.count');
+    const counters = document.querySelectorAll(".count");
+    const interval = 3000; // 3 seconds for counting
+    const resetDelay = 5000; // 5 seconds total interval
 
-counters.forEach(counter => {
-    const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const current = +counter.innerText;
+    const startCounting = (counter) => {
+        const target = +counter.getAttribute("data-target");
+        const step = target / (interval / 100); // Steps per update
 
-        const increment = target / 200; // Adjust speed here
+        let currentCount = 0;
+        const incrementCounter = () => {
+            currentCount += step;
+            if (currentCount >= target) {
+                counter.textContent = target; // Set final value
+                clearInterval(timer);
+            } else {
+                counter.textContent = Math.ceil(currentCount); // Round up for better visuals
+            }
+        };
 
-        if (current < target) {
-            counter.innerText = Math.ceil(current + increment);
-            setTimeout(updateCount, 10); // Adjust interval here
-        } else {
-            counter.innerText = target;
-        }
+        const timer = setInterval(incrementCounter, 100); // Update every 100ms
     };
 
-    updateCount();
+    const resetAndStart = () => {
+        counters.forEach(counter => {
+            counter.textContent = "0"; // Reset count to 0
+            startCounting(counter); // Start counting again
+        });
+    };
+
+    // Initial counting
+    resetAndStart();
+
+    // Repeat counting every 5 seconds
+    setInterval(resetAndStart, resetDelay);
 });
-});
+
 
 </script>
 
