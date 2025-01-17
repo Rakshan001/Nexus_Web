@@ -881,6 +881,10 @@ align-items: center;
     text-align: center;
   }
 
+  .nexus-features .card button a:hover{
+    color: white;
+  }
+
   .nexus-features .view-more{
     border: none;
     outline: none;
@@ -1045,6 +1049,17 @@ align-items: center;
   margin-top: 5rem;
 }
 
+.post-container .latest-header h2{
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 2rem;
+  border: 2px solid #0a1219;
+  border-radius: 100px;
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto;
+}
+
 .post-container .post-details{
   display: flex;
   justify-content: center;
@@ -1102,7 +1117,7 @@ align-items: center;
 
 .nexus-activities {
   background-color: #d88811;
-  padding: 100px 40px;
+  padding: 60px 40px;
   text-align: center;
   width: 100%;
   margin: 0 auto;
@@ -1112,7 +1127,7 @@ align-items: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .nexus-activities h2 {
@@ -1161,7 +1176,7 @@ align-items: center;
   margin-bottom: 15px;
 }
 
-.nexus-activities .activity-cards .cards .card i{
+.activity-cards .cards .card .fa-solid{
   font-size: 22px;
 }
 
@@ -1464,16 +1479,18 @@ align-items: center;
 .nexus-activities .activity-cards {
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
+  padding: 0;
 }
 
 .activity-cards .card {
-  background: #0e1620;
+  /* background: #0e1620; */
   color: #fff;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
   flex: 1;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
 }
 
 .activity-cards .card .count {
@@ -1496,6 +1513,16 @@ align-items: center;
   border-radius: 100px;
   background-color: #f6f6f6;
   margin-bottom: 1rem;
+}
+.post-container .post-details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.post-container .post-details .video-container iframe{
+  width:320px;
+  height:200px;
 }
 }
 
