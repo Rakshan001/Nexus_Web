@@ -114,6 +114,34 @@ class SocialMediaImagesAdmin(admin.ModelAdmin):
         models.ImageField: {'widget': ImageUploaderWidget},  # Use the ImageUploaderWidget for image fields
     }
 
+
+
+from django.contrib import admin
+from django.core.exceptions import ValidationError
+from .models import ActivityCount
+
+class ActivityCountAdmin(admin.ModelAdmin):
+    list_display = ['podcast', 'events', 'workshops', 'interactions']
+
+    # Restrict adding more than one record
+    def save_model(self, request, obj, form, change):
+        # Check if this is a new record and there is already an existing record
+        if not obj.pk and ActivityCount.objects.exists():
+            raise ValidationError("Only one record is allowed in ActivityCount.")
+        super().save_model(request, obj, form, change)
+
+    # Disable the 'Add ActivityCount' button if one record already exists
+    def has_add_permission(self, request):
+        if ActivityCount.objects.exists():
+            return False
+        return True
+
+# Register the model with the custom admin
+admin.site.register(ActivityCount, ActivityCountAdmin)
+
+
+
+
 # Register models with admin site
 admin.site.register(SocialMediaReels, SocialMediaReelsAdmin)
 admin.site.register(SocialMediaPosts, SocialMediaPostsAdmin)

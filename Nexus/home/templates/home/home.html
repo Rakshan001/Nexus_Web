@@ -178,28 +178,26 @@
                 <div class="activity-cards">
                     <div class="card">
                         <i class="fa-solid fa-microphone-lines"></i>
-                        <div class="count" data-target="50">0</div>
+                        <div class="count" data-target="{{ activity_count.podcast }}">0</div>
                         <p>Podcast</p>
-                        <!-- <button>View</button> -->
                     </div>
                     <div class="card">
                         <i class="fa-solid fa-scissors"></i>
-                        <div class="count" data-target="30">0</div>
+                        <div class="count" data-target="{{ activity_count.events }}">0</div>
                         <p>Events</p>
-                        <!-- <button>View</button> -->
                     </div>
                     <div class="card">
                         <i class="fa-solid fa-gears"></i>
-                        <div class="count" data-target="60">0</div>
+                        <div class="count" data-target="{{ activity_count.workshops }}">0</div>
                         <p>Workshops</p>
-                        <!-- <button>View</button> -->
                     </div>
                     <div class="card">
                         <i class="fa-solid fa-people-group"></i>
-                        <div class="count" data-target="60">0</div>
+                        <div class="count" data-target="{{ activity_count.interactions }}">0</div>
                         <p>Interactions</p>
-                        <!-- <button>View</button> -->
                     </div>
+                </div>
+                
                 </div>
             </div>
         </div>

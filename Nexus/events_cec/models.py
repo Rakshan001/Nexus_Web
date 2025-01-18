@@ -210,3 +210,13 @@ def delete_social_media_posts_file(sender, instance, **kwargs):
 def delete_social_media_images_file(sender, instance, **kwargs):
     if instance.images:
         instance.images.delete(save=False)
+
+
+class ActivityCount(models.Model):
+    podcast = models.IntegerField()
+    events = models.IntegerField()
+    workshops = models.IntegerField()
+    interactions = models.IntegerField()
+
+    def __str__(self):
+        return f"Podcast: {self.podcast}, Events: {self.events}, Workshops: {self.workshops}, Interactions: {self.interactions}"

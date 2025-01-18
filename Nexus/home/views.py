@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from alumni_details.models import Alumni, Student
 from django.utils import timezone
-from events_cec.models import Event,SocialMediaPosts
+from events_cec.models import Event,SocialMediaPosts,ActivityCount
 from podcast.models import Podcast
 
 
@@ -86,6 +86,7 @@ def home(request):
 
     latest_podcast = Podcast.objects.all().order_by('-uploaded_at').first()
     posts=SocialMediaPosts.objects.all()
+    activity_count = ActivityCount.objects.first()
 
     
 
@@ -101,6 +102,7 @@ def home(request):
         'current_time': current_time,
         'latest_podcast': latest_podcast,
         'posts':posts,
+        'activity_count': activity_count
     }
     
     return render(request, 'home/home.html', context)
