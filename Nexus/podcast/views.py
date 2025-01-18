@@ -11,3 +11,5 @@ def podcast(request):
         'debug': settings.DEBUG  # This will show debug info only in development
     }
     return render(request, 'podcast/video.html', context)
+
+

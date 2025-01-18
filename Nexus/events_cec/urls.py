@@ -11,4 +11,8 @@ urlpatterns = [
     #Gallery
     path('gallery/', views.gallery_view, name='gallery'),
 
+    #Social Media Urls
+
+    path("Social_Media/",views.social_media_view,name='social_media'),
+
 ]

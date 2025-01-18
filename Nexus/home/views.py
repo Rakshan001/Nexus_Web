@@ -4,7 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from alumni_details.models import Alumni, Student
 from django.utils import timezone
-from events_cec.models import Event
+from events_cec.models import Event,SocialMediaPosts
+from podcast.models import Podcast
+
 
 # Home View (Open to everyone)
 # def home(request):
@@ -76,6 +78,20 @@ def home(request):
     if remaining_slots > 0:
         events_to_display.extend(past_events[:remaining_slots])
 
+
+
+
+
+
+
+    latest_podcast = Podcast.objects.all().order_by('-uploaded_at').first()
+    posts=SocialMediaPosts.objects.all()
+
+    
+
+
+
+
     context = {
         'first_name': first_name,
         'last_name': last_name,
@@ -83,6 +99,8 @@ def home(request):
         'events': events_to_display,
         'current_date': current_date,
         'current_time': current_time,
+        'latest_podcast': latest_podcast,
+        'posts':posts,
     }
     
     return render(request, 'home/home.html', context)

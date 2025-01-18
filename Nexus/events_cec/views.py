@@ -114,3 +114,21 @@ def gallery_view(request):
         'loaded_count': len(images_to_display),
     }
     return render(request, 'events_cec/gallery.html', context)
+
+
+
+
+from .models import SocialMediaReels,SocialMediaPosts,SocialMediaImages
+
+
+
+def social_media_view(request):
+    reels = SocialMediaReels.objects.all()  
+    posts = SocialMediaPosts.objects.all()  
+    images = SocialMediaImages.objects.all()  
+
+    return render(request, 'events_cec/social_media.html', {
+        'reels': reels,
+        'posts': posts,
+        'images': images,
+    })

@@ -208,58 +208,71 @@
                 <h2>Latest From Nexus</h2>
             </div>
             <div class="post-details">
-
                 <div class="video-container">
-                    <iframe
-                     
-                      src="https://www.youtube.com/embed/XwuqCPjJYek?autoplay=1&mute=1"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerpolicy="strict-origin-when-cross-origin"
-                      allow="autoplay; encrypted-media; picture-in-picture"
-                      allowfullscreen>
-                    </iframe>
-                  </div>
+                    {% if latest_podcast %}
+                        <iframe
+                            id="video-frame"
+                            src="{{ latest_podcast.embed_url }}?autoplay=1&mute=1"
+                            title="{{ latest_podcast.title }} - YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    {% else %}
+                        <p>No podcast available at the moment.</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  const video = document.querySelector("#video-frame");
+                  if (video) {
+                    const observer = new IntersectionObserver((entries) => {
+                      entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                          // Set the iframe src to autoplay and mute the video if it's in view
+                          video.src = video.src + "?autoplay=1&mute=1";
+                        }
+                      });
+                    });
+                    observer.observe(video);
+                  }
+                });
+            </script>
+            
     
                   <div class="insta-posts" onclick="instaredirect()">
-
-                      <div class="post">
-                          <div class="post-header">
-                              <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
-                              <span>cec.nexus</span>
-                              <div class="icon">
-                                  <i class="fa-brands fa-instagram"></i>
+                        {% for post in posts %}
+                          <div class="post" onclick="window.location.href='{{ post.url }}'">
+                              <div class="post-header">
+                                  <!-- Replace with dynamic data -->
+                                  <img src="../assets/Nexus logo.jpg" alt="Profile" class="profile-pic">
+                                  <span>cec.nexus</span>
+                                  <div class="icon">
+                                      <i class="fa-brands fa-instagram"></i>
+                                  </div>
+                              </div>
+                  
+                              <!-- Post image dynamically rendered -->
+                              <img src="{{ post.image.url }}" alt="Session" class="post-image">
+                  
+                              <div class="share">
+                                  <i class="fa-regular fa-heart"></i>
+                                  <i class="fa-regular fa-comment"></i>
+                                  <i class="fa-solid fa-share"></i>
+                              </div>
+                  
+                              <!-- Post caption dynamically rendered -->
+                              <div class="post-caption">
+                                  {{ post.description }}
                               </div>
                           </div>
-                          <img src="../../static/home/assets/IMG_5274.JPG" alt="Session" class="post-image">
-                          <div class="share">
-                              <i class="fa-regular fa-heart"></i>
-                              <i class="fa-regular fa-comment"></i>
-                              <i class="fa-solid fa-share"></i>
-                          </div>
-                          <div class="post-caption">
-                              A session on how to improve the Leadership Quality
-                          </div>
-                      </div>
-                      <div class="post">
-                          <div class="post-header">
-                              <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile">
-                              <span>cec.nexus</span>
-                              <div class="icon">
-                                  <i class="fa-brands fa-instagram"></i>
-                              </div>
-                          </div>
-                          <img src="../../static/home/assets/IMG_5266.JPG" alt="Session" class="post-image">
-                          <div class="share">
-                              <i class="fa-regular fa-heart"></i>
-                              <i class="fa-regular fa-comment"></i>
-                              <i class="fa-solid fa-share"></i>
-                          </div>
-                          <div class="post-caption">
-                              A session on how to improve the Leadership Quality
-                          </div>
-                      </div>
+                      {% empty %}
+                          <p>No posts available.</p>
+                      {% endfor %}
+                  </div>
                   </div>
             </div>
         </div>

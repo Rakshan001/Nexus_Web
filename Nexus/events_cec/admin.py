@@ -59,3 +59,62 @@ class GalleryAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.ImageField: {'widget': ImageUploaderWidget},  # Use the custom widget for image uploads
     }
+
+
+
+# Admin configurations to handle uploading from the admin panel
+from django.contrib import admin
+from .models import SocialMediaReels,SocialMediaPosts,SocialMediaImages
+
+
+
+# Social Media Reels Admin
+from django.utils.text import Truncator
+class SocialMediaReelsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'shortened_url', 'date_uploaded']
+    
+    def shortened_url(self, obj):
+        # Use Truncator to truncate the URL to a specified length
+        return Truncator(obj.url).chars(30)  # Adjust 30 to the length you want
+    shortened_url.short_description = 'URL'  # Set the column name in admin
+    
+    def has_add_permission(self, request):
+        # Limit the number of reels to 4
+        if SocialMediaReels.objects.count() >= 4:
+            return False
+        return super().has_add_permission(request)
+
+# Social Media Posts Admin
+class SocialMediaPostsAdmin(admin.ModelAdmin):
+    list_display = ['description', 'url', 'date_uploaded']
+    
+    def has_add_permission(self, request):
+        # Limit the number of posts to 4
+        if SocialMediaPosts.objects.count() >= 4:
+            return False
+        return super().has_add_permission(request)
+    
+    # Set custom widget to enable image preview in admin panel
+    formfield_overrides = {
+        models.ImageField: {'widget': ImageUploaderWidget},  # Use the ImageUploaderWidget for image fields
+    }
+
+# Social Media Images Admin
+class SocialMediaImagesAdmin(admin.ModelAdmin):
+    list_display = ['id', 'images', 'date_uploaded']
+    
+    def has_add_permission(self, request):
+        # Limit the number of images to 4
+        if SocialMediaImages.objects.count() >= 8:
+            return False
+        return super().has_add_permission(request)
+    
+    # Set custom widget to enable image preview in admin panel
+    formfield_overrides = {
+        models.ImageField: {'widget': ImageUploaderWidget},  # Use the ImageUploaderWidget for image fields
+    }
+
+# Register models with admin site
+admin.site.register(SocialMediaReels, SocialMediaReelsAdmin)
+admin.site.register(SocialMediaPosts, SocialMediaPostsAdmin)
+admin.site.register(SocialMediaImages, SocialMediaImagesAdmin)

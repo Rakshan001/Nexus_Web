@@ -72,7 +72,7 @@ class Event(models.Model):
     date = models.DateField()
     time = models.TimeField(null=True, blank=True)  # New time field
     location = models.CharField(max_length=200)
-    poster = models.ImageField(upload_to='event_posters/', blank=True, null=True)
+    poster = models.ImageField(upload_to='event_posters/', blank=True, null=True,validators=[validate_image_size])
     instagram_url = models.URLField(max_length=500, blank=True, null=True)
     facebook_url = models.URLField(max_length=500, blank=True, null=True)
     youtube_url = models.URLField(max_length=500, blank=True, null=True)
@@ -140,3 +140,73 @@ class Gallery(models.Model):
         if self.image and os.path.isfile(self.image.path):
             os.remove(self.image.path)
         super().delete(*args, **kwargs)
+
+
+from django.db import models
+from django.core.exceptions import ValidationError
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+
+def validate_maximum_objects(model_class, limit):
+    if model_class.objects.count() >= limit:
+        raise ValidationError(f"Only {limit} items can be uploaded.")
+
+
+# SocialMediaReels Model
+class SocialMediaReels(models.Model):
+    url = models.TextField(blank=True, null=True)
+    date_uploaded = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-date_uploaded']  # Order by most recent uploads first
+
+    def save(self, *args, **kwargs):
+        validate_maximum_objects(SocialMediaReels, 4)  # Pass model class explicitly
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.url
+
+
+class SocialMediaPosts(models.Model):
+    url = models.URLField(max_length=500, blank=True, null=True)
+    image = models.ImageField(upload_to='SocialMediaPosts/',validators=[validate_image_size])
+    description = models.CharField(max_length=255)
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date_uploaded']  # Order by most recent uploads first
+
+    def save(self, *args, **kwargs):
+        validate_maximum_objects(SocialMediaPosts, 4)  # Pass model class explicitly
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.description
+
+
+class SocialMediaImages(models.Model):
+    images = models.ImageField(upload_to='SocialMediaImages/',validators=[validate_image_size])
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date_uploaded']  # Order by most recent uploads first
+
+    def save(self, *args, **kwargs):
+        validate_maximum_objects(SocialMediaImages, 8)  # Pass model class explicitly
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.images.name
+
+
+# Signal to delete files from the media folder when the model instance is deleted
+@receiver(post_delete, sender=SocialMediaPosts)
+def delete_social_media_posts_file(sender, instance, **kwargs):
+    if instance.image:
+        instance.image.delete(save=False)
+
+@receiver(post_delete, sender=SocialMediaImages)
+def delete_social_media_images_file(sender, instance, **kwargs):
+    if instance.images:
+        instance.images.delete(save=False)
