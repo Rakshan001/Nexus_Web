@@ -13,11 +13,11 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock%}
 {% block content %}
-  <div class="container">
+  <div class="social-media-container">
     <!-- Hero Section -->
-    <header class="hero-section">
+    <div class="hero-section">
       <h1>SOCIAL MEDIA TEAM</h1>
-    </header>
+    </div>
 
     <!-- <div class="focus">
       <h2><i class="fa-solid fa-calendar-week"></i> This Months Focus</h2>
@@ -65,7 +65,7 @@
         <div class="post" onclick="window.location.href='{{ post.url }}'">
             <div class="post-header">
                 <!-- Replace with dynamic data -->
-                <img src="../assets/Nexus logo.jpg" alt="Profile" class="profile-pic">
+                <img src="../../static/assets/Nexus logo.jpg" alt="Profile" class="profile-pic">
                 <span>cec.nexus</span>
                 <div class="icon">
                     <i class="fa-brands fa-instagram"></i>
@@ -111,16 +111,16 @@
                 <p>No images found.</p>
           {% endfor %}
 
+        </div>
         <div class="wrapper">
           {% for image in images %}
-          <div class="itemLeft item1"> <img src="{{ image.images.url }}" alt="Social Media Image"/></div>
+          <div class="itemRight item1"> <img src="{{ image.images.url }}" alt="Social Media Image"/></div>
           {% empty %}
                 <p>No images found.</p>
           {% endfor %}
 
           
         </div>
-      </div>
     </section>
 
     <!-- Upcoming Events Section -->

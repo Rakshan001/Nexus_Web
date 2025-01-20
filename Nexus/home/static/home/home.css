@@ -213,6 +213,58 @@ body {
   height: 40px;
 }
 
+.about-section {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px;
+  width: 100%;
+  margin: 0 auto;
+  /* background-color: #0e1620; */
+  background: linear-gradient(to right, white, rgba(255, 255, 255, 0.096),rgba(255, 255, 255, 0)),url('../home/assets/about3d.png');
+  /* background-image: ; */
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  /* border-radius: 10px; */
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); */
+}
+
+.about-section .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* flex-wrap: wrap; */
+}
+
+.about-section h2 {
+  font-size: 32px;
+  margin: 0;
+  color: rgb(8, 8, 8);
+}
+
+.about-section .line {
+  width: 50px;
+  height: 5px;
+  background-color: orange;
+  margin: 10px 0;
+}
+
+.about-section p {
+  max-width: 60%;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: justify;
+  color: rgb(0, 0, 0);
+  margin-top: 2rem;
+}
+
+.about-section .logo img {
+  max-width: 300px;
+  height: auto;
+}
+
 
 
 .leaders-mssg {
@@ -237,7 +289,6 @@ body {
   padding-top: 5rem;
   padding-bottom: 5rem;
   /* margin: 10px; */
-  margin-top: 4rem  ;
 }
 
 .nexus-do h2{
@@ -340,6 +391,25 @@ margin-right: 8rem;
   padding: 20px;
   text-align: center;
   margin-top: 2rem;
+  background-color: #ffdead;
+  border-radius: 50px 50px 0 0;
+}
+
+.top-events-display .event-header h2{
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 2rem;
+  border: 2px solid #0a1219;
+  border-radius: 100px;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.top-events-display .event-header p{
+  text-align: center;
+  font-size: 1em;
+  margin-bottom: 4rem;
 }
 
 
@@ -820,8 +890,7 @@ align-items: center;
   .nexus-features{
     width: 100%;
     background-color: #0a1219;
-    padding: 4rem 20px 4rem 20px;
-    margin-top: 4rem;
+    padding: 6rem 20px 6rem 20px;
     margin-bottom: 3rem;
     display: flex;
     justify-content: space-between;
@@ -919,6 +988,10 @@ align-items: center;
   font-size: 2em;
   margin-bottom: 20px;
   color: #142432;
+}
+
+.alumni-startups .latest-header p{
+  margin-bottom: 2rem;
 }
 
 /* Row styling */
@@ -1057,13 +1130,21 @@ align-items: center;
   border-radius: 100px;
   width: 100%;
   max-width: 600px;
-  margin: 10px auto;
+  margin: 2rem auto;
+}
+
+.post-container .latest-header p{
+  text-align: center;
+  font-size: 1em;
+  margin-bottom: 3rem;
 }
 
 .post-container .post-details{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  width: 100%;
   gap: 10px;
   padding: 10px;
 }
@@ -1107,7 +1188,8 @@ align-items: center;
 }
 .post-image {
   width: 100%;
-  height: 200px;
+  height: 300px;
+  max-width: 300px;
   object-fit: cover;
 }
 .post-caption {
@@ -1125,17 +1207,18 @@ align-items: center;
 
 .nexus-activities {
   background-color: #d88811;
-  padding: 60px 40px;
+  padding: 40px 40px;
   text-align: center;
   width: 100%;
   margin: 0 auto;
+  border-radius: 0 0 50px 50px;
 }
 
 .nexus-activities .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .nexus-activities h2 {
@@ -1163,7 +1246,7 @@ align-items: center;
   gap: 20px;
 }
 
-.activity-cards .card {
+.nexus-activities .activity-cards .card {
   background: transparent;
   color: #0d131a;
   padding: 20px;
@@ -1184,8 +1267,9 @@ align-items: center;
   margin-bottom: 15px;
 }
 
-.activity-cards .cards .card .fa-solid{
-  font-size: 22px;
+.nexus-activities .activity-cards .card .acti-icons{
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .activity-cards .card button {
@@ -1204,8 +1288,10 @@ align-items: center;
 }
 
 .post-container .post-details .video-container iframe{
-  width:560px;
-  height:315px;
+  width:840px;
+  height: 480px;
+  border-radius: 20px;
+  margin-bottom: 2rem;
 }
 
 

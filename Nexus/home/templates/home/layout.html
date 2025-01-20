@@ -189,6 +189,7 @@
                     Members <i class="fa fa-angle-down"></i>
                     <ul class="dropdown-content">
                         <li><a href="{% url 'alumni_list'%}">CEC Alumni's</a></li>
+                        <li>Alumni Nearby</li>
                             <!-- <li> <a href="{% url 'council_members' %}">Past Student Council Members</a></li>
                             <li> <a href="{% url 'achievements_list' %}">Alumni Achievements</a></li> -->
                     </ul>
@@ -420,7 +421,7 @@
         text-decoration: none;
     }
     
-    .notification-count {
+    .notification-count, .mob-sidebar .notification-count, .sidebar .sidebar-middle .notification-bell .notification-count{
         position: absolute;
         top: -8px;
         right: -8px;

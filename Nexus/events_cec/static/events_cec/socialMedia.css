@@ -14,7 +14,7 @@ body {
     box-sizing: border-box;
   }
   
-  .container {
+  .social-media-container {
     width: 100%;
     margin: 0 auto;
     
@@ -25,17 +25,17 @@ body {
     height: 500px;
   }
 
-  .all-sections{
+ .social-media-container .all-sections{
     max-width: 1200px;
     margin: 0 auto;
   }
   
   /* Hero Section */
   /* Hero Section */
-.hero-section {
+.social-media-container .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.756)), url('https://images.unsplash.com/photo-1683721003111-070bcc053d8b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-
-    height: 400px;
+    background-size: cover;
+    height: 300px;
     width: 100%;
     color: white;
     text-align: center;
@@ -47,8 +47,8 @@ body {
   
   .hero-section h1 {
     margin: 0;
-    font-size: 5rem;
-    padding: 20px;
+    font-size: 3rem;
+    padding: 20px 40px;
     border: 2px solid white;
     border-radius: 200px;
   }
@@ -152,27 +152,6 @@ body {
     }
   }
   
-  /* scrollbar */
-  /* width */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: orange;
-    border-radius: 20px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #012f5d;
-  }
 
 
   
