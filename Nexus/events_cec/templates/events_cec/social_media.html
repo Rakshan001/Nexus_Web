@@ -106,7 +106,7 @@
         <!-- upload the 8 event images for the smooth image scroll animations -->
         <div class="wrapper">
           {% for image in images %}
-          <div class="itemLeft item1"> <img src="{{ image.images.url }}" alt="Social Media Image"/></div>
+          <div class="itemLeft item{{ forloop.counter }}"> <img src="{{ image.images.url }}" alt="Social Media Image"/></div>
           {% empty %}
                 <p>No images found.</p>
           {% endfor %}
@@ -114,7 +114,7 @@
         </div>
         <div class="wrapper">
           {% for image in images %}
-          <div class="itemRight item1"> <img src="{{ image.images.url }}" alt="Social Media Image"/></div>
+          <div class="itemRight item{{ forloop.counter }}"> <img src="{{ image.images.url }}" alt="Social Media Image"/></div>
           {% empty %}
                 <p>No images found.</p>
           {% endfor %}
