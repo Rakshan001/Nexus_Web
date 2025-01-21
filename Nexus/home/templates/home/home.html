@@ -329,17 +329,17 @@
                 <div class="card">
                     <i class="fa-solid fa-podcast"></i>
                     <p>Podcast</p>
-                    <button type="button" class="view-more"><a href="{% url 'podcast' %}">View</a></button>
+                    <a href="{% url 'podcast' %}"><button type="button" class="view-more">View</button></a>
                 </div>
                 <div class="card">
                     <img src="../../static/home/assets/graduation-cap.svg" alt="" class="svg">
                     <p>Alumni connect</p>
-                    <button type="button" class="view-more">View</button>
+                    <a href="{% url 'alumni_list'%}"><button type="button" class="view-more">View</button></a>
                 </div>
                 <div class="card">
                     <i class="fa-brands fa-instagram"></i>
                     <p>Social Media</p>
-                    <button type="button" class="view-more">View</button>
+                    <a href="{% url 'social_media' %}"><button type="button" class="view-more">View</button></a>
                 </div>
                 <!-- <div class="card">
                     <i class="fa-solid fa-link"></i>
