@@ -221,7 +221,7 @@ body {
   width: 100%;
   margin: 0 auto;
   /* background-color: #0e1620; */
-  background: linear-gradient(to right, white, rgba(255, 255, 255, 0.096),rgba(255, 255, 255, 0)),url('../home/assets/about3d.png');
+  /* background: linear-gradient(to right, white, rgba(255, 255, 255, 0.096),rgba(255, 255, 255, 0)),url('../home/assets/about3d.png'); */
   /* background-image: ; */
   background-position: right;
   background-repeat: no-repeat;
