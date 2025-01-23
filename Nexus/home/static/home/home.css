@@ -527,7 +527,7 @@ align-items: center;
   margin-bottom: 10px;
 }
 
-.social-logos {
+.follow-nexus .social-logos {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -536,7 +536,7 @@ align-items: center;
   cursor: pointer;
 }
 
-.social-logos i {
+.follow-nexus .social-logos i {
   font-size: 1.5rem; /* Icon size */
   color: #333; /* Default color for icons */
   transition: color 0.3s ease;
@@ -564,7 +564,7 @@ align-items: center;
 }
 
 /* Hover effect */
-.social-logos i:hover {
+.follow-nexus .social-logos i:hover {
   color: #000; /* Darken color on hover */
 }
 
@@ -1237,7 +1237,7 @@ align-items: center;
   transition: color 0.3s;
 }
 
-.social-icons i:hover {
+.nexus-activities .header .social-icons i:hover {
   color: #0d131a;
 }
 
@@ -1696,5 +1696,14 @@ align-items: center;
   .about-section .content p{
     width: 100%;
     max-width: 750px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1260px){
+  .post-details .insta-posts{
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    /* gap: 20px; */
   }
 }

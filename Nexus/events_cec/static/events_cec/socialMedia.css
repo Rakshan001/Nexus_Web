@@ -298,11 +298,19 @@ body {
 
 /* Card Styling */
 .card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   padding: 15px; /* Inner padding for card content */
   background-color: #fff;
   border-bottom: 1px solid #535353; /* Border bottom for each event */
   text-align: left; /* Align content to the left */
   margin-bottom: 1rem;
+}
+
+.card .poster img{
+  width: 300px;
+  height: 300px;
 }
 
 .card h3 {
@@ -317,8 +325,15 @@ body {
   color: #555;
 }
 
+.events-section{
+  margin-top: 5rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero-section h1{
+    font-size: 30px;
+  }
   .section .content-placeholder p{
     font-size: 15px;
   }
@@ -343,8 +358,12 @@ body {
     align-items: center;
   }
   .section .socialmedia-platforms{
+    margin: 5px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+  .section .socialmedia-platforms p{
+    text-align: center;
   }
 }
 
