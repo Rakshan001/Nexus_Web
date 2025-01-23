@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{% static 'events_cec/socialMedia.css' %}">
   <script src="https://kit.fontawesome.com/feaa59adcb.js" crossorigin="anonymous"></script>
   <link rel="icon" type="image/x-icon" href="../assets/Frame 14.png">
+  
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock%}
@@ -39,14 +40,17 @@
       <div class="content-placeholder">
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi eos similique modi provident unde mollitia, optio aspernatur ex fuga nobis numquam necessitatibus rem quos harum nesciunt. Id obcaecati iusto culpa eligendi! Commodi quisquam minus voluptatum et dolorum sit ipsam perferendis.</p>
       </div>
-      <div class="social-platforms">
-        <p>hello</p>
+      <div class="socialmedia-platforms">
+        <p><a href="">Instagram <i class="fa-brands fa-instagram"></i></a></p>
+        <p><a href="">Youtube <i class="fa-brands fa-youtube"></i></a></p>
+        <p><a href="">LinkedIn <i class="fa-brands fa-linkedin"></i></a></p>
+        <p><a href="">Facebook <i class="fa-brands fa-facebook"></i></a></p>
       </div>
     </section>
 
     <!-- Top Posts Section -->
     <section class="section top-posts">
-      <h2><i class="fa-solid fa-photo-film"></i> Top Posts</h2>
+      <h2>Our Instagram Posts</h2>
       <div class="reel-container">
         <!-- <div class="reel"><video autoplay loop muted src="../assets/reel.mp4"></video></div>
         <div class="reel"><video autoplay loop muted src="../assets/reel1.mp4"></video></div>
@@ -59,48 +63,42 @@
             <!-- Render the Instagram embed code stored in TextField -->
             {{ reel.url|safe }}
         </div>
-    {% empty %}
-        <p>No reels found.</p>
-    {% endfor %}
+        {% empty %}
+            <p>No reels found.</p>
+        {% endfor %}
     
-    <div class="post-container">
-      {% for post in posts %}
-        <div class="post" onclick="window.location.href='{{ post.url }}'">
-            <div class="post-header">
-                <!-- Replace with dynamic data -->
-                <img src="../../static/assets/Nexus logo.jpg" alt="Profile" class="profile-pic">
-                <span>cec.nexus</span>
-                <div class="icon">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-            </div>
-
-            <!-- Post image dynamically rendered -->
-            <img src="{{ post.image.url }}" alt="Session" class="post-image">
-
-            <div class="share">
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-regular fa-comment"></i>
-                <i class="fa-solid fa-share"></i>
-            </div>
-
-            <!-- Post caption dynamically rendered -->
-            <div class="post-caption">
-                {{ post.description }}
-            </div>
-        </div>
-    {% empty %}
-        <p>No posts available.</p>
-    {% endfor %}
-</div>
-
-
-
-
-     
-
-      
   </div>
+
+  <div class="post-container">
+    {% for post in posts %}
+      <div class="post" onclick="window.location.href='{{ post.url }}'">
+          <div class="post-header">
+              <!-- Replace with dynamic data -->
+              <img src="../../static/assets/Nexus logo.jpg" alt="Profile" class="profile-pic">
+              <span>cec.nexus</span>
+              <div class="icon">
+                  <i class="fa-brands fa-instagram"></i>
+              </div>
+          </div>
+
+          <!-- Post image dynamically rendered -->
+          <img src="{{ post.image.url }}" alt="Session" class="post-image">
+
+          <div class="share">
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-regular fa-comment"></i>
+              <i class="fa-solid fa-share"></i>
+          </div>
+
+          <!-- Post caption dynamically rendered -->
+          <div class="post-caption">
+              {{ post.description }}
+          </div>
+      </div>
+  {% empty %}
+      <p>No posts available.</p>
+  {% endfor %}
+</div>
     
       
         <script async src="//www.instagram.com/embed.js"></script>
@@ -124,7 +122,7 @@
 
           
         </div>
-    </section>
+  </section>
 
     <!-- Upcoming Events Section -->
 <section class="section events-section">
@@ -132,19 +130,22 @@
   <div class="content-placeholder">
     <div class="cards">
       <div class="card">
+        <!-- <div class="poster">
+          <img src="../../static/assets/Academic Preparation.png" alt="">
+        </div> -->
         <h3>Event 1</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, nulla mollis magna ut, convallis nunc nulla id massa.</p>
-        <p>Start Date: 2023-02-20</p>
+        <p><i class="fa-regular fa-calendar-days"></i> Date: 2023-02-20</p>
       </div>
       <div class="card">
         <h3>Event 2</h3>
         <p>Aliquam quis metus in lacus pretium convallis vel a ligula. Phasellus scelerisque nulla id quam hendrerit fermentum.</p>
-        <p>Start Date: 2023-03-15</p>
+        <p><i class="fa-regular fa-calendar-days"></i> Date: 2023-03-15</p>
       </div>
       <div class="card">
         <h3>Event 3</h3>
         <p>Curabitur auctor sapien vel nisi fermentum, vel hendrerit ligula elementum. Donec placerat erat in ante malesuada fermentum.</p>
-        <p>Start Date: 2023-04-10</p>
+        <p><i class="fa-regular fa-calendar-days"></i> Date: 2023-04-10</p>
       </div>
     </div>
   </div>
