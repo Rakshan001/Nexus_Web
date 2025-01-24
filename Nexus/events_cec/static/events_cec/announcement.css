@@ -323,6 +323,11 @@ font-family: 'Arial', sans-serif;
   display: block; /* Show dropdown only when hovered */
 }
 
+.event-cards .noeventfound{
+  width: 600px;
+  height: 300px;
+}
+
 
 /* Main Content when sidebar is open */
 .container.shifted {

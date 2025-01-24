@@ -267,6 +267,13 @@ body{
     background: #0a1219;
   }
 
+  .noalumnifound{
+    padding: 10px;
+    margin: 10px auto;
+    width: 550px;
+    height: 300px;
+  }
+
 /* mobile width */
 @media screen and (max-width: 768px){
     .ui-autocomplete {
@@ -595,7 +602,7 @@ body{
 </div>
 
 {% else %}
-    <p class="no-alumni">No alumni found.</p>
+    <img src="../../static/alumni_details/assets/Noalimnifound.png" alt="no alumni error" class="noalumnifound">
 {% endif %}
 
 <script>
