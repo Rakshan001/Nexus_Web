@@ -515,6 +515,12 @@ font-family: 'Arial', sans-serif;
     background-color: orange; padding: 8px;
   }
 
+  .event-cards .noeventfound{
+    margin: 5px auto;
+    width: 300px;
+    height: 150px;
+  }
+
 
 .modal {
 display: none; /* Hidden by default */
@@ -753,6 +759,12 @@ cursor: pointer;
     background-color: rgb(238, 157, 5);
     border: none;
     user-select: none; /* Prevent text selection */
+  }
+
+  .event-cards .noeventfound{
+    margin: 5px auto;
+    width: 300px;
+    height: 150px;
   }
  
 }

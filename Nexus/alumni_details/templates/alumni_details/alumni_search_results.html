@@ -85,7 +85,7 @@ body{
 }
 
 .search-filter button:hover {
-    background-color: #0056b3;
+    background-color: #111b24;
 }
 
 
@@ -290,15 +290,17 @@ body{
     .mob-search-filter{
         display: block;
         width: 100%;
+        max-width: 500px;
     }
 
     .mobile-view-filter{
         width: 100%;
+        max-width: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        margin: 20px 20px;
+        /* gap: 10px; */
+        margin: 10px;
     }
 
     .mobile-view-filter .search input {
@@ -369,6 +371,12 @@ body{
         width: 100%;
         max-width: 300px;
     }
+
+    .noalumnifound{
+        padding: 10px;
+        width: 300px;
+        height: 160px;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px){
     .search-filter {
@@ -441,6 +449,13 @@ body{
         cursor: pointer;
         font-size: 16px;
     }
+
+    .noalumnifound{
+        padding: 10px;
+        width: 300px;
+        height: 160px;
+        margin: 1rem;
+  }
 
 }
 
@@ -548,8 +563,8 @@ body{
    </div>
     </div>
 
-{% if page_obj.object_list %}
-<div class="alumni-results">
+    <div class="alumni-results">
+    {% if page_obj.object_list %}
     {% for alumni in page_obj.object_list %}
     <div class="alumni-profile-card">
         <!-- <div class="profile-views">
@@ -578,32 +593,32 @@ body{
     </a>
     </div>
     {% endfor %}
-</div>
-
-<!-- Pagination Controls -->
-<div class="pagination">
-    {% if page_obj.has_previous %}
-        <a href="?alumni={{ request.GET.alumni }}&page=1" class="first-prev">First</a>
-        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.previous_page_number }}" class="first-prev">Previous</a>
-    {% endif %}
-
-    {% for page_num in page_obj.paginator.page_range %}
-        {% if page_num == page_obj.number %}
-            <strong style="padding: 10px; background-color: #111b24; color: white;">{{ page_num }}</strong>
-        {% else %}
-            <a href="?alumni={{ request.GET.alumni }}&page={{ page_num }}">{{ page_num }}</a>
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?alumni={{ request.GET.alumni }}&page=1" class="first-prev">First</a>
+            <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.previous_page_number }}" class="first-prev">Previous</a>
         {% endif %}
-    {% endfor %}
-
-    {% if page_obj.has_next %}
-        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.next_page_number }}" class="next-prev">Next</a>
-        <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.paginator.num_pages }}" class="next-prev">Last</a>
+    
+        {% for page_num in page_obj.paginator.page_range %}
+            {% if page_num == page_obj.number %}
+                <strong style="padding: 10px; background-color: #111b24; color: white;">{{ page_num }}</strong>
+            {% else %}
+                <a href="?alumni={{ request.GET.alumni }}&page={{ page_num }}">{{ page_num }}</a>
+            {% endif %}
+        {% endfor %}
+    
+        {% if page_obj.has_next %}
+            <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.next_page_number }}" class="next-prev">Next</a>
+            <a href="?alumni={{ request.GET.alumni }}&page={{ page_obj.paginator.num_pages }}" class="next-prev">Last</a>
+        {% endif %}
+    </div>
+    
+    {% else %}
+        <img src="../../static/alumni_details/assets/Noalimnifound.png" alt="no alumni error" class="noalumnifound">
     {% endif %}
 </div>
 
-{% else %}
-    <img src="../../static/alumni_details/assets/Noalimnifound.png" alt="no alumni error" class="noalumnifound">
-{% endif %}
 
 <script>
     document.getElementById("mobile-filter-toggle").addEventListener("click", function () {

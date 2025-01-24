@@ -60,7 +60,8 @@ body {
 
 .team-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
+  gap: 10px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -145,9 +146,39 @@ body {
     background: #0a1219;
   }
 
+  .team-section .team-container .team-name{
+    writing-mode: vertical-rl; /* Rotate the text vertically */
+            transform: rotate(180deg); /* Flip to align the text direction */
+            font-size: 25px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+  }
+
+  .team-container .members{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
 
 /* Responsiveness */
 @media (max-width: 768px) {
+  .team-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.team-section .team-container .team-name{
+  writing-mode: horizontal-tb;
+  transform: rotate(0deg);
+  margin-bottom: 1rem;
+}
+
   .team-member{
     width: 70%;
     border-top: 5px solid #0a1219;
@@ -177,6 +208,16 @@ body {
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  .team-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+}
+
   </style>
 {% endblock %}
 
@@ -191,17 +232,39 @@ body {
     </div>
     
     <div class="team-container">
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Akhila Prabhu.jpg' %}" alt="Robert McGrath">
+      <div class="team-name">
+        <h2>Club Advisors</h2>
+      </div>
+      <div class="members">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Anoop1.jpg' %}" alt="Robert McGrath">
+          </div>
+          <h2>Anoop S Prabhu</h2>
+          <p>Dept of AIML</p>
         </div>
-        <h2>M Akhila Prabhu</h2>
-        <p>Club Advisor, Lead Interaction team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Akhila Prabhu.jpg' %}" alt="Robert McGrath">
+          </div>
+          <h2>M Akhila Prabhu</h2>
+          <p>Dept of AIML</p>
+        </div>
+        
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Sanjay G Kamath.jpg' %}" alt="Paul Carter">
+          </div>
+          <h2>Sanjay G Kamath</h2>
+          <p>Lead
+            Media team</p>
+        </div>
+      </div>
+      
+    </div>
+    <div class="team-container">
+      <div class="team-name">
+        <h2>Podcast</h2>
       </div>
       <div class="team-member">
         <div class="image-container">
@@ -209,24 +272,7 @@ body {
         </div>
         <h2>K Ankith Shenoy</h2>
         <p>Podcast Lead</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Sanjay G Kamath.jpg' %}" alt="Paul Carter">
-        </div>
-        <h2>Sanjay G Kamath</h2>
-        <p>Lead
-          Media team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
+        
       </div>
       <div class="team-member">
         <div class="image-container">
@@ -234,49 +280,6 @@ body {
         </div>
         <h2>K Adithya Bhaktha </h2>
         <p>Lead podcast team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
-      </div>
-    </div>
-    <div class="team-container">
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Devashree.jpg' %}" alt="Robert McGrath">
-        </div>
-        <h2>Devashree N</h2>
-        <p>Newsletter & Interaction Team </p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Deekshith.jpeg' %}" alt="Michelle Mager">
-        </div>
-        <h2>Deekshith Nayak</h2>
-        <p>Videography</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Arya - Navaneeth Arya.png' %}" alt="Paul Carter">
-        </div>
-        <h2>Navaneeth Arya</h2>
-        <p>Search team </p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
       </div>
       <div class="team-member">
         <div class="image-container">
@@ -284,76 +287,77 @@ body {
         </div>
         <h2>Prajna Nayak</h2>
         <p>Podcast team  Member</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
       </div>
-    </div>
-    <div class="team-container">
-      <div class="team-member">
+      <!-- <div class="team-member">
         <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Khushi.jpg' %}" alt="Robert McGrath">
+          <img src="{% static 'home/assets/Professional Photograph/Devashree.jpg' %}" alt="Robert McGrath">
         </div>
-        <h2>Khushi </h2>
-        <p>Newsletter Team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
+        <h2>Devashree N</h2>
+        <p>Newsletter & Interaction Team </p>
+      </div> -->
+      <!-- <div class="team-member">
+        <div class="image-container">
+          <img src="{% static 'home/assets/Professional Photograph/Deekshith.jpeg' %}" alt="Michelle Mager">
+        </div>
+        <h2>Deekshith Nayak</h2>
+        <p>Videography</p>
       </div>
       <div class="team-member">
         <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/M. Vaibhav.png' %}" alt="Michelle Mager">
+          <img src="{% static 'home/assets/Professional Photograph/Arya - Navaneeth Arya.png' %}" alt="Paul Carter">
         </div>
-        <h2>M.Vaibhav</h2>
+        <h2>Navaneeth Arya</h2>
         <p>Search team </p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
+      </div> -->
+      
+    </div>
+    <div class="team-container">
+      <div class="team-name">
+        <h2>Interaction</h2>
       </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Pragathi Shanubhag.jpg' %}" alt="Paul Carter">
+      <div class="members">
+
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Khushi.jpg' %}" alt="Robert McGrath">
+          </div>
+          <h2>Khushi </h2>
+          <p>Newsletter Team</p>
         </div>
-        <h2>Pragathi</h2>
-        <p>Member Engagement team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Shivani Kamath.jpeg' %}" alt="Paul Carter">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/M. Vaibhav.png' %}" alt="Michelle Mager">
+          </div>
+          <h2>M.Vaibhav</h2>
+          <p>Search team </p>
         </div>
-        <h2>Shivani kamath</h2>
-        <p>Backup lead 
-          Engagement team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Pragathi Shanubhag.jpg' %}" alt="Paul Carter">
+          </div>
+          <h2>Pragathi</h2>
+          <p>Member Engagement team</p>
+        </div>
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Shivani Kamath.jpeg' %}" alt="Paul Carter">
+          </div>
+          <h2>Shivani kamath</h2>
+          <p>Backup lead 
+            Engagement team</p>
+        </div>
       </div>
     </div>
     <div class="team-container">
+      <div class="team-name">
+        <h2>Engagement</h2>
+      </div>
       <div class="team-member">
         <div class="image-container">
           <img src="{% static 'home/assets/Professional Photograph/Tanvi Bhat.jpeg' %}" alt="Robert McGrath">
         </div>
         <h2>Tanvi Bhat</h2>
         <p>Interaction Team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
       </div>
       <div class="team-member">
         <div class="image-container">
@@ -361,11 +365,6 @@ body {
         </div>
         <h2>U Darshan Raj </h2>
         <p>Media Team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
       </div>
       <div class="team-member">
         <div class="image-container">
@@ -373,11 +372,6 @@ body {
         </div>
         <h2>MELISHA</h2>
         <p>Sucessor Search team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
       </div>
       <div class="team-member">
         <div class="image-container">
@@ -385,25 +379,18 @@ body {
         </div>
         <h2>Varsha Nayak K </h2>
         <p>Engagement Team</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
       </div>
     </div>
     <div class="team-container">
+      <div class="team-name">
+        <h2>Media</h2>
+      </div>
       <div class="team-member">
         <div class="image-container">
           <img src="{% static 'home/assets/Professional Photograph/Abhishek Nayak.jpg' %}" alt="Paul Carter">
         </div>
         <h2>Abhishek Nayak </h2>
         <p>Nexus Member</p>
-        <!-- <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-        </div> -->
       </div>
       <div class="team-member">
         <div class="image-container">
