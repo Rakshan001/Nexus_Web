@@ -1,12 +1,16 @@
 from django.contrib import admin
 from django.db import models
-from .models import Student, Alumni, CouncilMember
+from .models import Student, Alumni, CouncilMember,Faculty
 from image_uploader_widget.widgets import ImageUploaderWidget
 
 class StudentAdmin(admin.ModelAdmin):
     autocomplete_fields = ['user']  # Replaces dropdown with search box
     list_display = ['first_name', 'last_name', 'usn', 'batch']
     list_filter = ['batch']  # Adds filter by batch
+
+class FacultyAdmin(admin.ModelAdmin):
+    # autocomplete_fields = ['user']  # Replaces dropdown with search box
+    list_display = ['first_name', 'last_name', 'email']
 
 class AlumniAdmin(admin.ModelAdmin):
     autocomplete_fields = ['user']
@@ -16,6 +20,9 @@ class AlumniAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.ImageField: {'widget': ImageUploaderWidget},
     }
+
+
+
 
 class CouncilMemberAdmin(admin.ModelAdmin):
     list_display = ('role', 'year', 'alumni')
@@ -31,3 +38,4 @@ class CouncilMemberAdmin(admin.ModelAdmin):
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Alumni, AlumniAdmin)
 admin.site.register(CouncilMember, CouncilMemberAdmin)  
+admin.site.register(Faculty,FacultyAdmin)

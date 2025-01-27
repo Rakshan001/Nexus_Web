@@ -117,7 +117,7 @@
                     </button>
                 </div>
             </a>
-        </div>
+        </div>  
         {% endfor %}
     </div>
     <a href="{% url 'alumni_by_year' year %}" class="see-more">
@@ -164,27 +164,30 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
                     <div class="alumni-profiles">
                         ${alumniList.map(alumni => `
                             <div class="alumni-profile">
-                                
-                                <a href="/alumni/profile/${alumni.uuid}/">
-                                    <img src="${alumni.profile_picture || '/static/alumni_details/assets/default.png'}" 
-                                         alt="${alumni.first_name}'s Profile Picture">
-                                    <p class="name" style="color: black;">${alumni.first_name} ${alumni.last_name}</p>
-                                    <p class="position">${alumni.current_position || ''} ${alumni.company_name ? 'at ' + alumni.company_name : ''}</p>
-                                    <p class="position">${alumni.branch || ''}</p>
-                                    <div class="connec-btn">
-                                        ${alumni.linkedin_url ? `
-                                            <button class="connect-btn">
-                                                <i class="fa-brands fa-linkedin"></i>
-                                                <a href="${alumni.linkedin_url}" target="_blank">LinkedIn</a>
-                                            </button>
-                                        ` : ''}
-                                        <button class="connect-btn">
-                                            <i class="fa-solid fa-envelope"></i>
-                                            <a href="">Email</a>
-                                        </button>
-                                    </div>
-                                </a>
-                            </div>
+    <a href="/alumni/alumni-profile/${alumni.uuid}/">
+        <img src="${alumni.profile_picture || '/static/alumni_details/assets/default.png'}" 
+             alt="${alumni.first_name}'s Profile Picture">
+        <p class="name" style="color: black;">${alumni.first_name} ${alumni.last_name}</p>
+        <p class="position">${alumni.current_position || ''} ${alumni.company_name ? 'at ' + alumni.company_name : ''}</p>
+        <p class="position">${alumni.branch || ''}</p>
+    </a>
+    <div class="connec-btn js-email-btn">
+        ${alumni.linkedin_url ? `
+            <button class="connect-btn">
+                <i class="fa-brands fa-linkedin"></i>
+                <a href="${alumni.linkedin_url}" target="_blank">LinkedIn</a>
+            </button>
+        ` : ''}
+        ${alumni.personal_email ? `
+            <button class="connect-btn">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:${alumni.personal_email}">Email</a>
+            </button>
+        ` : ''}
+    </div>
+</div>
+
+
                         `).join('')}
                     </div>
                     <a href="/alumni/alumni/${year}/" class="see-more">
@@ -243,6 +246,20 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
 
 .load-more-btn i {
     margin-right: 8px;
+}
+
+
+.js-email-btn{
+    display: flex;
+    padding: 2rem;
+    color: red;
+    background-color: beige;
+    
+}
+.js-email-btn .connect-btn a{
+    
+    padding: 2rem;
+    color: green;
 }
 </style>
 

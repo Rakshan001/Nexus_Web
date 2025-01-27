@@ -1,7 +1,7 @@
 from django.urls import reverse
 from .models import Notification
 from events_cec.models import Event
-from alumni_details.models import Alumni, Student
+from alumni_details.models import Alumni, Student,Faculty
 from django.utils import timezone
 
 def create_profile_view_notification(viewer, profile_owner):
@@ -24,6 +24,14 @@ def create_profile_view_notification(viewer, profile_owner):
                 notification_type = 'profile_view_student'
                 # You might want to add a default student photo
                 viewer_photo = '/static/images/default_student.png'
+
+            elif hasattr(viewer,'faculty_profile'):
+                faculty = viewer.faculty_profile
+                viewer_type = 'faculty'
+                viewer_name = f"{faculty.first_name} {faculty.last_name}"
+                notification_type = 'profile_view_faculty'
+                # You might want to add a default faculty photo
+                viewer_photo = '/static/images/default_student.png'
                 
             elif hasattr(viewer, 'alumni_profile'):
                 alumni = viewer.alumni_profile
@@ -41,8 +49,12 @@ def create_profile_view_notification(viewer, profile_owner):
         message = (
             f"{viewer_name} ({viewer_type.title()}) viewed your profile"
             if viewer_type == 'student'
+            else f"{viewer_name} ({viewer_type.title()}) viewed your profile"
+            if viewer_type == 'faculty'
+            
             else f"{viewer_name} (Alumni) viewed your profile. Click to view their profile."
         )
+
 
         Notification.objects.create(
             recipient=profile_owner,

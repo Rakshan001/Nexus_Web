@@ -113,6 +113,10 @@
                                 <div class="student-login"><span class="span">Username: </span> 
                                     <h4>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h4>
                                     <!-- <p>Email: {{ user.username }}</p> -->
+                                {% elif user.faculty_profile %}
+                                    <div class="faculty-login"><span class="span">Username: </span> 
+                                        <h4>{{ user.faculty_profile.first_name }} {{ user.faculty_profile.last_name }}</h4>
+                                        <!-- <p>Email: {{ user.username }}</p> -->
                                 {% endif %}
                                 <button class="secondry-btn std-logout">
                                     <img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt=""><a href="{% url 'user_logout' %}" class="logout-link">Sign Out</a>

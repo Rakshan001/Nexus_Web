@@ -42,6 +42,16 @@
                         </div>
                     </div>
 
+                    {% elif notification.notification_type == 'profile_view_faculty' %}
+                    <div class="notification-content faculty-view">
+                        <div class="viewer-info">
+                            <div class="viewer-details">
+                                <h4>{{ notification.title }}</h4>
+                                <p>{{ notification.message }}</p>
+                            </div>
+                        </div>
+                    </div>
+
                 {% else %}
                     <div class="notification-content">
                         <h4>{{ notification.title }}</h4>
