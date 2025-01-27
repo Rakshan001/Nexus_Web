@@ -320,6 +320,7 @@ display: none;
 
 .sidebar .profile-section .profile-texts h3{
   margin-bottom: 0;
+  font-size: 25px;
 }
 
 .sidebar .profile-section {
@@ -368,7 +369,7 @@ display: none;
 .profile-section .secondry-btn {
   display: flex;
   align-items: center;
-  /* padding: 10px 20px; */
+  padding: 10px 20px;
   background-color: transparent;
   margin-top: 1rem;
   margin-bottom: 0.4rem;

@@ -77,28 +77,21 @@
             </div>
         </div>
         <!-- Alumni head message -->
-        <div class="alumni-h-message">
-
-            <div class="deans-text">
-                <h2>About Nexus</h2>
-                <div class="mssg">
-                <img src="../../static/home/assets/doublequote.png" alt="" />
+        <div class="about-section">
+            <h2>About Nexus</h2>
+            <div class="line"></div>
+            <div class="content">
                 <p>
-                  I want to express my deepest gratitude to each and every one of you
-                  for your hard work and dedication." "Today, I want to talk about the
-                  importance of kindness and compassion in our community ." "I am
-                  thrilled to announce that our school has been recognized for its
-                  outstanding achievements in the field of public health." "I believe
-                  that every individual has the power to make a positive impact in the
-                  world." "As we move forward, I encourage you to stay committed to our
-                  mission of improving the health and well-being of all people.
+                    I want to express my deepest gratitude to each and every one of you for your hard work and dedication. 
+                    "Today, I want to talk about the importance of kindness and compassion in our community." 
+                    "I am thrilled to announce that our school has been recognized for its outstanding achievements 
+                    in the field of public health." "I believe that every individual has the power to make a positive 
+                    impact in the world." "As we move forward, I encourage you to stay committed to our mission of 
+                    improving the health and well-being of all people."
                 </p>
-                <!-- <img src="../assets/Nexus logo.jpg" alt="" class="pic"> -->
-            </div>
-            <!-- <h3>Mrs Deepthi Prabhu</h3> -->
-            </div>
-            <div class="speaker-img">
-                <img src="../../static/home/assets/Nexus logo.jpg" alt="">
+                <div class="logo">
+                    <img src="../../static/home/assets/Nexus logo.jpg" alt="Nexus Logo">
+                </div>
             </div>
         </div>
 
@@ -177,22 +170,22 @@
                 </div>
                 <div class="activity-cards">
                     <div class="card">
-                        <i class="fa-solid fa-microphone-lines"></i>
+                        <i class="fa-solid fa-microphone-lines acti-icons"></i>
                         <div class="count" data-target="{{ activity_count.podcast }}">0</div>
                         <p>Podcast</p>
                     </div>
                     <div class="card">
-                        <i class="fa-solid fa-scissors"></i>
+                        <i class="fa-solid fa-scissors acti-icons"></i>
                         <div class="count" data-target="{{ activity_count.events }}">0</div>
                         <p>Events</p>
                     </div>
                     <div class="card">
-                        <i class="fa-solid fa-gears"></i>
+                        <i class="fa-solid fa-gears acti-icons"></i>
                         <div class="count" data-target="{{ activity_count.workshops }}">0</div>
                         <p>Workshops</p>
                     </div>
                     <div class="card">
-                        <i class="fa-solid fa-people-group"></i>
+                        <i class="fa-solid fa-people-group acti-icons"></i>
                         <div class="count" data-target="{{ activity_count.interactions }}">0</div>
                         <p>Interactions</p>
                     </div>
@@ -204,6 +197,7 @@
         <div class="post-container">
             <div class="latest-header">
                 <h2>Latest From Nexus</h2>
+                <p>Watch all our latest podcast and Instagram posts at CEC Nexus. Please Stay tuned for the future updates.</p>
             </div>
             <div class="post-details">
                 <div class="video-container">
@@ -221,6 +215,36 @@
                         <p>No podcast available at the moment.</p>
                     {% endif %}
                 </div>
+                <div class="insta-posts" onclick="instaredirect()">
+                    {% for post in posts %}
+                      <div class="post" onclick="window.location.href='{{ post.url }}'">
+                          <div class="post-header">
+                              <!-- Replace with dynamic data -->
+                              <img src="../../static/home/assets/Nexus logo.jpg" alt="Profile" class="profile-pic">
+                              <span>cec.nexus</span>
+                              <div class="icon">
+                                  <i class="fa-brands fa-instagram"></i>
+                              </div>
+                          </div>
+              
+                          <!-- Post image dynamically rendered -->
+                          <img src="{{ post.image.url }}" alt="Session" class="post-image">
+              
+                          <div class="share">
+                              <i class="fa-regular fa-heart"></i>
+                              <i class="fa-regular fa-comment"></i>
+                              <i class="fa-solid fa-share"></i>
+                          </div>
+              
+                          <!-- Post caption dynamically rendered -->
+                          <div class="post-caption">
+                              {{ post.description }}
+                          </div>
+                      </div>
+                  {% empty %}
+                      <p>No posts available.</p>
+                  {% endfor %}
+              </div>
             </div>
             
             <script>
@@ -239,47 +263,19 @@
                   }
                 });
             </script>
-            
-    
-                  <div class="insta-posts" onclick="instaredirect()">
-                        {% for post in posts %}
-                          <div class="post" onclick="window.location.href='{{ post.url }}'">
-                              <div class="post-header">
-                                  <!-- Replace with dynamic data -->
-                                  <img src="../assets/Nexus logo.jpg" alt="Profile" class="profile-pic">
-                                  <span>cec.nexus</span>
-                                  <div class="icon">
-                                      <i class="fa-brands fa-instagram"></i>
-                                  </div>
-                              </div>
-                  
-                              <!-- Post image dynamically rendered -->
-                              <img src="{{ post.image.url }}" alt="Session" class="post-image">
-                  
-                              <div class="share">
-                                  <i class="fa-regular fa-heart"></i>
-                                  <i class="fa-regular fa-comment"></i>
-                                  <i class="fa-solid fa-share"></i>
-                              </div>
-                  
-                              <!-- Post caption dynamically rendered -->
-                              <div class="post-caption">
-                                  {{ post.description }}
-                              </div>
-                          </div>
-                      {% empty %}
-                          <p>No posts available.</p>
-                      {% endfor %}
-                  </div>
-                  </div>
-            </div>
         </div>
+            <!-- </div> -->
+        <!-- </div> -->
     
         <div class="top-events-display">
-            <div class="section-header">
+            <!-- <div class="section-header">
                 <span class="line"></span>
                 <div class="label">Nexus Events</div>
                 <span class="line"></span>
+            </div> -->
+            <div class="event-header">
+                <h2>Latest From Nexus</h2>
+                <p>Watch all our latest podcast and Instagram posts at CEC Nexus. Please Stay tuned for the future updates.</p>
             </div>
             <div class="swiper-container s1">
                 <div class="swiper-wrapper">
@@ -333,17 +329,17 @@
                 <div class="card">
                     <i class="fa-solid fa-podcast"></i>
                     <p>Podcast</p>
-                    <button type="button" class="view-more"><a href="{% url 'podcast' %}">View</a></button>
+                    <a href="{% url 'podcast' %}"><button type="button" class="view-more">View</button></a>
                 </div>
                 <div class="card">
                     <img src="../../static/home/assets/graduation-cap.svg" alt="" class="svg">
                     <p>Alumni connect</p>
-                    <button type="button" class="view-more">View</button>
+                    <a href="{% url 'alumni_list'%}"><button type="button" class="view-more">View</button></a>
                 </div>
                 <div class="card">
                     <i class="fa-brands fa-instagram"></i>
                     <p>Social Media</p>
-                    <button type="button" class="view-more">View</button>
+                    <a href="{% url 'social_media' %}"><button type="button" class="view-more">View</button></a>
                 </div>
                 <!-- <div class="card">
                     <i class="fa-solid fa-link"></i>
@@ -366,10 +362,9 @@
         </div>
       
         <div class="alumni-startups">
-            <div class="section-header">
-                <span class="line"></span>
-                <div class="label">Nexus Founder Batch</div>
-                <span class="line"></span>
+            <div class="latest-header">
+                <h2>Nexus Founder Team</h2>
+                <p>Watch all our latest podcast and Instagram posts at CEC Nexus. Please Stay tuned for the future updates.</p>
             </div>
             <div class="row">
                 <div class="startup-card">

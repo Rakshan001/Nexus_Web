@@ -323,6 +323,11 @@ font-family: 'Arial', sans-serif;
   display: block; /* Show dropdown only when hovered */
 }
 
+.event-cards .noeventfound{
+  width: 600px;
+  height: 300px;
+}
+
 
 /* Main Content when sidebar is open */
 .container.shifted {
@@ -508,6 +513,12 @@ font-family: 'Arial', sans-serif;
     display: block;
     font-size: 20px; color: #242424;
     background-color: orange; padding: 8px;
+  }
+
+  .event-cards .noeventfound{
+    margin: 5px auto;
+    width: 300px;
+    height: 150px;
   }
 
 
@@ -748,6 +759,12 @@ cursor: pointer;
     background-color: rgb(238, 157, 5);
     border: none;
     user-select: none; /* Prevent text selection */
+  }
+
+  .event-cards .noeventfound{
+    margin: 5px auto;
+    width: 300px;
+    height: 150px;
   }
  
 }
