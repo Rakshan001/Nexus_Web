@@ -66,6 +66,13 @@ body {
   flex-wrap: wrap;
 }
 
+.media2-line{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .team-member {
   border-top: 2px solid #eb830d ;
   background-color: rgb(255, 255, 255);
@@ -162,6 +169,13 @@ body {
     gap: 10px;
   }
 
+  .team-container .media-members{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    align-items: center;
+    gap: 10px;
+  }
+
 
 /* Responsiveness */
 @media (max-width: 768px) {
@@ -206,16 +220,31 @@ body {
   max-width: 300px;
   margin: 0 auto;
   }
+  .team-container .media-members{
+    display: grid;
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px){
-  .team-container {
+  .team-section .team-container .team-name{
+  writing-mode: horizontal-tb;
+  transform: rotate(0deg);
+  margin-bottom: 1rem;
+}
+  .team-section .team-container {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   gap: 10px;
   align-items: center;
   flex-direction: column;
 }
+.team-container .media-members{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+   
+  }
 }
 
   </style>
@@ -251,14 +280,6 @@ body {
           <p>Dept of AIML</p>
         </div>
         
-        <div class="team-member">
-          <div class="image-container">
-            <img src="{% static 'home/assets/Professional Photograph/Sanjay G Kamath.jpg' %}" alt="Paul Carter">
-          </div>
-          <h2>Sanjay G Kamath</h2>
-          <p>Lead
-            Media team</p>
-        </div>
       </div>
       
     </div>
@@ -266,27 +287,30 @@ body {
       <div class="team-name">
         <h2>Podcast</h2>
       </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Ankith Shenoy.jpg' %}" alt="Michelle Mager">
+      <div class="members">
+
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Ankith Shenoy.jpg' %}" alt="Michelle Mager">
+          </div>
+          <h2>K Ankith Shenoy</h2>
+          <p>Podcast Lead</p>
+          
         </div>
-        <h2>K Ankith Shenoy</h2>
-        <p>Podcast Lead</p>
-        
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Adi Bhaktha.jpeg' %}" alt="Paul Carter">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Adi Bhaktha.jpeg' %}" alt="Paul Carter">
+          </div>
+          <h2>K Adithya Bhaktha </h2>
+          <p>Lead podcast team</p>
         </div>
-        <h2>K Adithya Bhaktha </h2>
-        <p>Lead podcast team</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Prajna Nayak.jpeg' %}" alt="Paul Carter">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Prajna Nayak.jpeg' %}" alt="Paul Carter">
+          </div>
+          <h2>Prajna Nayak</h2>
+          <p>Podcast team  Member</p>
         </div>
-        <h2>Prajna Nayak</h2>
-        <p>Podcast team  Member</p>
       </div>
       <!-- <div class="team-member">
         <div class="image-container">
@@ -316,14 +340,20 @@ body {
         <h2>Interaction</h2>
       </div>
       <div class="members">
-
         <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Reeshal Dsouza.jpg' %}" alt="Paul Carter">
+          </div>
+          <h2>Reeshal Dsouza </h2>
+          <p>Interaction team</p>
+        </div>
+        <!-- <div class="team-member">
           <div class="image-container">
             <img src="{% static 'home/assets/Professional Photograph/Khushi.jpg' %}" alt="Robert McGrath">
           </div>
           <h2>Khushi </h2>
           <p>Newsletter Team</p>
-        </div>
+        </div> -->
         <div class="team-member">
           <div class="image-container">
             <img src="{% static 'home/assets/Professional Photograph/M. Vaibhav.png' %}" alt="Michelle Mager">
@@ -352,96 +382,105 @@ body {
       <div class="team-name">
         <h2>Engagement</h2>
       </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Tanvi Bhat.jpeg' %}" alt="Robert McGrath">
+      <div class="members">
+
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Tanvi Bhat.jpeg' %}" alt="Robert McGrath">
+          </div>
+          <h2>Tanvi Bhat</h2>
+          <p>Interaction Team</p>
         </div>
-        <h2>Tanvi Bhat</h2>
-        <p>Interaction Team</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Darshan.JPG' %}" alt="Michelle Mager">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Darshan.JPG' %}" alt="Michelle Mager">
+          </div>
+          <h2>U Darshan Raj </h2>
+          <p>Media Team</p>
         </div>
-        <h2>U Darshan Raj </h2>
-        <p>Media Team</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Melisha.jpg' %}" alt="Paul Carter">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Melisha.jpg' %}" alt="Paul Carter">
+          </div>
+          <h2>MELISHA</h2>
+          <p>Sucessor Search team</p>
         </div>
-        <h2>MELISHA</h2>
-        <p>Sucessor Search team</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Pragathi Shanubhag.jpg' %}"  "../Professional Photograph/Varsha Nayak.jpg" alt="Paul Carter">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Pragathi Shanubhag.jpg' %}"  "../Professional Photograph/Varsha Nayak.jpg" alt="Paul Carter">
+          </div>
+          <h2>Varsha Nayak K </h2>
+          <p>Engagement Team</p>
         </div>
-        <h2>Varsha Nayak K </h2>
-        <p>Engagement Team</p>
       </div>
     </div>
     <div class="team-container">
       <div class="team-name">
         <h2>Media</h2>
       </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Abhishek Nayak.jpg' %}" alt="Paul Carter">
+      <div class="media-members">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Sanjay G Kamath.jpg' %}" alt="Paul Carter">
+          </div>
+          <h2>Sanjay G Kamath</h2>
+          <p>Lead
+            Media team</p>
         </div>
-        <h2>Abhishek Nayak </h2>
-        <p>Nexus Member</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Anirudh R Prabhu.jpeg' %}" alt="Paul Carter">
+
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Abhishek Nayak.jpg' %}" alt="Paul Carter">
+          </div>
+          <h2>Abhishek Nayak </h2>
+          <p>Nexus Member</p>
         </div>
-        <h2>Anirudh R Prabhu</h2>
-        <p>Media team Member</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Anuradha Nayak.jpg' %}" alt="Paul Carter">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Anirudh R Prabhu.jpeg' %}" alt="Paul Carter">
+          </div>
+          <h2>Anirudh R Prabhu</h2>
+          <p>Media team Member</p>
         </div>
-        <h2>K . Thejaswi Nayak </h2>
-        <p>Engagement Team- Member </p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Reeshal Dsouza.jpg' %}" alt="Paul Carter">
+        <div class="team-member">
+          <div class="image-container">
+            <img src="{% static 'home/assets/Professional Photograph/Anuradha Nayak.jpg' %}" alt="Paul Carter">
+          </div>
+          <h2>K . Thejaswi Nayak </h2>
+          <p>Engagement Team- Member </p>
         </div>
-        <h2>Reeshal Dsouza </h2>
-        <p>Interaction team</p>
-      </div>
-    </div>
-    <div class="team-container">
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/neha.jpg' %}" alt="Paul Carter">
-        </div>
-        <h2>Neha</h2>
-        <p>Media Team Member</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Sambhram Jain.jpeg' %}" alt="Paul Carter">
-        </div>
-        <h2>Sambhram Jain</h2>
-        <p>Engagement Team Member</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/Shresht Karkera.jpg' %}" alt="Paul Carter">
-        </div>
-        <h2>Shresht S Karkera</h2>
-        <p>Video Editor</p>
-      </div>
-      <div class="team-member">
-        <div class="image-container">
-          <img src="{% static 'home/assets/Professional Photograph/ananyabhat.jpg' %}" alt="Paul Carter">
-        </div>
-        <h2>Ananya Bhat</h2>
-        <p>Engagement Team Member</p>
+        
+        <!-- <div class="team-container media2-line"> -->
+          <div class="team-member">
+            <div class="image-container">
+              <img src="{% static 'home/assets/Professional Photograph/neha.jpg' %}" alt="Paul Carter">
+            </div>
+            <h2>Neha</h2>
+            <p>Media Team Member</p>
+          </div>
+          <div class="team-member">
+            <div class="image-container">
+              <img src="{% static 'home/assets/Professional Photograph/Sambhram Jain.jpeg' %}" alt="Paul Carter">
+            </div>
+            <h2>Sambhram Jain</h2>
+            <p>Engagement Team Member</p>
+          </div>
+          
+          <div class="team-member">
+            <div class="image-container">
+              <img src="{% static 'home/assets/Professional Photograph/Shresht Karkera.jpg' %}" alt="Paul Carter">
+            </div>
+            <h2>Shresht S Karkera</h2>
+            <p>Video Editor</p>
+          </div>
+          <div class="team-member">
+            <div class="image-container">
+              <img src="{% static 'home/assets/Professional Photograph/ananyabhat.jpg' %}" alt="Paul Carter">
+            </div>
+            <h2>Ananya Bhat</h2>
+            <p>Engagement Team Member</p>
+          </div>
+        <!-- </div> -->
       </div>
     </div>
     <div class="portal-team-mobile">

@@ -291,9 +291,11 @@ body {
 
 /* Cards Container */
 .cards {
-  display: flex;
-  flex-direction: column; /* Stack cards vertically */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
   gap: 15px; /* Add space between cards */
+  justify-content: center;
+  align-items: center;
 }
 
 /* Card Styling */
@@ -301,11 +303,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-direction: column;
   padding: 15px; /* Inner padding for card content */
   background-color: #fff;
   border-bottom: 1px solid #535353; /* Border bottom for each event */
   text-align: left; /* Align content to the left */
   margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.content-placeholder .cards .card .socialmedia-event-data button{
+  outline: none;
+  border: none;
+  padding:10px;
+  width: 100%;
+  background-color: rgb(16, 24, 36);
+  color: white;
+  border-radius: 2px;
 }
 
 .card .poster img{
@@ -329,6 +343,12 @@ body {
   margin-top: 5rem;
 }
 
+.events-section h2{
+  margin-bottom: 4rem;
+  padding: 10px;
+  border-bottom:  1px solid black;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero-section h1{
@@ -339,6 +359,10 @@ body {
   }
   .events-section {
     padding: 15px;
+  }
+
+  .cards{
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
   }
 
   .card {
@@ -442,7 +466,7 @@ body {
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px){
+@media screen and (min-width: 768px) and (max-width: 1239px){
   .post-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(100px, 1fr));
@@ -452,5 +476,9 @@ body {
   }
   .post-container .post{
     margin: 10px auto;
+  }
+
+  .cards{
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
   }
 }

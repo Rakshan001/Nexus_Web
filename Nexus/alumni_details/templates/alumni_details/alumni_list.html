@@ -171,19 +171,15 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
         <p class="position">${alumni.current_position || ''} ${alumni.company_name ? 'at ' + alumni.company_name : ''}</p>
         <p class="position">${alumni.branch || ''}</p>
     </a>
-    <div class="connec-btn js-email-btn">
-        ${alumni.linkedin_url ? `
-            <button class="connect-btn">
-                <i class="fa-brands fa-linkedin"></i>
-                <a href="${alumni.linkedin_url}" target="_blank">LinkedIn</a>
-            </button>
-        ` : ''}
-        ${alumni.personal_email ? `
-            <button class="connect-btn">
-                <i class="fa-solid fa-envelope"></i>
-                <a href="mailto:${alumni.personal_email}">Email</a>
-            </button>
-        ` : ''}
+    <div class="connec-btn">
+                    <button class="connect-btn">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a>
+                    </button>
+                    <button class="connect-btn">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:{{ alumni.personal_email }}">Email</a>
+                    </button>
     </div>
 </div>
 
@@ -253,7 +249,7 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
     display: flex;
     padding: 2rem;
     color: red;
-    background-color: beige;
+    /* background-color: beige; */
     
 }
 .js-email-btn .connect-btn a{
@@ -276,4 +272,19 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
 <!-- <div class="profile-views">
     <i class="fa-solid fa-eye"></i>
     <span>${alumni.profile_views || 0} views</span>
+</div> -->
+
+<!-- <div class="connec-btn">
+    ${alumni.linkedin_url ? `
+        <button class="connect-btn">
+            <i class="fa-brands fa-linkedin"></i>
+            <a href="${alumni.linkedin_url}" target="_blank">LinkedIn</a>
+        </button>
+    ` : ''}
+    ${alumni.personal_email ? `
+        <button class="connect-btn">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:${alumni.personal_email}">Email</a>
+        </button>
+    ` : ''}
 </div> -->
