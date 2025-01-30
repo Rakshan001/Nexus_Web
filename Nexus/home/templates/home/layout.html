@@ -63,7 +63,7 @@
                         Alumni Coordinators <i class="fa fa-angle-down"></i>
                         <ul class="dropdown-content">
                             <li> <a href="{% url 'faculty-coordinator-list'%}">Faculty Coordinators</a></li>
-                            <li> <a href="{% url 'student-coordinator-list'%}">Student Coordinators</a></li>
+                            <!-- <li> <a href="{% url 'student-coordinator-list'%}">Student Coordinators</a></li> -->
 
                         </ul>
                     </li>
@@ -110,16 +110,16 @@
                                      </button>
                                      
                                 {% elif user.student_profile %}
-                                <div class="student-login"><span class="span">Username: </span> 
-                                    <h4>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h4>
+                                <div class="student-login"><span class="span">Welcome </span> 
+                                    <h4 class="student-name">{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h4>
                                     <!-- <p>Email: {{ user.username }}</p> -->
                                 {% elif user.faculty_profile %}
-                                    <div class="faculty-login"><span class="span">Username: </span> 
-                                        <h4>{{ user.faculty_profile.first_name }} {{ user.faculty_profile.last_name }}</h4>
+                                    <div class="faculty-login"><span class="span">Welcome </span> 
+                                        <h4 class="faculty-name">{{ user.faculty_profile.first_name }} {{ user.faculty_profile.last_name }}</h4>
                                         <!-- <p>Email: {{ user.username }}</p> -->
                                 {% endif %}
-                                <button class="secondry-btn std-logout">
-                                    <img src="../../static/home/assets/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt=""><a href="{% url 'user_logout' %}" class="logout-link">Sign Out</a>
+                                <button class="secondry-btn">
+                                    <a href="{% url 'user_logout' %}" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a>
                                 </button>
                             </div>
                             {% if user.is_staff %}
@@ -220,7 +220,7 @@
                     Alumni Coordinators <i class="fa fa-angle-down"></i>
                     <ul class="dropdown-content">
                         <li> <a href="{% url 'faculty-coordinator-list'%}">Faculty Coordinators</a></li>
-                            <li> <a href="{% url 'student-coordinator-list'%}">Student Coordinators</a></li>
+                            <!-- <li> <a href="{% url 'student-coordinator-list'%}">Student Coordinators</a></li> -->
                     </ul>
                 </li>
                 <li>
@@ -279,11 +279,13 @@
     <!-- Main Content -->
     <div class="help-block">
         <div class="help-data">
-            <a href="#" class="help-link">Need Help? |</a>
-            <p>Chatbot <i class="fa-solid fa-headset"></i></p>
+            
+            <a href="#" class="help-link">Need Help?</a>
         </div>
     </div>
-    
+     <!-- <div class="chatbot">
+        <i class="fa-solid fa-headset"></i>
+    </div> -->
         <!-- Add your page-specific content here -->
         {% block content %}
 
