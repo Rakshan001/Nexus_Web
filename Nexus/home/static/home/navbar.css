@@ -162,6 +162,23 @@ header nav .profile.show-menu .profile-menu {
 display: block; /* Toggle the display using JavaScript */
 }
 
+.chatbot{
+  position: fixed;
+  padding: 10px;
+  border-radius: 50%;
+  bottom: 10px;
+  right: 10px;
+  /* background: linear-gradient(#2b8bf1, #003366); */
+  background-color: #e56f00; cursor: pointer;
+  color: #0a1219;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+.chatbot i{
+  color: white;
+  font-size: 30px;
+}
+
 
 #loginBtn {
 position: relative;
@@ -1106,4 +1123,55 @@ color: #fff;
 /* After preloader is hidden, content will be shown */
 .show-content #content {
   display: block;
+}
+
+@media (min-width: 1440px){
+  nav{
+    padding: 10px;
+  }
+
+  .menu i {
+    font-size: 25px;
+  }
+
+  nav .left .logo img{
+    width: 150px;
+    height: auto;
+    /* aspect-ratio: 3/2; */
+  }
+
+  .sidebar .profile-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* margin: 5px; */
+    margin-top: 10rem;
+    color: white;
+    padding: 10px;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  .sidebar .sidebar-middle{
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .sidebar .sidebar-middle a{
+    font-size: 18px;
+    text-decoration: none;
+    color: rgb(151, 151, 151);
+    gap: 40px;
+  }
+  
+  .sidebar .sidebar-middle a i{
+    font-size: 1.5em;
+  }
+
+
 }

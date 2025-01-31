@@ -75,6 +75,7 @@
                     <span class="visually-hidden">Next</span>
                 </button> -->
             </div>
+            <p class="college-website" id="collegePopup"><a href="">Visit: <i class="fa-solid fa-building-columns"></i> Canara Engineering College</a> <i class="fa-solid fa-xmark" id="closePopup"></i></p>
         </div>
         <!-- Alumni head message -->
         <div class="about-section">
@@ -582,6 +583,23 @@ function togglemenu() {
       observer.observe(video);
     });
   </script>
+
+<script>
+    // Get elements
+    const popup = document.getElementById("collegePopup");
+    const closeBtn = document.getElementById("closePopup");
+
+    // Hide after 10 seconds
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 10000);
+
+    // Hide when close button is clicked
+    closeBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+    });
+</script>
+  
 
 {% endblock %}
 

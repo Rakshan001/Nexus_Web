@@ -110,6 +110,29 @@ body {
   font-family: "Playfair Display", serif;
 }
 
+.main-content .college-website
+{
+  position: fixed;
+  top: 15%;
+  right: 10px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(32, 32, 32, 0.479);
+}
+
+.college-website a{
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
+}
+
+.college-website i {
+  cursor: pointer;
+}
+
 
 
 
@@ -1706,4 +1729,262 @@ align-items: center;
     grid-template-columns: repeat(2, minmax(100px, 1fr));
     /* gap: 20px; */
   }
+}
+
+/* For screens larger than 1200px (Laptops & Small Desktops) */
+@media (min-width: 1440px) {
+
+  nav ul li{
+    font-size: 22px;
+  }
+
+.main-content .college-website
+{
+  position: fixed;
+  top: 18%;
+  right: 10px;
+  background-color: white;
+  color: black;
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(32, 32, 32, 0.479);
+}
+
+.college-website a{
+  text-decoration: none;
+  color: black;
+  font-size: 17px;
+}
+
+.caption-overlay h2 {
+  font-size: 5em;
+  width: 100%;
+}
+
+.college-website i{
+  font-size: 17px;
+}
+
+  .about-section .content{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .about-section .content .logo{
+    padding: 10px;
+  }
+  
+  .about-section .content .logo img{
+    width: 350px;
+  }
+  .about-section .content p{
+    width: 100%;
+    max-width: 800px;
+    font-size: 20px;
+  }
+  .about-section h2 {
+    
+    text-align: left;
+  }
+  .about-section .line {
+    width: 100px;
+    height: 5px;
+    background-color: orange;
+    margin: 10px 0;
+  }
+
+  .nexus-do .left-side {
+    max-width: 1000px;
+    /* margin: 10px auto; */
+    padding: 30px 20px;
+    margin-left: 2rem;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.346);
+    transition: transform 0.2s;
+    position: relative;
+  }
+  .nexus-do .right-side {
+    /* position: absolute;
+    right: 0;
+    left: 30rem; */
+    max-width: 1000px;
+    margin-right: 2rem;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.346);
+    transition: transform 0.2s;
+    position: relative;
+  }
+  
+  .nexus-do .row{
+    width:100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+  
+  .left-circle {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  /* background-color: #df7103;  */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 20px; */
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid #0a1219;
+  }
+  .right-circle {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 20px; */
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid #0a1219;
+  }
+  
+  .left-side .content {
+  text-align: left;
+  margin-left: 8rem;
+  }
+  /* .nexus-do .content p{
+    font-size: 16px;
+  } */
+  .right-side .content {
+  text-align: right;
+  margin-right: 8rem;
+  }
+
+  .activity-cards .card .count {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .activity-cards .card .count {
+  font-size: 80px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+  /* css for toast message */
+  .toast{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+  }
+  .toast .toast-header .toast-logo{
+    width: 25px;
+  }
+
+  .toast .toast-body{
+    font-size: 18px;
+  }
+
+}
+
+/* For screens larger than 1920px (4K Screens & Ultra-wide Monitors) */
+@media (min-width: 1920px) {
+
+  .carousel-caption{
+    width: 100%;
+  }
+
+  .caption-overlay h2 {
+    font-size: 6em;
+    width: 100%;
+  }
+
+  .nexus-do .left-side {
+    max-width: 1200px;
+    /* margin: 10px auto; */
+    padding: 40px 30px;
+    margin-left: 2rem;
+    margin-bottom: 20px;
+    border-radius: 100px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.346);
+    transition: transform 0.2s;
+    position: relative;
+  }
+  .nexus-do .right-side {
+    /* position: absolute;
+    right: 0;
+    left: 30rem; */
+    max-width: 1200px;
+    margin-right: 2rem;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    border-radius: 100px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.346);
+    transition: transform 0.2s;
+    position: relative;
+  }
+  .left-circle {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    /* background-color: #df7103;  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-right: 20px; */
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 2px solid #0a1219;
+    }
+    .right-circle {
+    position: absolute;
+    right: 0;
+    top: 9px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-right: 20px; */
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 2px solid #0a1219;
+    }
+    .left-side .content {
+      text-align: left;
+      margin-left: 9rem;
+      }
+      /* .nexus-do .content p{
+        font-size: 16px;
+      } */
+      .right-side .content {
+      text-align: right;
+      margin-right: 10rem;
+      }
+
+      .nexus-do .content h3{
+        font-size: 30px;
+      }
+      .nexus-do .content p{
+        font-size: 19px;
+      }
 }
