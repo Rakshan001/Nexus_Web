@@ -156,6 +156,9 @@ body {
     border-radius: 10px; /* Adds rounded corners */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.286);
 }
+.swiper-container .swiper-wrapper .no-post{
+    margin: 10px auto;
+}
 /* Responsiveness */
 @media (max-width: 768px) {
     .swiper-wrapper .swiper-slide img {

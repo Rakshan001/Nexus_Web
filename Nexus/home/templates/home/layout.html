@@ -110,12 +110,24 @@
                                      </button>
                                      
                                 {% elif user.student_profile %}
-                                <div class="student-login"><span class="span">Welcome </span> 
-                                    <h4 class="student-name">{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h4>
+                                <div class="student-login">
+                                    <span class="span">Welcome </span> 
+                                    <div class="student-prof-sec">
+                                        <div class="profile-icon-letter">
+                                            {{ user.student_profile.first_name|first|upper }}{{ user.student_profile.last_name|first|upper }}
+                                        </div>
+                                        <h4 class="student-name">{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h4>
+                                    </div>
                                     <!-- <p>Email: {{ user.username }}</p> -->
                                 {% elif user.faculty_profile %}
-                                    <div class="faculty-login"><span class="span">Welcome </span> 
-                                        <h4 class="faculty-name">{{ user.faculty_profile.first_name }} {{ user.faculty_profile.last_name }}</h4>
+                                    <div class="faculty-login">
+                                        <span class="span">Welcome </span> 
+                                        <div class="faculty-prof-sec">
+                                            <div class="profile-icon-letter">
+                                                {{ user.faculty_profile.first_name|first|upper }}{{ user.faculty_profile.last_name|first|upper }}
+                                            </div>
+                                            <h4 class="faculty-name">{{ user.faculty_profile.first_name }} {{ user.faculty_profile.last_name }}</h4>
+                                        </div>
                                         <!-- <p>Email: {{ user.username }}</p> -->
                                 {% endif %}
                                 <button class="secondry-btn">

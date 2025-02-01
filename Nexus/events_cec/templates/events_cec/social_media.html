@@ -59,10 +59,10 @@
         <div class="reel"><video autoplay loop muted src="../assets/reel.mp4"></video></div> -->
         <!-- https://www.instagram.com/reel/DD9WFDBPc5i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA== -->
         {% for reel in reels %}
-        <div class="reel-container">
+        <!-- <div class="reel-container"> -->
             <!-- Render the Instagram embed code stored in TextField -->
             {{ reel.url|safe }}
-        </div>
+        <!-- </div> -->
         {% empty %}
             <p>No reels found.</p>
         {% endfor %}
