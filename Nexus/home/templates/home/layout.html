@@ -253,6 +253,10 @@
                             <div style="display: block;" class="student-div"> 
                                 <h3>{{ user.student_profile.first_name }} {{ user.student_profile.last_name }}</h3>
                                 <p>Email: {{ user.username }}</p>
+
+                                {% elif user.faculty_profile %}
+                                    <div class="faculty-login"><span class="span">Welcome </span> 
+                                        <h4 class="faculty-name">{{ user.faculty_profile.first_name }} {{ user.faculty_profile.last_name }}</h4>
                             {% endif %}
                             
                             <button class="secondry-btn">

@@ -712,6 +712,19 @@ text-decoration: none;
   .dropdown-content li:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
+
+  .chatbot{
+    position: fixed;
+    padding: 10px;
+    bottom: 40px;
+    right: 10px;
+   
+  }
+  .chatbot i{
+    color: white;
+    font-size: 30px;
+  }
+
   #loginBtn{
     display : none;
   }
@@ -769,7 +782,7 @@ text-decoration: none;
 .help-block {
   position: fixed;
   bottom: 0; /* Adjust the spacing from the bottom */
-  right: 10px; /* Adjust the spacing from the right */
+  right: 40px; /* Adjust the spacing from the right */
   z-index: 1000; /* Ensures it stays above other elements */
   background-color: #da8300; /* Background color of the block */
   border-top: 4px solid #0a1219;
