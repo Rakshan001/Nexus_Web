@@ -54,7 +54,7 @@
                         <img src="../../static/home/assets/nexus inaug-1 1.png" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
                             <div class="caption-overlay">
-                                <h2>Inaugration of CEC Nexus Club</h2>
+                                <h2>Inauguration of CEC Nexus Club</h2>
                                 <a href="#explore" class="explore-button">Explore More <i class="fa-solid fa-angle-down"></i></a>
                             </div>
                         </div>
@@ -83,12 +83,7 @@
             <div class="line"></div>
             <div class="content">
                 <p>
-                    I want to express my deepest gratitude to each and every one of you for your hard work and dedication. 
-                    "Today, I want to talk about the importance of kindness and compassion in our community." 
-                    "I am thrilled to announce that our school has been recognized for its outstanding achievements 
-                    in the field of public health." "I believe that every individual has the power to make a positive 
-                    impact in the world." "As we move forward, I encourage you to stay committed to our mission of 
-                    improving the health and well-being of all people."
+                    CEC Nexus is a vibrant community fostering strong alumni relations, connecting graduates across generations with current students and the institution. Through mentorship, networking, and shared opportunities, Nexus bridges the gap between experience and aspiration. Together, we grow, collaborate, and shape the future of the CEC family.
                 </p>
                 <div class="logo">
                     <img src="../../static/home/assets/Nexus logo.jpg" alt="Nexus Logo">
@@ -104,7 +99,7 @@
                 </div>
                 <div class="content">
                     <h3>Become Batch Ambassador</h3>
-                    <p>Help us to reach out to your classmates by becoming Batch Ambassador</p>
+                    <p>Help us connect with your classmates by representing your batch</p>
                 </div>
             </div>
             <div class="row">
@@ -117,8 +112,7 @@
                     </div>
                     <div class="content">
                         <h3>Share Career Opportunity</h3>
-                        <p>Is your organization hiring new talent? Share the career
-                            opportunity with huge talent pool within Institute</p>
+                        <p>Is your organization hiring? Share job openings with our vast talent pool within the institute</p>
                     </div>
                 </div>
             </div>
@@ -128,8 +122,7 @@
                 </div>
                 <div class="content">
                     <h3>Spread the Word</h3>
-                    <p>Share this platform on your facebook timeline so that all your
-                        friends are able to join.</p>
+                    <p>Promote Nexus on your social media to help more friends and alumni join the platform</p>
                 </div>
             </div>
             <div class="row">
@@ -140,8 +133,7 @@
                     </div>
                     <div class="content">
                         <h3>Story: My First Job</h3>
-                        <p>Share your First Job Experience story with us that we
-                            can publish for all alumni and faculty to see</p>
+                        <p>Share your first job experience to inspire fellow alumni and current students</p>
                     </div>
                 </div>
             </div>
@@ -151,8 +143,7 @@
                 </div>
                 <div class="content">
                     <h3>Write a Testinomial</h3>
-                    <p>Write a testimonial if you wish to share experiences at
-                        institute and want to make it known to the world</p>
+                    <p>Reflect on your time at the institute and share your experiences with the world</p>
                 </div>
             </div>
         </div>
@@ -275,8 +266,8 @@
                 <span class="line"></span>
             </div> -->
             <div class="event-header">
-                <h2>Latest From Nexus</h2>
-                <p>Watch all our latest podcast and Instagram posts at CEC Nexus. Please Stay tuned for the future updates.</p>
+                <h2>Our Latest Events</h2>
+                <p>View all our latest events and posts on events sections and Instagram posts at CEC Nexus</p>
             </div>
             <div class="swiper-container s1">
                 <div class="swiper-wrapper">
@@ -364,8 +355,8 @@
       
         <div class="alumni-startups">
             <div class="latest-header">
-                <h2>Nexus Founder Team</h2>
-                <p>Watch all our latest podcast and Instagram posts at CEC Nexus. Please Stay tuned for the future updates.</p>
+                <h2>Nexus Founding Members</h2>
+                <p>The Nexus Founding Team is a visionary group driving innovation, collaboration, and excellence at CEC Nexus. 🚀</p>
             </div>
             <div class="row">
                 <div class="startup-card">
@@ -589,16 +580,21 @@ function togglemenu() {
     const popup = document.getElementById("collegePopup");
     const closeBtn = document.getElementById("closePopup");
 
-    // Hide after 10 seconds
+    // Show popup after 10 seconds and hide after 10 seconds
     setTimeout(() => {
-        popup.style.display = "none";
-    }, 10000);
+        popup.style.display = "block"; // Show the popup
+        setTimeout(() => {
+            popup.style.display = "none"; // Hide the popup after 10 seconds
+        }, 10000);
+    }, 5000); // Wait for 10 seconds before showing the popup
 
     // Hide when close button is clicked
     closeBtn.addEventListener("click", () => {
         popup.style.display = "none";
     });
 </script>
+
+
   
 
 {% endblock %}

@@ -90,6 +90,7 @@ body {
 
 .main-content .college-website
 {
+  display: none;
   position: fixed;
   top: 15%;
   right: 10px;

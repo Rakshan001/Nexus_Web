@@ -172,15 +172,19 @@ document.getElementById('loadMoreBtn')?.addEventListener('click', function() {
         <p class="position">${alumni.branch || ''}</p>
     </a>
     <div class="connec-btn">
-                    <button class="connect-btn">
-                        <i class="fa-brands fa-linkedin"></i>
-                        <a href="{{ alumni.linkedin_url }}" target="_blank">LinkedIn</a>
-                    </button>
-                    <button class="connect-btn">
-                        <i class="fa-solid fa-envelope"></i>
-                        <a href="mailto:{{ alumni.personal_email }}">Email</a>
-                    </button>
-    </div>
+    ${alumni.linkedin_url ? `
+        <button class="connect-btn">
+            <i class="fa-brands fa-linkedin"></i>
+            <a href="${alumni.linkedin_url}" target="_blank">LinkedIn</a>
+        </button>
+    ` : ''}
+    ${alumni.personal_email ? `
+        <button class="connect-btn">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:${alumni.personal_email}">Email</a>
+        </button>
+    ` : ''}
+</div>
 </div>
 
 
