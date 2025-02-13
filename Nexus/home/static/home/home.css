@@ -296,7 +296,7 @@ body {
 
 .nexus-do h2{
   color: rgb(226, 126, 20);
-  font-size: 40px;
+  font-size: 32px;
   font-weight: bold;
   text-align: center;
   padding: 20px;
@@ -411,7 +411,7 @@ margin-right: 8rem;
 
 .top-events-display .event-header p{
   text-align: center;
-  font-size: 1em;
+  font-size: 16px;
   margin-bottom: 4rem;
 }
 

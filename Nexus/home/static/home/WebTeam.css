@@ -40,11 +40,19 @@ body {
   }
   
   .heading{
-    margin: 3rem auto;
+    margin: 2rem auto;
     text-align: center;
     padding: 10px;
     border-bottom: 2px solid orange;
     max-width: 500px;
+  }
+
+  .subheading{
+    text-align: center;
+    width: 100%;
+    color: orange;
+    margin-bottom: 1rem;
+    font-size: 20px;
   }
   
   h3 {
